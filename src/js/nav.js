@@ -7,11 +7,11 @@ fadeMobileMenu = (action) => {
     if (action == 'in') {
         mobileMenu.animate({
             opacity: 1
-        }, 'slow');
+        }, 'fast');
         mobileMenuLinks.animate({
             opacity: 1,
             marginRight: 0
-        }, 'slow');
+        }, 'fast');
     } else {
         mobileMenuLinks.animate({
             opacity: 0,
