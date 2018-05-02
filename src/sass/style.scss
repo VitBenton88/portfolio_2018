@@ -13,7 +13,9 @@
 @import "elements/headings";
 
 /* COMPONENTS */
-@import "components/main";
+@import "components/common";
+@import "components/intro";
+@import "components/nav";
 
 /* BROWSERS */
 @import "core/browsers";

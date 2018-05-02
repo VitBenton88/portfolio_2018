@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
-    <title>Node.js Template</title>
+    <meta charset="utf-8">
+    <title>Vit Benton</title>
     <!--MISC META TAGS -->
-    <meta name="description" content="Node.js Template">
+    <meta name="description" content="Vit Benton - Full-stack web developer. Personal website and portfolio.">
     <!--APPLE MOBILE META TAGS -->
-    <!-- <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!--GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Karla|Quicksand|" rel="stylesheet">
     <!--CSS LIBRARIES -->
     <link rel="stylesheet" type="text/css" href="assets/lib.min.css">
     <!--LOCAL CSS -->
@@ -19,13 +22,39 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Hello World!</h1>
-        <h3>Node.js is Awesome!</h3>
-        <div class="col-4 offset-4">
-            <img src="assets/images/nodejs_logo.png" alt="Node.js Logo" class="node-logo">
+    <nav class="container">
+        <div class="col-10 offset-1 d-none d-lg-flex justify-content-around align-items-center desktop-nav-wrap">
+            <a>About</a>
+            <a>Portfolio</a>
+            <a>Resume</a>
+            <a>Contact</a>
         </div>
-    </div>
+        <div class="col-12 d-block d-lg-none">
+            <div id="nav-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+        </div>
+        <div class="mobile-nav-menu d-flex d-lg-none flex-column justify-content-center align-items-center">
+            <a>About</a>
+            <a>Portfolio</a>
+            <a>Resume</a>
+            <a>Contact</a>
+        </div>
+    </nav>
+
+    <section id="intro">
+        <div class="container">
+            <div class="col-12 offset-0 col-md-10 offset-md-1">
+                <h1>Hi, I'm Vit Benton</h1>
+                <p>South Florida based full-stack web developer experienced with front-end and back-end developement.</p>
+                <article>
+                    <p>Full-stack web developer with a background in e-commerce, photography, and music production. Passionate about front-end design and skilled at back-end, database and server-side development. Comfortable working on a team or independently while meeting deadlines. Extensive experience in e-commerce and web design create a strong sense of how web applications can be effective.</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
     <!--minified & concat JS libraries -->
     <script src="assets/lib.min.js"></script>
