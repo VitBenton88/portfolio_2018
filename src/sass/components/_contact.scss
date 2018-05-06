@@ -1,0 +1,53 @@
+#contact {
+    article {
+        padding: 20px 40px;
+
+        @include max-width($screen-sm-max) {
+            padding: 20px 0;
+            text-align: justify;
+        }
+    }
+
+    form {
+        margin: 0 auto;
+
+        input {
+            border: none !important;
+            background: $faded-white;
+            color: $darkGreen;
+            display: block;
+            font-size: 16px;
+            margin: 10px auto 0;
+            padding-left: 10px;
+            width: 100%;
+            min-height: 30px;
+
+            &:focus {
+                outline: none !important;
+                box-shadow: 0 0 6px $white;
+            }
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+
+            @include max-width($screen-sm-max) {
+                margin-top: 15px;
+            }
+        }
+
+        #message {
+            padding-bottom: 60px;
+            resize: vertical;
+            overflow: auto;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto 0;
+        }
+    }
+    ::placeholder{
+        color: $faded-darkGreen;
+    }
+}

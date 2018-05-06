@@ -1,11 +1,13 @@
-h1, h2, h3, h4, h5, p, a {
+h1, h2, h3, h4, h5, a {
     font-family: $Quicksand;
     color: $darkGreen;
 }
 
-p, a {
-    font-size: 16px;
-    line-height: 16px;
+p {
+    font-family: $Karla;
+    color: $darkGreen;
+    font-size: 17px;
+    line-height: 25px;
 }
 
 h1 {

@@ -2,10 +2,30 @@ body {
     background: $teal;
 }
 
+::selection {
+    background: $white;
+}
+
 section {
     margin-top: 50px;
 
-    @include max-width($screen-sm-max){
+    @include max-width($screen-sm-max) {
+        margin-top: 25px;
+    }
+
+    &:first-of-type {
+        @include max-width($screen-sm-max) {
+            margin-top: 40px;
+        }
+    }
+}
+
+hr {
+    border: 1px solid $darkGreen;
+    margin-top: 55px;
+    width: 60px;
+
+    @include max-width($screen-sm-max) {
         margin-top: 25px;
     }
 }
@@ -13,10 +33,12 @@ section {
 article {
     border: 2px solid $darkGreen;
     margin-top: 30px;
-    padding: 10px 60px;
+    padding: 10px 40px;
     text-align: center;
 
-    @include max-width($screen-sm-max){
-        padding: 10px 20px;
+    @include max-width($screen-sm-max) {
+        padding: 10px 25px;
+        text-align: justify;
     }
+
 }

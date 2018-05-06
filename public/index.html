@@ -11,6 +11,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <!--GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Karla|Quicksand|" rel="stylesheet">
+    <!--FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <!--CSS LIBRARIES -->
     <link rel="stylesheet" type="text/css" href="assets/lib.min.css">
     <!--LOCAL CSS -->
@@ -46,19 +48,73 @@
 
     <section id="intro">
         <div class="container">
-            <div class="col-12 offset-0 col-md-10 offset-md-1">
+            <div class="col-12 col-md-10 offset-md-1">
                 <h1>Hi, I'm Vit Benton</h1>
                 <p>South Florida based full-stack web developer experienced with front-end and back-end developement.</p>
+            </div>
+            <div class="col-7 col-sm-5 col-md-4 d-flex justify-content-between social-icon-wrap">
+                <a href="https://stackoverflow.com/users/8039195/vitek-benton" target="_blank"><i class="fab fa-stack-overflow fa-3x"></i></a>
+                <a href="https://www.linkedin.com/in/vit-benton/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+                <a href="https://github.com/VitBenton88" target="_blank"><i class="fab fa-github fa-3x"></i></a>
+            </div>
+            <div class="col-7 col-sm-5 col-md-3 col-xl-2 learn-more-wrap">
+                <h2>Learn More</h2>
+                <i class="fas fa-angle-down fa-3x"></i>
             </div>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <div class="col-12 offset-0 col-md-10 offset-md-1">
+            <div class="col-12 col-md-10 offset-md-1">
                 <h2>About Me</h2>
                 <article>
                     <p>Full-stack web developer with a background in e-commerce, photography, and music production. Passionate about front-end design and skilled at back-end, database and server-side development. Comfortable working on a team or independently while meeting deadlines. Extensive experience in e-commerce and web design create a strong sense of how web applications can be effective.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="graphs">
+        <div class="container">
+            <canvas id="canvas-frontend" class="col-12"></canvas>
+            <canvas id="canvas-backend" class="col-12"></canvas>
+        </div>
+    </section> -->
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="col-12 col-md-10 offset-md-1">
+                <h2>Portfolio</h2>
+                <!-- <article>
+                    <p>Full-stack web developer with a background in e-commerce, photography, and music production. Passionate about front-end design and skilled at back-end, database and server-side development. Comfortable working on a team or independently while meeting deadlines. Extensive experience in e-commerce and web design create a strong sense of how web applications can be effective.</p>
+                </article> -->
+            </div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <div class="container">
+            <div class="col-12 col-md-10 offset-md-1">
+                <h2>Resume</h2>
+                <!-- <article>
+                    <p>Full-stack web developer with a background in e-commerce, photography, and music production. Passionate about front-end design and skilled at back-end, database and server-side development. Comfortable working on a team or independently while meeting deadlines. Extensive experience in e-commerce and web design create a strong sense of how web applications can be effective.</p>
+                </article> -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="col-12 col-md-10 offset-md-1">
+                <h2>Contact</h2>
+                <article>
+                    <form class="col-12 col-lg-8" id="contactForm" action="/contact" method="POST">
+                        <input placeholder="Name*" type="text" id="name" title="Your Name" required />
+                        <input placeholder="Email*" type="email" id="email" title="Your Email Address" required />
+                        <input placeholder="Message*" type="text"id="message" title="Your Message" required />
+                        <button type="submit" id="sendButton" class="standardBtn">SEND</button>
+                    </form>
                 </article>
             </div>
         </div>

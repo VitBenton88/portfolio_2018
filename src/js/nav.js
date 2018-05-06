@@ -1,10 +1,15 @@
+//VARIABLES
+
 const navIcon = $('#nav-icon');
 const mobileMenu = $('.mobile-nav-menu');
 const mobileMenuLinks = $('.mobile-nav-menu a');
 let mobileMenuOpen = false;
 
-fadeMobileMenu = (action) => {
+//FUNCTIONS
+
+const fadeMobileMenu = (action) => {
     if (action == 'in') {
+        displayMobileMenu('show');
         mobileMenu.animate({
             opacity: 1
         }, 'fast');
@@ -12,7 +17,7 @@ fadeMobileMenu = (action) => {
             opacity: 1,
             marginRight: 0
         }, 'fast');
-    } else {
+    } else if (action == 'out') {
         mobileMenuLinks.animate({
             opacity: 0,
             marginRight: 200
@@ -22,6 +27,18 @@ fadeMobileMenu = (action) => {
         }, 'fast');
     }
 };
+
+const displayMobileMenu = (action) => {
+    if (action == 'show') {
+        mobileMenu.css('visibility', 'visible');
+        mobileMenuLinks.css('visibility', 'visible');
+    } else if (action == 'hide') {
+        mobileMenu.css('visibility', 'hidden');
+        mobileMenuLinks.css('visibility', 'hidden');
+    }
+};
+
+// CLICK EVENTS
 
 navIcon.click(function() {
     $(this).toggleClass('open');

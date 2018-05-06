@@ -4,7 +4,7 @@ nav {
     .desktop-nav-wrap {
         border: 2px solid $darkGreen;
         height: 50px;
-        background: $coral;
+        background: $salmon;
 
         a {
             text-transform: uppercase;
@@ -19,8 +19,8 @@ nav {
     }
 
     #nav-icon {
-      width: 26px;
-      height: 45px;
+      width: 33px;
+      height: 33px;
       position: absolute;
       top: 5px;
       right: 5px;
@@ -32,7 +32,7 @@ nav {
         span {
             display: block;
             position: absolute;
-            height: 5px;
+            height: 6px;
             width: 100%;
             background: $darkGreen;
             border-radius: 9px;
@@ -47,12 +47,12 @@ nav {
             }
 
             &:nth-child(2) {
-              top: 9px;
+              top: 10px;
               transform-origin: left center;
             }
 
             &:nth-child(3) {
-              top: 18px;
+              top: 20px;
               transform-origin: left center;
             }
         }
@@ -61,8 +61,8 @@ nav {
             span {
                 &:nth-child(1) {
                   transform: rotate(45deg);
-                  top: 0px;
-                  left: 8px;
+                  top: 0;
+                  left: 7px;
                 }
 
                 &:nth-child(2) {
@@ -72,7 +72,7 @@ nav {
 
                 &:nth-child(3) {
                   transform: rotate(-45deg);
-                  top: 18px;
+                  top: 23px;
                   left: 8px;
                 }
             }
@@ -80,8 +80,9 @@ nav {
     }
 
     .mobile-nav-menu {
-        background: $coral;
+        background: $salmon;
         opacity: 0;
+        visibility: hidden;
         position: absolute;
         top: 0;
         left: 0;
@@ -97,6 +98,7 @@ nav {
             margin-top: 100px;
             margin-right: 200px;
             opacity: 0;
+            visibility: hidden;
             text-transform: uppercase;
 
             &:first-of-type {

@@ -1,3 +1,46 @@
 #intro {
+    height: 100vh;
 
+    .social-icon-wrap {
+        margin: 100px auto 0;
+    }
+
+    .learn-more-wrap {
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        position: absolute;
+        text-align: center;
+
+        h2 {
+            margin-bottom: 65px;
+            transition: .3s ease-in-out;
+        }
+
+        i {
+          animation: MoveUpDown 2s ease-in-out infinite;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+
+        @keyframes MoveUpDown {
+          0%, 100% {
+            bottom: 0;
+          }
+          50% {
+            bottom: 20px;
+          }
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            h2, i {
+                color: $salmon;
+            }
+        }
+    }
 }
