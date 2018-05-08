@@ -2,12 +2,12 @@
 clearForm = () => {
 
   const contactForm = $('#contactForm');
-  const inputNormalColor = 'rgba(255,255,255, 0.3)'
+  const inputNormalColor = 'transparent'
 
   for (let i = 0; i < contactForm.length; i++) {
     contactForm[i].reset();
   };
-  $("#name, #email, #message").css('background-color', inputNormalColor);
+  $("#name, #email, #message").css('background', inputNormalColor);
 };
 
 //function for alerting when contact form is not properly filled out
@@ -29,15 +29,15 @@ formWarning = () => {
   const inputWarningColor = 'rgba(255, 228, 178, 0.9)'
 
   if (nameInput == '') {
-    $("#name").css('background-color', inputWarningColor);
+    $("#name").css('background', inputWarningColor);
   }
 
   if (emailInput == '') {
-    $("#email").css('background-color', inputWarningColor);
+    $("#email").css('background', inputWarningColor);
   }
 
   if (messageInput == '') {
-    $("#message").css('background-color', inputWarningColor);
+    $("#message").css('background', inputWarningColor);
   }
 };
 
@@ -66,14 +66,14 @@ contactSendBtn.on("click", () => {
   if (formVal()) {
 
     let contactForm = $('#contactForm');
-    let nameInput = $("#name").val().trim();
-    let emailInput = $("#email").val().trim();
-    let messageInput = $("#message").val().trim();
+    let name = $("#name").val().trim();
+    let email = $("#email").val().trim();
+    let message = $("#message").val().trim();
 
     let newMessage = {
-      name: nameInput,
-      email: emailInput,
-      message: messageInput
+      name,
+      email,
+      message
     };
 
 
