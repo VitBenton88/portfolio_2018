@@ -3,7 +3,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require('compression');
+const nodemailer = require('nodemailer');
 const path = require("path");
+const validator = require('validator');
 
 // Check for production
 // =============================================================
@@ -37,7 +39,7 @@ if (production) {
 
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app);
+require("./routes/routes.js")(app, nodemailer, validator);
 
 // Starts the server to begin listening
 // =============================================================
