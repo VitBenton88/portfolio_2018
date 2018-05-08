@@ -1,11 +1,22 @@
 //VARIABLES
 
-const navIcon = $('#nav-icon');
 const mobileMenu = $('.mobile-nav-menu');
 const mobileMenuLinks = $('.mobile-nav-menu a');
 let mobileMenuOpen = false;
+const navIcon = $('#nav-icon');
+const $root = $('html, body');
 
 //FUNCTIONS
+
+const displayMobileMenu = (action) => {
+    if (action == 'show') {
+        mobileMenu.css('visibility', 'visible');
+        mobileMenuLinks.css('visibility', 'visible');
+    } else if (action == 'hide') {
+        mobileMenu.css('visibility', 'hidden');
+        mobileMenuLinks.css('visibility', 'hidden');
+    }
+};
 
 const fadeMobileMenu = (action) => {
     if (action == 'in') {
@@ -25,16 +36,9 @@ const fadeMobileMenu = (action) => {
         mobileMenu.animate({
             opacity: 0
         }, 'fast');
-    }
-};
-
-const displayMobileMenu = (action) => {
-    if (action == 'show') {
-        mobileMenu.css('visibility', 'visible');
-        mobileMenuLinks.css('visibility', 'visible');
-    } else if (action == 'hide') {
-        mobileMenu.css('visibility', 'hidden');
-        mobileMenuLinks.css('visibility', 'hidden');
+        setTimeout(()=> {
+            displayMobileMenu('hide');
+        }, 300);
     }
 };
 
@@ -51,8 +55,14 @@ navIcon.click(function() {
     }
 });
 
-mobileMenuLinks.click(()=> {
+mobileMenuLinks.click(function() {
+    let scrollTarget = $(this).attr('href');
     fadeMobileMenu('out');
     navIcon.removeClass('open');
     mobileMenuOpen = !mobileMenuOpen;
+    // smoothScroll
+    $root.animate({
+      scrollTop: $(scrollTarget).offset().top - 25
+    }, 500);
+    return false;
 });

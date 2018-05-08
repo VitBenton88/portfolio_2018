@@ -26,10 +26,10 @@
 <body>
     <nav class="container">
         <div class="col-10 offset-1 d-none d-lg-flex justify-content-around align-items-center desktop-nav-wrap">
-            <a>About</a>
-            <a>Portfolio</a>
-            <a>Resume</a>
-            <a>Contact</a>
+            <a href="#about">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
         </div>
         <div class="col-12 d-block d-lg-none">
             <div id="nav-icon">
@@ -39,10 +39,10 @@
             </div>
         </div>
         <div class="mobile-nav-menu d-flex d-lg-none flex-column justify-content-center align-items-center">
-            <a>About</a>
-            <a>Portfolio</a>
-            <a>Resume</a>
-            <a>Contact</a>
+            <a href="#about">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
@@ -52,7 +52,7 @@
                 <h1>Hi, I'm Vit Benton</h1>
                 <p>South Florida based full-stack web developer experienced with front-end and back-end developement.</p>
             </div>
-            <div class="col-7 col-sm-5 col-md-4 d-flex justify-content-between social-icon-wrap">
+            <div class="col-7 col-sm-5 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-between social-icon-wrap">
                 <a href="https://stackoverflow.com/users/8039195/vitek-benton" target="_blank"><i class="fab fa-stack-overflow fa-3x"></i></a>
                 <a href="https://www.linkedin.com/in/vit-benton/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
                 <a href="https://github.com/VitBenton88" target="_blank"><i class="fab fa-github fa-3x"></i></a>
@@ -109,16 +109,24 @@
             <div class="col-12 col-md-10 offset-md-1">
                 <h2>Contact</h2>
                 <article>
-                    <form class="col-12 col-lg-8" id="contactForm" action="/contact" method="POST">
+                    <form class="col-12 col-lg-10" id="contactForm" action="/contact" method="POST">
                         <input placeholder="Name*" type="text" id="name" title="Your Name" required />
                         <input placeholder="Email*" type="email" id="email" title="Your Email Address" required />
-                        <input placeholder="Message*" type="text"id="message" title="Your Message" required />
+                        <textarea placeholder="Message*" type="text"  cols="40" rows="5" id="message" title="Your Message" required></textarea>
                         <button type="submit" id="sendButton" class="standardBtn">SEND</button>
                     </form>
                 </article>
             </div>
         </div>
     </section>
+
+    <div class="container">
+        <div class="col-12 offset-0 col-md-10 offset-md-1 footer-wrap">
+            <footer class="d-flex justify-content-around align-items-center">
+                <p>Copyright <span id="copyrightYear"></span></p>
+            </footer>
+        </div>
+    </div>
 
     <!--minified & concat JS libraries -->
     <script src="assets/lib.min.js"></script>

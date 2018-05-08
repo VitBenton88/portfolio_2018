@@ -1,12 +1,13 @@
 body {
     background: $teal;
+    margin: 0;
 }
 
 ::selection {
     background: $white;
 }
 
-section {
+section, footer {
     margin-top: 50px;
 
     @include max-width($screen-sm-max) {

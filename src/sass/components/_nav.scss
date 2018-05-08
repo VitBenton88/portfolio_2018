@@ -7,10 +7,11 @@ nav {
         background: $salmon;
 
         a {
-            text-transform: uppercase;
             border-bottom: 2px solid transparent;
             cursor: pointer;
             transition: border-bottom 0.3s ease-in-out;
+            text-decoration: none;
+            text-transform: uppercase;
 
             &:hover{
                 border-bottom: 2px solid $darkGreen;
@@ -21,9 +22,9 @@ nav {
     #nav-icon {
       width: 33px;
       height: 33px;
-      position: absolute;
-      top: 5px;
-      right: 5px;
+      position: fixed;
+      top: 25px;
+      right: 25px;
       z-index: 3;
       transform: rotate(0deg);
       transition: .5s ease-in-out;
@@ -83,7 +84,7 @@ nav {
         background: $salmon;
         opacity: 0;
         visibility: hidden;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         z-index: 2;
@@ -100,6 +101,7 @@ nav {
             opacity: 0;
             visibility: hidden;
             text-transform: uppercase;
+            text-decoration: none;
 
             &:first-of-type {
                 margin-top: 0;

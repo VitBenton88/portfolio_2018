@@ -11,7 +11,11 @@
     form {
         margin: 0 auto;
 
-        input {
+        textarea {
+            padding-top: 10px;
+        }
+
+        input, textarea {
             border: none !important;
             background: $faded-white;
             color: $darkGreen;
@@ -20,15 +24,15 @@
             margin: 10px auto 0;
             padding-left: 10px;
             width: 100%;
-            min-height: 30px;
+            min-height: 40px;
+
+            &:first-child {
+                margin-top: 0;
+            }
 
             &:focus {
                 outline: none !important;
                 box-shadow: 0 0 6px $white;
-            }
-
-            &:first-of-type {
-                margin-top: 0;
             }
 
             @include max-width($screen-sm-max) {
@@ -37,7 +41,7 @@
         }
 
         #message {
-            padding-bottom: 60px;
+            padding-bottom: 70px;
             resize: vertical;
             overflow: auto;
         }
@@ -47,6 +51,7 @@
             margin: 20px auto 0;
         }
     }
+
     ::placeholder{
         color: $faded-darkGreen;
     }
