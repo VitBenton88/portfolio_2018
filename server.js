@@ -3,9 +3,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require('compression');
+const dotenv = require('dotenv');
 const nodemailer = require('nodemailer');
 const path = require("path");
 const validator = require('validator');
+
+//load environment variables
+// =============================================================
+dotenv.config();
 
 // Check for production
 // =============================================================
@@ -17,6 +22,7 @@ const app = express();
 let PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
+// =============================================================
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -27,6 +33,7 @@ app.use(bodyParser.json({
 }));
 
 //apply production settings
+// =============================================================
 if (production) {
     // compress responses
     app.use(compression());
@@ -39,7 +46,7 @@ if (production) {
 
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app, nodemailer, validator);
+require("./routes/routes.js")(app, dotenv, nodemailer, validator);
 
 // Starts the server to begin listening
 // =============================================================

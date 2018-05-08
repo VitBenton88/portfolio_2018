@@ -1,6 +1,6 @@
 // Routes
 // =============================================================
-module.exports = function(app, nodemailer, validator) {
+module.exports = function(app, dotenv, nodemailer, validator) {
     // homepage route
     app.get("/", (req, res) => {
       res.send("./public/index.html");

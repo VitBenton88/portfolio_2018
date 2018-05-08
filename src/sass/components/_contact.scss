@@ -16,8 +16,8 @@
         }
 
         input, textarea {
-            border: none !important;
-            background: $faded-white;
+            border: $commonBorder;
+            background: transparent;
             color: $darkGreen;
             display: block;
             font-size: 16px;
