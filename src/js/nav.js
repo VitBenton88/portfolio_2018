@@ -1,6 +1,7 @@
 //VARIABLES
 
 const mobileMenu = $('.mobile-nav-menu');
+const desktopMenuLinks = $('.desktop-nav-wrap a, .learn-more-wrap');
 const mobileMenuLinks = $('.mobile-nav-menu a');
 let mobileMenuOpen = false;
 const navIcon = $('#nav-icon');
@@ -53,6 +54,15 @@ navIcon.click(function() {
         fadeMobileMenu('out');
         mobileMenuOpen = !mobileMenuOpen;
     }
+});
+
+desktopMenuLinks.click(function() {
+    let scrollTarget = $(this).attr('href');
+    // smoothScroll
+    $root.animate({
+      scrollTop: $(scrollTarget).offset().top - 25
+    }, 500);
+    return false;
 });
 
 mobileMenuLinks.click(function() {

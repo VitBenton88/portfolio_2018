@@ -1,17 +1,26 @@
 #intro {
-    height: 100vh;
+    height: 90vh;
+
+    @include max-width($screen-md-max) {
+        height: 95vh;
+    }
+
+    @include max-width($screen-sm-max) {
+        height: 93vh;
+    }
 
     .social-icon-wrap {
         margin: 100px auto 0;
     }
 
-    .learn-more-wrap {
+    a.learn-more-wrap {
         bottom: 10px;
         left: 0;
         right: 0;
         margin: 0 auto;
         position: absolute;
         text-align: center;
+        text-decoration: none;
 
         h2 {
             margin-bottom: 65px;
