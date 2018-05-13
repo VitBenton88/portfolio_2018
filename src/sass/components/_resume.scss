@@ -1,3 +1,52 @@
 #resume {
 
+    .download {
+        cursor: pointer;
+        width: 105px;
+        float: right;
+
+        &:hover {
+            p, i {
+                color: $salmon;
+            }
+        }
+
+        p {
+            display: inline-block;
+            margin: 0 10px 0 0;
+            transition: .3s ease-in-out;
+        }
+    }
+
+    article {
+        padding: 30px;
+        text-align: left;
+
+        i {
+            cursor: auto;
+            &:hover {
+                color: $darkGreen;
+            }
+        }
+
+        h4 {
+          font-weight: bold;
+        }
+
+        #resumeTitle {
+          text-align: center;
+        }
+
+        .resumeDate {
+          float: right;
+
+          @include max-width($screen-md-max) {
+               float: none;
+          }
+        }
+
+        .subHeader {
+          font-weight: bold;
+        }
+    }
 }
