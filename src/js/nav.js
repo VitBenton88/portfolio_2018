@@ -1,7 +1,7 @@
 //VARIABLES
 
 const mobileMenu = $('.mobile-nav-menu');
-const desktopMenuLinks = $('.desktop-nav-wrap a, .learn-more-wrap');
+const desktopMenuLinks = $('.desktop-nav-wrap a, .learn-more-wrap, .totop-wrap');
 const mobileMenuLinks = $('.mobile-nav-menu a');
 let mobileMenuOpen = false;
 const navIcon = $('#nav-icon');

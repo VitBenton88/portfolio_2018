@@ -47,7 +47,7 @@
     </nav>
 
     <section id="intro">
-        <div class="container">
+        <div id="particles-js" class="container">
             <div class="col-12 col-md-10 offset-md-1">
                 <h1>Hi, I'm Vit Benton</h1>
                 <p>South Florida based full-stack web developer experienced with front-end and back-end developement.</p>
@@ -106,18 +106,26 @@
 
     <section id="contact">
         <div class="container">
-            <div class="col-12 col-md-10 offset-md-1">
-                <h2>Contact</h2>
-                <article>
-                    <form class="col-12 col-lg-10" id="contactForm" action="/contact" method="POST">
-                        <input placeholder="Name*" type="text" id="name" title="Your Name" required />
-                        <input placeholder="Email*" type="email" id="email" title="Your Email Address" required />
-                        <textarea placeholder="Message*" type="text"  cols="40" rows="5" id="message" title="Your Message" required></textarea>
-                        <button type="submit" id="sendButton" class="standardBtn">SEND</button>
-                    </form>
-                </article>
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-5 offset-md-1">
+                    <h2>Contact</h2>
+                    <article>
+                        <form class="col-12" id="contactForm" action="/contact" method="POST">
+                            <input placeholder="Name*" type="text" id="name" title="Your Name" required />
+                            <input placeholder="Email*" type="email" id="email" title="Your Email Address" required />
+                            <textarea placeholder="Message*" type="text"  cols="40" rows="5" id="message" title="Your Message" required></textarea>
+                            <button type="submit" id="sendButton" class="standardBtn">SEND</button>
+                        </form>
+                    </article>
+                </div>
+                <div class="col-12 col-md-10 col-lg-5 offset-md-1">
+                    <a href="nav" class="col-6 col-sm-5 col-md-4 col-lg-6 col-xl-6 totop-wrap">
+                        <i class="fas fa-angle-up fa-3x"></i>
+                        <h2>Back to Top</h2>
+                    </a>
+                </div>
             </div>
-        </div>
+            </div>
     </section>
 
     <div class="container">
