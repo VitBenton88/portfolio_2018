@@ -75,7 +75,7 @@ $(document).ready( () => {
                 labels: frontendLabels,
                 datasets: [{
                     data: frontEndData,
-                    backgroundColor: returnColorData('rgba(231, 178, 187, 0.4)', frontEndData.length),
+                    backgroundColor: returnColorData('rgba(220, 229, 241, 0.4)', frontEndData.length),
                     borderColor: returnColorData('rgba(36, 27, 78, 1)', frontEndData.length),
                     borderWidth: 2
                 }]
@@ -91,7 +91,7 @@ $(document).ready( () => {
                 labels: backendLabels,
                 datasets: [{
                     data: backEndData,
-                    backgroundColor: returnColorData('rgba(231, 178, 187, 0.4)', backEndData.length),
+                    backgroundColor: returnColorData('rgba(220, 229, 241, 0.4)', backEndData.length),
                     borderColor: returnColorData('rgba(0,0,0,1)', backEndData.length),
                     borderWidth: 2
                 }]

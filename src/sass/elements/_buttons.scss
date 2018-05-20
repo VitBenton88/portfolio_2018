@@ -20,7 +20,7 @@ button.standardBtn {
     transition: all ease 0.8s;
 
     &:hover {
-        box-shadow: inset 150px 0 0 0 $salmon;
+        box-shadow: inset 150px 0 0 0 $secondary;
     }
 
 }
@@ -31,6 +31,6 @@ button.standardBtn {
         transition: all ease 0.8s;
 
         &:hover {
-            box-shadow: inset 200px 0 0 0 $salmon;
+            box-shadow: inset 200px 0 0 0 $secondary;
         }
 }

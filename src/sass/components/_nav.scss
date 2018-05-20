@@ -4,7 +4,7 @@ nav {
     .desktop-nav-wrap {
         border: $commonBorder;
         height: 50px;
-        background: $salmon;
+        background: $secondary;
 
         a {
             border-bottom: 2px solid transparent;
@@ -13,7 +13,7 @@ nav {
             text-decoration: none;
             text-transform: uppercase;
 
-            &:hover{
+            &:hover {
                 border-bottom: 2px solid $darkGreen;
             }
         }
@@ -81,7 +81,7 @@ nav {
     }
 
     .mobile-nav-menu {
-        background: $salmon;
+        background: $secondary;
         opacity: 0;
         visibility: hidden;
         position: fixed;
