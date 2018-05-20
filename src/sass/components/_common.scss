@@ -3,6 +3,13 @@ body {
     margin: 0;
 }
 
+.container {
+    @include max-width($screen-sm-max) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
 ::selection {
     background: $white;
 }

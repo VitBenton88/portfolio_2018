@@ -28,6 +28,12 @@
             }
         }
 
+        ul {
+            @include max-width($screen-sm-max) {
+                padding-left: 17px;
+            }
+        }
+
         i {
             cursor: auto;
             &:hover {

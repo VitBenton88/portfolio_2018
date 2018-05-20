@@ -1,28 +1,76 @@
 #portfolio {
 
-    .fa-chevron-circle-left {
-        position: absolute;
-        left: 250px;
-        z-index: 5;
-    }
+    .slider-article {
+        padding: 25px;
 
-    .fa-chevron-circle-right {
-        position: absolute;
-        right: 250px;
-        z-index: 5;
-    }
+        @include max-width($screen-sm-max) {
+            text-align: center !important;
+        }
 
-    .portfolio-slider {
-        .slick-dots li button:before {
-            font-size: 20px;
-            line-height: 20px;
+        .mobile-slider-instructions {
+            cursor: default !important;
+            font-size: 13px !important;
+            margin: 0 auto;
+            text-transform: uppercase;
         }
-        li {
-            font-size: 16px !important;
-            text-align: left;
+
+        .fa-chevron-circle-right, .fa-chevron-circle-left {
+            position: absolute;
+            z-index: 1;
         }
-        .widerBtn {
-            margin-bottom: 20px;
+
+        .fa-chevron-circle-right {
+            right: 25%;
+
+            @include max-width($screen-md-max) {
+                right: 18%;
+            }
+            @include max-width($screen-sm-max) {
+                right: 16%;
+            }
+            @include max-width($screen-xs-max) {
+                right: 9%;
+            }
+        }
+
+        .fa-chevron-circle-left {
+            left: 25%;
+
+            @include max-width($screen-md-max) {
+                left: 18%;
+            }
+            @include max-width($screen-sm-max) {
+                left: 16%;
+            }
+            @include max-width($screen-xs-max) {
+                left: 9%;
+            }
+        }
+
+        .portfolio-slider {
+
+            @include max-width($screen-sm-max) {
+                text-align: center !important;
+            }
+
+            .slick-dots li button:before {
+                font-size: 20px;
+                line-height: 20px;
+            }
+
+            ul {
+                @include max-width($screen-sm-max) {
+                    padding-left: 17px;
+                }
+                li {
+                    font-size: 16px !important;
+                    text-align: left;
+                }
+            }
+
+            .widerBtn {
+                margin-bottom: 20px;
+            }
         }
     }
 }
