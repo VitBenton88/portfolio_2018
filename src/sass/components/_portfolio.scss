@@ -1,0 +1,28 @@
+#portfolio {
+
+    .fa-chevron-circle-left {
+        position: absolute;
+        left: 250px;
+        z-index: 5;
+    }
+
+    .fa-chevron-circle-right {
+        position: absolute;
+        right: 250px;
+        z-index: 5;
+    }
+
+    .portfolio-slider {
+        .slick-dots li button:before {
+            font-size: 20px;
+            line-height: 20px;
+        }
+        li {
+            font-size: 16px !important;
+            text-align: left;
+        }
+        .widerBtn {
+            margin-bottom: 20px;
+        }
+    }
+}

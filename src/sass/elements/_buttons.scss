@@ -1,6 +1,7 @@
 /* Regular Buttons */
-.button, input[type="button"], input[type="submit"] {
+.standardBtn, input[type="button"], input[type="submit"] {
     user-select: none;
+    outline: none !important;
 }
 
     input[type="button"], input[type="submit"] {
@@ -21,4 +22,15 @@ button.standardBtn {
     &:hover {
         box-shadow: inset 150px 0 0 0 $salmon;
     }
+
+}
+
+    button.widerBtn {
+        width: 200px;
+        height: 50px;
+        transition: all ease 0.8s;
+
+        &:hover {
+            box-shadow: inset 200px 0 0 0 $salmon;
+        }
 }

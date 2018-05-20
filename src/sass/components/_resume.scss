@@ -22,6 +22,12 @@
         padding: 30px;
         text-align: left;
 
+        p {
+            @include max-width($screen-sm-max) {
+                text-align: justify;
+            }
+        }
+
         i {
             cursor: auto;
             &:hover {

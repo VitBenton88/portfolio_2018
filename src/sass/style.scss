@@ -2,6 +2,8 @@
 @import "core/colors";
 @import "core/grid";
 @import 'core/mixins';
+@import "core/slick";
+@import "core/slick-theme";
 
 /* FONTS */
 @import "core/fonts";
@@ -20,6 +22,7 @@
 @import "components/footer";
 @import "components/intro";
 @import "components/nav";
+@import "components/portfolio";
 @import "components/resume";
 
 /* BROWSERS */
