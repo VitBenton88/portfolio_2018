@@ -11,6 +11,10 @@
 
     .social-icon-wrap {
         margin: 100px auto 0;
+
+        @include landscape-sm() {
+            margin: 30px auto 0;
+        }
     }
 
     a.learn-more-wrap {
