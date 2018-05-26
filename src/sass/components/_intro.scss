@@ -48,11 +48,17 @@
           }
         }
 
-        &:hover {
-            cursor: pointer;
+        &:focus {
+            -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+        }
 
-            h2, i {
-                color: $darkBlue;
+        &:hover {
+            @include min-width($screen-lg-min) {
+                cursor: pointer;
+
+                h2, i {
+                    color: $darkBlue;
+                }
             }
         }
     }
