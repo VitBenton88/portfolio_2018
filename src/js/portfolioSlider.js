@@ -5,7 +5,15 @@ const sliderSettings = {
     fade: true,
     infinite: true,
     speed: 500,
-    swipeToSlide: true
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          fade: false,
+        }
+      }
+    ]
 }
 
 const leftArrow = $('.fa-chevron-circle-left');
