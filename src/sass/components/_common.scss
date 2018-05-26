@@ -3,12 +3,12 @@ body {
     margin: 0;
 
     &.nav-menu-open {
-        height: 90vh;
+        height: 100%;
     }
 }
 
 .nav-menu-open {
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 .container {
