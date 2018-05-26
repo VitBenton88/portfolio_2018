@@ -91,6 +91,12 @@ nav {
         height: 100%;
         width: 100%;
 
+        &.mobile-nav-menu-port {
+            @include landscape-md-max() {
+                display: none !important;
+            }
+        }
+
         a {
             cursor: pointer;
             display: block;
@@ -105,6 +111,41 @@ nav {
 
             &:first-of-type {
                 margin-top: 0;
+            }
+        }
+    }
+
+    .mobile-nav-menu-land {
+        display: none;
+
+        @include landscape-md-max() {
+            display: flex;
+        }
+
+        .mobile-nav-set-wrap {
+            margin: 0 auto;
+        }
+
+        .mobile-nav-set {
+
+            &:first-of-type {
+                a {
+                    margin-bottom: 29%;
+                }
+            }
+
+            &:nth-of-type(2) {
+                clear: both;
+            }
+            a {
+                margin-top: 0;
+
+                &:first-of-type {
+                    float: left;
+                }
+                &:nth-of-type(2) {
+                    float: right;
+                }
             }
         }
     }

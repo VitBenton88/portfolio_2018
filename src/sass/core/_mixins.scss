@@ -68,6 +68,12 @@
 	}
 }
 
+@mixin landscape-md-max() {
+	@media only screen and (orientation: landscape) and (max-width: $screen-md-max + px) {
+		@content;
+	}
+}
+
 @mixin landscape-sm() {
 	@media only screen and (orientation: landscape) and (min-width: $screen-sm-min + px) and (max-width: $screen-sm-max + px) {
 		@content;
