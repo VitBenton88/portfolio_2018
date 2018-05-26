@@ -1,6 +1,10 @@
 body {
     background: $primary;
     margin: 0;
+
+    &.nav-menu-open {
+        height: 100%;
+    }
 }
 
 .nav-menu-open {
