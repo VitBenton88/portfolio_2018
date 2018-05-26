@@ -16,7 +16,7 @@ const displayMobileMenu = (action) => {
         $root.addClass('nav-menu-open');
     } else if (action == 'hide') {
         $root.removeClass('nav-menu-open');
-        mobileMenu.css('visibility', 'hidden');
+        $mobileMenu.css('visibility', 'hidden');
         $mobileMenuLinks.css('visibility', 'hidden');
     }
 };
