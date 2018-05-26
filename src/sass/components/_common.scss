@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+.nav-menu-open {
+    overflow: hidden;
+}
+
 .container {
     @include max-width($screen-sm-max) {
         padding-left: 0;
