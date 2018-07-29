@@ -1,4 +1,6 @@
 //VARIABLES
+const browserWarningModal = $('#browser-warning');
+const browserWarningCloseIcon = $('#browser-warning .fa-times');
 const copyrightSpan = $('#copyrightYear');
 const currentYear = (new Date()).getFullYear();
 const contactSendBtn = $("#sendButton");
@@ -117,3 +119,11 @@ particlesJS('particles-js', {
     },
     "retina_detect": true
 });
+
+//browser warning close
+browserWarningCloseIcon.click(()=> {
+    browserWarningModal.hide();
+})
+
+//AOS Lazy Load Lib init
+AOS.init();

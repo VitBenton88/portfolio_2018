@@ -26,6 +26,8 @@
     <link rel="stylesheet" type="text/css" href="assets/lib.min.css">
     <!--LOCAL CSS -->
     <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <!--AOS LAZY LOAD LIB CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!--VIEWPORT -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--FAVICON -->
@@ -33,7 +35,7 @@
 </head>
 
 <body>
-    <nav class="container">
+    <nav class="container" data-aos="fade-down">
         <div class="col-10 offset-1 d-none d-lg-flex justify-content-around align-items-center desktop-nav-wrap">
             <a href="#about">About</a>
             <a href="#portfolio">Portfolio</a>
@@ -71,11 +73,11 @@
 
     <section id="intro">
         <div id="particles-js" class="container">
-            <div class="col-12 col-md-10 offset-md-1">
+            <div class="col-12 col-md-10 offset-md-1" data-aos="fade-right">
                 <h1>Hi, I'm Vit Benton</h1>
                 <p>South Florida based full-stack web developer experienced with front-end and back-end developement.</p>
             </div>
-            <div class="col-8 col-sm-5 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-between social-icon-wrap">
+            <div class="col-8 col-sm-5 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-between social-icon-wrap" data-aos="fade-left">
                 <a href="https://stackoverflow.com/users/8039195/vitek-benton" target="_blank"><i class="fab fa-stack-overflow fa-3x"></i></a>
                 <a href="https://www.linkedin.com/in/vit-benton/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
                 <a href="https://github.com/VitBenton88" target="_blank"><i class="fab fa-github fa-3x"></i></a>
@@ -87,7 +89,7 @@
         </div>
     </section>
 
-    <section id="about">
+    <section id="about" data-aos="fade-right">
         <div class="container">
             <div class="col-12 col-md-10 offset-md-1">
                 <h2>About Me</h2>
@@ -107,12 +109,12 @@
 
     <section id="portfolio">
         <div class="container">
-            <div class="col-12 col-md-10 offset-md-1">
+            <div class="col-12 col-md-10 offset-md-1" data-aos="fade-right">
                 <h2>Portfolio</h2>
                 <article>
                     <p>I have developed web-applications using HTML5, CSS3, and JavaScript alongside a variety of frameworks and libraries. I am also experienced with back-end development involving database and server-side code. Checkout some of the projects I have worked on and the technology used to develop them:</p>
                 </article>
-                <article class="slider-article">
+                <article class="slider-article" data-aos="fade-left">
                     <p class="mobile-slider-instructions d-block d-sm-block d-md-none">Swipe to see more projects</p>
                     <i class="fas fa-chevron-circle-left fa-2x d-none d-sm-none d-md-block"></i>
                     <i class="fas fa-chevron-circle-right fa-2x d-none d-sm-none d-md-block"></i>
@@ -164,7 +166,7 @@
         </div>
     </section>
 
-    <section id="resume">
+    <section id="resume" data-aos="fade-right" data-aos-anchor-placement="top-bottom">
         <div class="container">
             <div class="col-12 col-md-10 offset-md-1">
                 <h2>Resume</h2>
@@ -207,7 +209,7 @@
     <section id="contact">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-10 col-lg-6 offset-md-1">
+                <div class="col-12 col-md-10 col-lg-6 offset-md-1" data-aos="fade-right" data-aos-anchor-placement="top-bottom">
                     <h2>Contact</h2>
                     <article>
                         <form class="col-12" id="contactForm" action="/contact" method="POST">
@@ -218,7 +220,7 @@
                         </form>
                     </article>
                 </div>
-                <div class="col-12 col-md-10 col-lg-4 offset-md-1">
+                <div class="col-12 col-md-10 col-lg-4 offset-md-1" data-aos="fade-left" data-aos-anchor-placement="top-bottom">
                     <a href="nav" class="col-6 col-sm-5 col-md-4 col-lg-8 col-xl-7 totop-wrap">
                         <i class="fas fa-angle-up fa-3x"></i>
                         <h2>Back to Top</h2>
