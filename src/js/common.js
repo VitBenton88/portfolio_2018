@@ -124,6 +124,3 @@ particlesJS('particles-js', {
 browserWarningCloseIcon.click(()=> {
     browserWarningModal.hide();
 })
-
-//AOS Lazy Load Lib init
-AOS.init();
