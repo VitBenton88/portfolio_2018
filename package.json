@@ -1,7 +1,7 @@
 {
   "name": "template_nodeJS",
   "version": "1.0.0",
-  "description": "Basic Node.JS base template - Bootstrap, cssUA, Express, Gulp, jQuery, Sass",
+  "description": "Personal Portfolio Website - 2018",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -9,7 +9,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "nodemailer": "^4.6.4",
-    "nodemon": "^1.17.4",
+    "nodemon": "^1.18.3",
     "npm": "^5.10.0",
     "update": "^0.7.4",
     "validator": "^10.1.0"
