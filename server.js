@@ -14,7 +14,7 @@ dotenv.config();
 
 // Check for production
 // =============================================================
-const production = process.env.NODE_ENV == "production" ? true : false;
+const production = process.env.NODE_ENV == "production";
 
 // Sets up the Express App
 // =============================================================
