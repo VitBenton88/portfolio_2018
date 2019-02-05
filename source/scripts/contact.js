@@ -1,17 +1,5 @@
-//function for clearing out contact form
-clearForm = () => {
-
-  const contactForm = $('#contactForm');
-  const inputNormalColor = 'transparent'
-
-  for (let i = 0; i < contactForm.length; i++) {
-    contactForm[i].reset();
-  };
-  $("#name, #email, #message").css('background', inputNormalColor);
-};
-
 //function for alerting when contact form is not properly filled out
-formAlert = () => {
+const formAlert = () => {
   alert(
 
     `Message not sent. Please make sure the form is filled out correctly.\n\n
@@ -22,7 +10,7 @@ formAlert = () => {
 };
 
 //warning formatting
-formWarning = () => {
+const formWarning = () => {
   let nameInput = $("#name").val().trim();
   let emailInput = $("#email").val().trim();
   let messageInput = $("#message").val().trim();
@@ -42,7 +30,7 @@ formWarning = () => {
 };
 
 // contact form validator function
-formVal = () => {
+const formVal = () => {
 
   let nameInput = $("#name").val().trim();
   let emailInput = $("#email").val().trim();
