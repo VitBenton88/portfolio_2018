@@ -80,8 +80,11 @@ contactSendBtn.on("click", () => {
     $.post("/contact", newMessage)
       .done((data) => {
         if (data === true) {
-          alert("Thanks for contacting");
-          clearForm();
+          alert("Thanks for contacting");        
+          for (let i = 0; i < $('#contactForm').length; i++) {
+            $('#contactForm')[i].reset();
+          };
+          $("#name, #email, #message").css('background', 'transparent');
         } else {
           formAlert();
         };
