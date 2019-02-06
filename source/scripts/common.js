@@ -120,7 +120,8 @@ particlesJS('particles-js', {
     "retina_detect": true
 });
 
+//click
 //browser warning close
-browserWarningCloseIcon.click(()=> {
+browserWarningCloseIcon.click(() => {
     browserWarningModal.hide();
 })
