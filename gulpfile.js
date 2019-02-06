@@ -31,7 +31,7 @@ const paths = {
            'last 1 OperaMobile version'
        ],
 
-       source: 'source/sass/style.scss'
+       source: 'source/sass/**/*.scss'
    },
 
    scripts: {
