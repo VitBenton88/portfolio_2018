@@ -17,3 +17,10 @@ socialLinks.click( function() {
         'social': socialChannel
       });
 });
+
+//track slide change sin portfolio slider
+$('.portfolio-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+    dataLayer.push({
+        'event': 'portfolio-slide-change'
+      });
+  });
