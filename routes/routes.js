@@ -18,8 +18,8 @@ module.exports = function(app, dotenv, nodemailer, validator) {
     });
 
     //handle sitemap request
-    app.get('/sitemap.xml', function (req, res) {
-        res.send("./public/sitemap.xml");
+    app.get('/sitemap.txt', function (req, res) {
+        res.send("./public/sitemap.txt");
     });
 
     //handle contact form
