@@ -4,9 +4,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require('compression');
 const dotenv = require('dotenv');
+const exphbs  = require('express-handlebars');
+const mongoose = require("mongoose");
 const nodemailer = require('nodemailer');
 const path = require("path");
 const validator = require('validator');
+
+// Require all models
+// =============================================================
+const db = require("./models");
 
 //load environment variables
 // =============================================================
@@ -20,6 +26,11 @@ const production = process.env.NODE_ENV == "production";
 // =============================================================
 const app = express();
 let PORT = process.env.PORT || 3000;
+
+// Sets up the Express with Handlebars
+// =============================================================
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // Sets up the Express app to handle data parsing
 // =============================================================
@@ -44,9 +55,19 @@ if (production) {
     app.use(express.static(path.join(__dirname, '/public')))
 };
 
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+// =============================================================
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/shows";
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true
+});
+
+
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app, dotenv, nodemailer, validator);
+require("./routes/routes.js")(app, db, dotenv, nodemailer, validator);
 
 // Starts the server to begin listening
 // =============================================================

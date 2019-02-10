@@ -1,14 +1,24 @@
 // Routes
 // =============================================================
-module.exports = function(app, dotenv, nodemailer, validator) {
+module.exports = function(app, db, dotenv, nodemailer, validator) {
+    // GET
+    // =============================================================
     // homepage route
     app.get("/", (req, res) => {
-      res.send("./public/index.html");
+        db.Admin.find()
+        .then(function(content) {
+          console.log(content);
+          res.render("index", {content});
+        });
     });
 
-    // redirect any route to homepage
-    app.get("/*", (req, res) => {
-      res.send("./public/index.html");
+    // admin route
+    app.get("/admin", (req, res) => {
+        db.Admin.find()
+        .then(function(content) {
+          console.log(content);
+          res.render("admin", {content, layout: "admin"});
+        });
     });
 
     //handle Googles robots
@@ -21,6 +31,9 @@ module.exports = function(app, dotenv, nodemailer, validator) {
     app.get('/sitemap.txt', function (req, res) {
         res.send("./public/sitemap.txt");
     });
+
+    // POST
+    // =============================================================
 
     //handle contact form
     app.post("/contact", (req, res) => {
