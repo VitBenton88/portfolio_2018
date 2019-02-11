@@ -3,11 +3,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require('compression');
+const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv');
 const exphbs  = require('express-handlebars');
+const flash = require('connect-flash');
 const mongoose = require("mongoose");
 const nodemailer = require('nodemailer');
 const path = require("path");
+const session = require('express-session');
 const validator = require('validator');
 
 // Require all models
@@ -32,16 +35,35 @@ let PORT = process.env.PORT || 3000;
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+// Sets up Cookies with the Express App
+// =============================================================
+app.use(cookieParser('keyboardCats'));
+
+// Sets up the Express app to use session
+// =============================================================
+app.use(session({
+  secret: 'keyboardCats',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
+
+// Connect Flash and setup global variables to be passed into every view
+// =============================================================
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+
 // Sets up the Express app to handle data parsing
 // =============================================================
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
-app.use(bodyParser.json({
-  type: "application/vnd.api+json"
-}));
+app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
 //apply production settings
 // =============================================================
@@ -51,6 +73,8 @@ if (production) {
     // permit access to public file
     app.use(express.static(path.join(__dirname, '/public'), {maxage: '1y'}));
 } else {
+    //load environment variables
+    dotenv.config();
     // permit access to public file
     app.use(express.static(path.join(__dirname, '/public')))
 };
@@ -58,12 +82,11 @@ if (production) {
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 // =============================================================
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/shows";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/admin";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true
 });
-
 
 // Import Routes
 // =============================================================

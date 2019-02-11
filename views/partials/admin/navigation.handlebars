@@ -1,0 +1,32 @@
+{{#each content}}
+    <div class="row">
+        {{#each menu}}
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Menu Item</h5>
+                        <p class="card-text">Text: {{this.text}}<br/>URL: {{this.url}}</p>
+                        <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#menu-item-{{@key}}" aria-expanded="false" aria-controls="menu-item-{{@key}}">Edit</button>
+                        <div class="collapse" id="menu-item-{{@key}}">
+                            <br />
+                            <div class="card card-body">
+                                <form action="/updatemenuitem" method="POST">
+                                    <div class="form-group">
+                                        <label for="title">Edit Menu Item</label>
+                                        <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter new menu item text ...">
+                                        <small id="text-help" class="form-text text-muted">Text that appears in this menu item.</small>
+                                        <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new menu item url ...">
+                                        <small id="url-help" class="form-text text-muted">Url this menu item points to.</small>
+                                    </div>
+                                    <input name="_id" type="hidden" value="{{id}}">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+    <br />
+{{/each}}

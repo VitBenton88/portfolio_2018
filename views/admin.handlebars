@@ -1,1 +1,19 @@
-<h1>admin page</h1>
+{{> admin/notifications}}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Welcome to the admin</h1>
+  </div>
+</div>
+
+<div class="container">
+    <div class="alert alert-primary" role="alert">Your Navigation</div>
+
+    {{> admin/navigation}}
+</div>
+
+<div class="container">
+    <div class="alert alert-secondary" role="alert">Your Headings</div>
+
+    {{> admin/heading}}
+</div>

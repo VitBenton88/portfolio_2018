@@ -7,7 +7,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     app.get("/", (req, res) => {
         db.Admin.find()
         .then(function(content) {
-          console.log(content);
           res.render("index", {content});
         });
     });
@@ -16,7 +15,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     app.get("/admin", (req, res) => {
         db.Admin.find()
         .then(function(content) {
-          console.log(content);
           res.render("admin", {content, layout: "admin"});
         });
     });
@@ -34,14 +32,9 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // POST
     // =============================================================
-
     //handle contact form
     app.post("/contact", (req, res) => {
-
-      let replyTo = req.body.email;
-      let name = req.body.name;
-      let text = req.body.message;
-      let subject = `${name} @ ${replyTo} contacted you through VitBenton.com!`;
+      const { name, email, subject, text } = req.body;
 
       if (!validator.isEmpty(replyTo) && !validator.isEmpty(name) && !validator.isEmpty(text) && validator.isEmail(replyTo)) {
 
@@ -55,9 +48,9 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
         const mailOptions = {
           from: process.env.EMAIL_USER,
-          replyTo,
+          replyTo: email,
           to: process.env.EMAIL_REC,
-          subject,
+          subject: `${name} @ ${replyTo} contacted you through VitBenton.com!`,
           text
         };
 
@@ -75,5 +68,45 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
         res.send(false);
       };
 
+    });
+
+    // update title
+    app.post("/updatetitle", (req, res) => {
+      const { _id, text, url } = req.body;
+      db.Admin
+      .updateOne({_id},{title})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Menu utem successfully edited.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
+    // update subtitle
+    app.post("/updatesubtitle", (req, res) => {
+      const { _id, subtitle } = req.body;
+      db.Admin
+      .updateOne({_id},{subtitle})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Subtitle successfully edited.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
     });
 };
