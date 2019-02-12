@@ -72,13 +72,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // update title
     app.post("/updatetitle", (req, res) => {
-      const { _id, text, url } = req.body;
+      const { _id, title } = req.body;
       db.Admin
       .updateOne({_id},{title})
         .then((result) => {
           req.flash(
             'success_msg',
-            'Menu utem successfully edited.'
+            'Title successfully edited.'
           );
           res.redirect('/admin');
         })
@@ -109,4 +109,71 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
         res.redirect('/admin');
       });
     });
+
+    // add menu item
+    app.post("/addmenuitem", (req, res) => {
+      const { _id, text, url } = req.body;
+      db.Admin
+      .updateOne({_id}, {'$push': {
+        "menu" : {text, url}
+    }})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Menu item successfully added.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
+    // update menu items
+    app.post("/updatemenuitem", (req, res) => {
+      const { _id, position, text, url } = req.body;
+      let menuObj = {};
+      menuObj[`menu.${position}`] = {text, url};
+      db.Admin
+      .updateOne({_id}, {'$set': menuObj})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Menu item successfully edited.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
+    // DELETE
+    // =============================================================
+      // delete menu item
+      app.post("/deletemenuitem", (req, res) => {
+        const { _id, text, url } = req.body;
+        let menuObj = {};
+        db.Admin
+        .findByIdAndUpdate(_id, { $pull: { "menu": { text, url } } }, { safe: true, upsert: true },)
+          .then((result) => {
+            req.flash(
+              'success_msg',
+              'Menu item successfully deleted.'
+            );
+            res.redirect('/admin');
+          })
+          .catch((error) => {
+          // If an error occurred, send it to the client
+          console.log(error);
+          req.flash('error_msg', error.message);
+          res.redirect('/admin');
+        });
+      });
 };
