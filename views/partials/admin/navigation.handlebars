@@ -1,7 +1,7 @@
 {{#each content}}
     <div class="row">
         {{#each menu}}
-            <div class="col-4" style="margin-bottom: 16px">
+            <div class="col-4 menu-item">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Menu Item</h5>
@@ -10,7 +10,7 @@
                         <div class="collapse" id="menu-item-{{@key}}">
                             <br />
                             <div class="card card-body">
-                                <form action="/updatemenuitem" method="POST" style="margin-bottom: 8px">
+                                <form action="/updatemenuitem" method="POST" class="update-menuitem-form">
                                     <div class="form-group">
                                         <label for="title">Edit Menu Item</label>
                                         <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter new text ...">
@@ -35,7 +35,7 @@
                 </div>
             </div>
         {{/each}}
-        <div class="col-4" style="margin-bottom: 16px">
+        <div class="col-4 menu-item">
             <div class="card card-body">
                 <form action="/addmenuitem" method="POST">
                     <div class="form-group">

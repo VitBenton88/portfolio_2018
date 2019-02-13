@@ -154,6 +154,26 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
+    // update menu items
+    app.post("/updateabout", (req, res) => {
+      const { _id, about } = req.body;
+      db.Admin
+      .updateOne({_id}, {about})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'About text successfully updated.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
     // DELETE
     // =============================================================
       // delete menu item
