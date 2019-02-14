@@ -154,7 +154,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
-    // update menu items
+    // update about copy
     app.post("/updateabout", (req, res) => {
       const { _id, about } = req.body;
       db.Admin
@@ -163,6 +163,26 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           req.flash(
             'success_msg',
             'About text successfully updated.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
+    // update portfolio intro copy
+    app.post("/updateportolfiointro", (req, res) => {
+      const { _id, introduction } = req.body;
+      db.Admin
+      .updateOne({_id}, {portfolio: {introduction}})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Portfolio introduction successfully updated.'
           );
           res.redirect('/admin');
         })

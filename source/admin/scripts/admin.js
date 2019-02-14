@@ -3,9 +3,10 @@
 **/
 
 
-//initialize Froala editor
+//initialize Froala editors
 $(function() { 
     $('#aboutEditor').froalaEditor();
+    $('#portfolioIntroEditor').froalaEditor();
 });
 
 /**
