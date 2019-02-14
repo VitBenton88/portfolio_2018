@@ -1,0 +1,45 @@
+/* CORE */
+@import "./source/sass/core/colors";
+@import "./source/sass/core/grid";
+@import './source/sass/core/mixins';
+@import "./source/sass/core/slick";
+@import "./source/sass/core/slick-theme";
+
+.admin {
+    background: $white;
+
+    /* NAVIGATION */
+    .menu-item {
+        margin-bottom: 16px;
+
+        &.add-item {
+            position: relative;
+            z-index: 1;
+
+            &:after {
+                background: $white;
+                content: '';
+                display: block;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 5;
+            }
+        }
+    }
+
+    .update-menuitem-form {
+        margin-bottom: 8px
+    }
+
+    /* ABOUT */
+    .fr-box {
+        margin-bottom: 15px;
+    }
+
+    .fr-wrapper {
+        min-height: 200px;
+    }
+}

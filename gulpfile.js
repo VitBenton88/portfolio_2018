@@ -31,11 +31,7 @@ const paths = {
            'last 1 OperaMobile version'
        ],
 
-       source: 'source/sass/**/*.scss',
-
-       admin: {
-           source: 'source/admin/sass/**/*.scss'
-       }
+       source: 'source/sass/**/*.scss'
    },
 
    scripts: {
@@ -58,19 +54,19 @@ const paths = {
    },
 
    handlebars: {
-    source: 'views/*.handlebars'
+    source: 'views/**/*.handlebars'
   },
 
-   destination: 'public/assets',
-
    admin: {
-    scripts: {
-        source: 'source/admin/scripts/**/*.js'
+        scripts: {
+            source: 'source/admin/scripts/**/*.js'
+        },
+        styles: {
+            source: 'source/admin/sass/**/*.scss'
+        }
     },
-    styles: {
-        source: 'source/admin/sass/**/*.scss'
-    }
-}
+    
+    destination: 'public/assets',
 };
 
 /**
@@ -256,7 +252,7 @@ function reload() {
 function sync() {
    browserSync.init({
         proxy: "http://localhost:3000",
-        files: paths.styles.source
+        files: [paths.styles.source, paths.admin.styles.source]
    });
 
    gulp.watch([paths.scripts.source.custom, paths.admin.scripts.source], develop_scripts);
