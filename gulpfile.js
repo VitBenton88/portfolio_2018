@@ -31,7 +31,11 @@ const paths = {
            'last 1 OperaMobile version'
        ],
 
-       source: 'source/sass/**/*.scss'
+       source: 'source/sass/**/*.scss',
+
+       admin: {
+           source: 'source/admin/sass/**/*.scss'
+       }
    },
 
    scripts: {
@@ -53,7 +57,20 @@ const paths = {
        source: '*.html'
    },
 
-   destination: 'public/assets'
+   handlebars: {
+    source: 'views/*.handlebars'
+  },
+
+   destination: 'public/assets',
+
+   admin: {
+    scripts: {
+        source: 'source/admin/scripts/**/*.js'
+    },
+    styles: {
+        source: 'source/admin/sass/**/*.scss'
+    }
+}
 };
 
 /**
@@ -72,6 +89,10 @@ exports.sync = sync;
 * FUNCTIONS
 **/
 
+/**
+ * DEVELOPEMENT
+**/
+
 function develop_scripts() {
    return (
        //concat javascript libraries
@@ -87,6 +108,15 @@ function develop_scripts() {
        .src(paths.scripts.source.custom)
        .pipe(sourcemaps.init())
        .pipe(concat('scripts.js'))
+       .pipe(sourcemaps.write('/'))
+       .pipe(gulp.dest(paths.destination))
+       .pipe(browserSync.stream()),
+
+       //concat custom admin javascript
+       gulp
+       .src(paths.admin.scripts.source)
+       .pipe(sourcemaps.init())
+       .pipe(concat('admin.js'))
        .pipe(sourcemaps.write('/'))
        .pipe(gulp.dest(paths.destination))
        .pipe(browserSync.stream())
@@ -112,6 +142,25 @@ function develop_styles() {
 
        .pipe(sourcemaps.write('/'))
        .pipe(gulp.dest(paths.destination))
+       .pipe(browserSync.stream()),
+
+       //compile and minify admin sass
+       gulp
+       .src(paths.admin.styles.source)
+       .pipe(sourcemaps.init())
+       .pipe(sass())
+       .on('error', sass.logError)
+
+       .pipe(postcss([
+           autoprefixer({
+               browsers: paths.styles.browsers
+           }),
+
+           cssnano()
+       ]))
+
+       .pipe(sourcemaps.write('/'))
+       .pipe(gulp.dest(paths.destination))
        .pipe(browserSync.stream())
    );
 }
@@ -122,6 +171,10 @@ function develop() {
        develop_styles()
    );
 }
+
+/**
+ * PRODUCTION
+**/
 
 function production_scripts() {
    return (
@@ -139,6 +192,16 @@ function production_scripts() {
           presets: ['@babel/env']
         }))
         .pipe(uglify())
+       .pipe(gulp.dest(paths.destination)),
+
+       //concat & minify custom admin javascript
+       gulp
+       .src(paths.admin.scripts.source)
+       .pipe(concat('admin.js'))
+       .pipe(babel({
+          presets: ['@babel/env']
+        }))
+        .pipe(uglify())
        .pipe(gulp.dest(paths.destination))
    );
 }
@@ -148,6 +211,22 @@ function production_styles() {
        //compile and minify sass
        gulp
        .src(paths.styles.source)
+       .pipe(sass())
+       .on('error', sass.logError)
+
+       .pipe(postcss([
+           autoprefixer({
+               browsers: paths.styles.browsers
+           }),
+
+           cssnano()
+       ]))
+
+       .pipe(gulp.dest(paths.destination)),
+
+       //compile and minify admin sass
+       gulp
+       .src(paths.admin.styles.source)
        .pipe(sass())
        .on('error', sass.logError)
 
@@ -180,7 +259,7 @@ function sync() {
         files: paths.styles.source
    });
 
-   gulp.watch(paths.scripts.source.custom, develop_scripts);
-   gulp.watch(paths.styles.source, develop_styles);
-   gulp.watch(paths.html.source, reload);
+   gulp.watch([paths.scripts.source.custom, paths.admin.scripts.source], develop_scripts);
+   gulp.watch([paths.styles.source, paths.admin.styles.source], develop_styles);
+   gulp.watch([paths.html.source, paths.handlebars.source], reload);
 }
