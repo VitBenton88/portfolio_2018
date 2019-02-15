@@ -6,4 +6,77 @@
         <button type="submit" class="btn btn-outline-success">Save</button>
     </form>
     <br />
+    <div class="row">
+        <div class="col-12">
+            <h5>Projects</h5>
+        </div>
+        {{#each portfolio.projects}}
+            <div class="col-6 project">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <a href="{{this.button.url}}" target="_blank">{{this.button.text}}</a>
+                        <ul class="list-group project-bullets">
+                            {{#each this.bullets}}
+                               <li class="list-group-item">{{this}}</li>
+                            {{/each}}
+                        </ul>
+                        <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#project-{{@key}}" aria-expanded="false" aria-controls="project-{{@key}}">Edit</button>
+                        <div class="collapse" id="project-{{@key}}">
+                            <br />
+                            <div class="card card-body">
+                                <form action="/updateproject" method="POST" class="update-menuitem-form">
+                                    <div class="form-group">
+                                        <label for="title">Edit Project</label>
+                                        <input name="title" class="form-control" type="text" aria-describedby="title-help" placeholder="Enter title ...">
+                                        <small id="title-help" class="form-text text-muted">Title of this project.</small>
+                                        <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter button text ...">
+                                        <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
+                                        <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ...">
+                                        <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
+                                        {{!-- <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new url ...">
+                                        <small id="url-help" class="form-text text-muted">Url this menu item points to.</small> --}}
+                                    </div>
+                                    <input name="_id" type="hidden" value="{{../id}}">
+                                    <input name="position" type="hidden" value="{{@key}}">
+                                    <button type="submit" class="btn btn-primary btn-block">Update</button>
+                                </form>
+                                <form action="/deleteproject" method="POST">
+                                    <input name="_id" type="hidden" value="{{../id}}">
+                                    <input name="position" type="hidden" value="{{@key}}">
+                                    <input name="title" type="hidden" value="{{this.title}}">
+                                    <input name="text" type="hidden" value="{{this.button.text}}">
+                                    <input name="url" type="hidden" value="{{this.button.url}}">
+                                    <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+        <div class="col-6 project add-project">
+            <div class="card card-body">
+                <form action="/addproject" method="POST">
+                    <div class="form-group">
+                        <label for="title">Add Project</label>
+                            <input name="title" class="form-control" type="text" aria-describedby="title-help" placeholder="Enter title ...">
+                            <small id="title-help" class="form-text text-muted">Title of this project.</small>
+                            <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter button text ...">
+                            <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
+                            <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ...">
+                            <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
+                    </div>
+                    <input name="_id" type="hidden" value="{{id}}">
+                    <button type="submit" class="btn btn-success btn-block">Add</button>
+                </form>
+            </div>
+            <div class="add-project-overlay active d-flex align-items-center justify-content-center">
+                <div>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <h5>Add</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 {{/each}}

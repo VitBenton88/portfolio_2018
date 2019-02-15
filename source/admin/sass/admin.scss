@@ -58,4 +58,50 @@
     .fr-wrapper {
         min-height: 200px;
     }
+
+    /* PORTFOLIO */
+    .project {
+        margin-bottom: 16px;
+
+        .project-bullets {
+            margin-bottom: 15px !important;
+        }
+
+        &.add-project {
+            position: relative;
+            z-index: 2;
+
+            .add-project-overlay {
+                background: $white;
+                border: 1px solid $grey;
+                border-radius: 4px;
+                height: 0;
+                left: 0;
+                opacity: 0;
+                position: absolute;
+                text-align: center;
+                transition: background 0.15s ease-in-out, height 0.15s ease-in-out, opacity 0.15s ease-in-out;
+                top: 0;
+                user-select: none;
+                width: 100%;
+                z-index: 1;
+
+                &.active {
+                    display: flex;
+                    height: 100%;
+                    opacity: 1;
+                    z-index: 5;
+                }
+
+                &:hover {
+                    background: $grey;
+                    cursor: pointer;
+                }
+
+                .fa-plus {
+                    font-size: 44px;
+                }
+            }
+        }
+    }
 }

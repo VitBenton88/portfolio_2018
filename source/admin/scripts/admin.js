@@ -5,15 +5,14 @@
 
 //initialize Froala editors
 $(function() { 
-    $('#aboutEditor').froalaEditor();
-    $('#portfolioIntroEditor').froalaEditor();
+    $('#aboutEditor, #portfolioIntroEditor').froalaEditor();
 });
 
 /**
 * CLICK
 **/
 
-$('.add-item-overlay').click(function() {
+$('.add-item-overlay, .add-project-overlay').click(function() {
     if ($(this).hasClass('active')) {
         $(this).removeClass('active');
     } else {
