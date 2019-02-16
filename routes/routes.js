@@ -5,17 +5,20 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // =============================================================
     // homepage route
     app.get("/", (req, res) => {
-        db.Admin.find()
-        .then(function(content) {
-          res.render("index", {content});
+        db.Portfolio.find()
+        .populate("menu")
+        .then(function(portfolio) {
+          res.render("index", {portfolio});
         });
     });
 
     // admin route
     app.get("/admin", (req, res) => {
-        db.Admin.find()
-        .then(function(content) {
-          res.render("admin", {content, layout: "admin"});
+        db.Portfolio.find()
+        .populate("menu")
+        .then(function(portfolio) {
+          console.log(portfolio);
+          res.render("admin", {portfolio, layout: "admin"});
         });
     });
 
@@ -73,7 +76,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update title
     app.post("/updatetitle", (req, res) => {
       const { _id, title } = req.body;
-      db.Admin
+      db.Portfolio
       .updateOne({_id},{title})
         .then((result) => {
           req.flash(
@@ -93,7 +96,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update subtitle
     app.post("/updatesubtitle", (req, res) => {
       const { _id, subtitle } = req.body;
-      db.Admin
+      db.Portfolio
       .updateOne({_id},{subtitle})
         .then((result) => {
           req.flash(
@@ -112,17 +115,20 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // add menu item
     app.post("/addmenuitem", (req, res) => {
-      const { _id, text, url } = req.body;
-      db.Admin
-      .updateOne({_id}, {'$push': {
-        "menu" : {text, url}
-    }})
+      const newMenuItem = req.body;
+      db.Menu
+      .create(newMenuItem)
         .then((result) => {
+          console.log('New menu item created:');
+          console.log(result);
+          const { _id, _portfolio } = result;
           req.flash(
             'success_msg',
             'Menu item successfully added.'
           );
-          res.redirect('/admin');
+          db.Portfolio.findOneAndUpdate({_id: _portfolio}, {$push: {menu: _id}}, function(){
+            res.redirect('/admin');
+        });
         })
         .catch((error) => {
         // If an error occurred, send it to the client
@@ -134,11 +140,16 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // update menu items
     app.post("/updatemenuitem", (req, res) => {
-      const { _id, position, text, url } = req.body;
-      let menuObj = {};
-      menuObj[`menu.${position}`] = {text, url};
-      db.Admin
-      .updateOne({_id}, {'$set': menuObj})
+      const { _id, text, url } = req.body;
+      let updatedValues = {};
+      if (text) {
+        updatedValues.text = text;
+      }
+      if (url) {
+        updatedValues.url = url;
+      }
+      db.Menu
+      .updateOne({_id}, updatedValues)
         .then((result) => {
           req.flash(
             'success_msg',
@@ -157,7 +168,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update about copy
     app.post("/updateabout", (req, res) => {
       const { _id, about } = req.body;
-      db.Admin
+      db.Portfolio
       .updateOne({_id}, {about})
         .then((result) => {
           req.flash(
@@ -177,7 +188,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update portfolio intro copy
     app.post("/updateportolfiointro", (req, res) => {
       const { _id, introduction } = req.body;
-      db.Admin
+      db.Portfolio
       .updateOne({_id}, {portfolio: {introduction}})
         .then((result) => {
           req.flash(
@@ -198,10 +209,10 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // =============================================================
       // delete menu item
       app.post("/deletemenuitem", (req, res) => {
-        const { _id, text, url } = req.body;
+        const { _id } = req.body;
         let menuObj = {};
-        db.Admin
-        .findByIdAndUpdate(_id, { $pull: { "menu": { text, url } } }, { safe: true, upsert: true },)
+        db.Menu
+        .deleteOne({_id})
           .then((result) => {
             req.flash(
               'success_msg',

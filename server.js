@@ -82,7 +82,7 @@ if (production) {
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 // =============================================================
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/admin";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/portfolio";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true

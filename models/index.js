@@ -1,4 +1,5 @@
-// Exporting an object containing admin model
+// Exporting an object containing portfolio models
 module.exports = {
-  Admin: require("./Admin"),
+  Portfolio: require("./Portfolio"),
+  Menu: require("./Menu"),
 };
