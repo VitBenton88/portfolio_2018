@@ -15,10 +15,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{this.title}}</h5>
-                        <a href="{{this.button.url}}" target="_blank">{{this.button.text}}</a>
+                        <a href="{{this.url}}" target="_blank">{{this.text}}</a>
                         <ul class="list-group project-bullets">
                             {{#each this.bullets}}
-                               <li class="list-group-item">{{this}}</li>
+                               <li class="list-group-item">{{this.bullet}} <i class="fa fa-edit" aria-hidden="true"></i><i class="fa fa-close" aria-hidden="true"></i></li>
                             {{/each}}
                         </ul>
                         <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#project-{{@key}}" aria-expanded="false" aria-controls="project-{{@key}}">Edit</button>
@@ -34,8 +34,6 @@
                                         <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
                                         <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ...">
                                         <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
-                                        {{!-- <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new url ...">
-                                        <small id="url-help" class="form-text text-muted">Url this menu item points to.</small> --}}
                                     </div>
                                     <input name="_id" type="hidden" value="{{../id}}">
                                     <input name="position" type="hidden" value="{{@key}}">
@@ -60,12 +58,17 @@
                 <form action="/addproject" method="POST">
                     <div class="form-group">
                         <label for="title">Add Project</label>
-                            <input name="title" class="form-control" type="text" aria-describedby="title-help" placeholder="Enter title ...">
                             <small id="title-help" class="form-text text-muted">Title of this project.</small>
-                            <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter button text ...">
+                            <input name="title" class="form-control" type="text" aria-describedby="title-help" placeholder="Enter title ...">
                             <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
-                            <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ...">
+                            <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter button text ...">
                             <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
+                            <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ...">
+                            <hr>
+                            <small id="details-help" class="form-text text-muted">Detail that will appear as bullet.</small>
+                            <input name="details" class="form-control project-detail" type="text" aria-describedby="details-help" placeholder="Project Detail">
+                            <br />
+                            <button type="button" class="btn btn-light add-project-detail">Add Project Detail</button>
                     </div>
                     <input name="_id" type="hidden" value="{{id}}">
                     <button type="submit" class="btn btn-success btn-block">Add</button>

@@ -6,7 +6,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // homepage route
     app.get("/", (req, res) => {
         db.Portfolio.find()
-        .populate("menu")
         .then(function(portfolio) {
           res.render("index", {portfolio});
         });
@@ -15,9 +14,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // admin route
     app.get("/admin", (req, res) => {
         db.Portfolio.find()
-        .populate("menu")
         .then(function(portfolio) {
-          console.log(portfolio);
           res.render("admin", {portfolio, layout: "admin"});
         });
     });
@@ -115,20 +112,17 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // add menu item
     app.post("/addmenuitem", (req, res) => {
-      const newMenuItem = req.body;
-      db.Menu
-      .create(newMenuItem)
+      const { _id, text, url } = req.body;
+      db.Portfolio
+      .updateOne({_id}, {'$push': {
+            "menu" : {text, url}
+        }})
         .then((result) => {
-          console.log('New menu item created:');
-          console.log(result);
-          const { _id, _portfolio } = result;
           req.flash(
             'success_msg',
             'Menu item successfully added.'
           );
-          db.Portfolio.findOneAndUpdate({_id: _portfolio}, {$push: {menu: _id}}, function(){
-            res.redirect('/admin');
-        });
+          res.redirect('/admin');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
@@ -140,16 +134,20 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // update menu items
     app.post("/updatemenuitem", (req, res) => {
-      const { _id, text, url } = req.body;
+      const { _id, _menu, text, url } = req.body;
       let updatedValues = {};
       if (text) {
-        updatedValues.text = text;
+        updatedValues =  {"menu.$.text": text};
       }
       if (url) {
-        updatedValues.url = url;
+        updatedValues =  {"menu.$.url": url};
       }
-      db.Menu
-      .updateOne({_id}, updatedValues)
+      if (url && text) {
+        updatedValues =  {"menu.$.url": url, "menu.$.text": text};
+      }
+
+      db.Portfolio.findOneAndUpdate(
+        { _id, "menu._id": _menu }, { "$set": updatedValues })
         .then((result) => {
           req.flash(
             'success_msg',
@@ -205,14 +203,38 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
+    // add project
+    app.post("/addproject", (req, res) => {
+      const { _id, details, title, text, url } = req.body;
+      let bullets = [];
+      details.forEach((bullet) => {bullets.push({bullet})});
+      db.Portfolio
+      .findByIdAndUpdate(_id, {'$push': {"portfolio.projects" : {title, text, url, bullets}}})
+        .then((result) => {
+          console.log("CALLBACK:");
+          console.log(result);
+          req.flash(
+            'success_msg',
+            'Project successfully added.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
     // DELETE
     // =============================================================
       // delete menu item
       app.post("/deletemenuitem", (req, res) => {
-        const { _id } = req.body;
+        const { _id, _menu } = req.body;
         let menuObj = {};
-        db.Menu
-        .deleteOne({_id})
+        db.Portfolio
+        .findByIdAndUpdate(_id, { $pull: { "menu": { _id: _menu } } })
           .then((result) => {
             req.flash(
               'success_msg',

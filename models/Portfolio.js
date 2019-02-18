@@ -1,9 +1,91 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// This is similar to a Sequelize model
+// Schema for navigation menu items
+const MenuSchema = new Schema({
+  text: {
+    type: String,
+    default: 'Link1',
+    trim: true
+  },
+  url: {
+    type: String,
+    default: '/',
+    trim: true
+  }
+});
+
+// Schema for social links
+const SocialSchema = new Schema({
+  name: {
+    type: String,
+    default: 'StackOverflow',
+    trim: true
+  },
+  text: {
+    type: String,
+    default: 'Link Text'
+  },
+  url: {
+    type: String,
+    default: '/'
+  },
+  icon: {
+    type: String,
+    default: 'fa-stack-overflow'
+  }
+});
+
+// Schema for technologies
+const TechnologySchema = new Schema({
+  name: {
+    type: String,
+    default: 'JavaScript',
+    trim: true
+  },
+  score: {
+    type: Number,
+    default: 100
+  },
+});
+
+// Schema for project bullets
+const ProjectBulletSchema = new Schema({
+  bullet: {
+    type: String,
+    default: 'bullet'
+  }
+});
+
+// Schema for projects
+const ProjectSchema = new Schema({
+  title: {
+    type: String,
+    default: 'Project Title'
+  },
+  bullets: [ProjectBulletSchema],
+  text: {
+    type: String,
+    default: 'Link Text'
+  },
+  url: {
+    type: String,
+    default: '/'
+  }
+});
+
+// Portfolio Schema
 const PortfolioSchema = new Schema({
-  menu: [{ type: Schema.Types.ObjectId, ref: 'Menu' }],
+  menu: [MenuSchema],
+  technology: [TechnologySchema],
+  social: [SocialSchema],
+  portfolio: {
+    introduction: {
+      type: String,
+      default: '<p>Your Introduction!</p>'
+    },
+    projects: [ProjectSchema],
+  },
   title: {
     type: String,
     default: 'Your Title!'
@@ -12,39 +94,9 @@ const PortfolioSchema = new Schema({
     type: String,
     default: 'Your Subtitle!'
   },
-  social: {
-    type: Array,
-    default: [{'text': 'link1', 'url': '/'}]
-  },
   about: {
     type: String,
     default: '<p>Your About!</p>'
-  },
-  technology: {
-    type: Array,
-    default: [{'name': 'HTML', 'score': 100}]
-  },
-  portfolio: {
-    introduction: {
-      type: String,
-      default: '<p>Your Introduction!</p>'
-    },
-    projects: {
-      type: Array,
-      default: [
-        {
-          'title': 'Project 1', 
-          'bullets': [
-            'bullet 1',
-            'bullet 2'
-          ],
-          'button': {
-            'text': 'Button Text',
-            'url': '/'
-          }
-        }
-      ]
-    },
   },
   resume: {
     type: String,
