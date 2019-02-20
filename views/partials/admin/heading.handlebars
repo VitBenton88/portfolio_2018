@@ -11,7 +11,7 @@
                     <form action="/updatetitle" method="POST">
                         <div class="form-group">
                             <label for="title">Edit Page Title</label>
-                            <input name="title" id="title" class="form-control" type="text" aria-describedby="titleHelp" placeholder="Enter new title ...">
+                            <input name="title" id="title" class="form-control" type="text" aria-describedby="titleHelp" placeholder="Enter new title ..." value="{{title}}">
                             <small id="titleHelp" class="form-text text-muted">Shows at the top of the page.</small>
                         </div>
                         <input name="_id" type="hidden" value="{{id}}">
@@ -32,7 +32,7 @@
                     <form action="/updatesubtitle" method="POST">
                         <div class="form-group">
                             <label for="title">Edit Page Subtitle</label>
-                            <input name="subtitle" id="subtitle" class="form-control" type="text" aria-describedby="subtitleHelp" placeholder="Enter new subtitle ...">
+                            <input name="subtitle" id="subtitle" class="form-control" type="text" aria-describedby="subtitleHelp" placeholder="Enter new subtitle ..." value="{{subtitle}}">
                             <small id="subtitleHelp" class="form-text text-muted">Shows below title at the top of the page.</small>
                         </div>
                         <input name="_id" type="hidden" value="{{id}}">

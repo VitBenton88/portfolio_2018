@@ -135,19 +135,8 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update menu items
     app.post("/updatemenuitem", (req, res) => {
       const { _id, _menu, text, url } = req.body;
-      let updatedValues = {};
-      if (text) {
-        updatedValues =  {"menu.$.text": text};
-      }
-      if (url) {
-        updatedValues =  {"menu.$.url": url};
-      }
-      if (url && text) {
-        updatedValues =  {"menu.$.url": url, "menu.$.text": text};
-      }
-
       db.Portfolio.findOneAndUpdate(
-        { _id, "menu._id": _menu }, { "$set": updatedValues })
+        { _id, "menu._id": _menu }, { "$set": {"menu.$.url": url, "menu.$.text": text} })
         .then((result) => {
           req.flash(
             'success_msg',
@@ -225,6 +214,30 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
+    // update project
+    app.post("/updateproject", (req, res) => {
+      const { _id, details, _project, title, text, url } = req.body;
+      console.log(req.body);
+      let bullets = [];
+      details.forEach((bullet) => {bullets.push({bullet})});
+      db.Portfolio
+      .findOneAndUpdate(
+        { _id, "portfolio.projects._id": _project }, { "$set": {"portfolio.projects.$.url": url, "portfolio.projects.$.text": text, "portfolio.projects.$.title": title, "portfolio.projects.$.bullets": bullets} })
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Project successfully updated.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
     // DELETE
     // =============================================================
       // delete menu item
@@ -275,10 +288,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           .then((result) => {
             result.portfolio.projects.id(projectid).bullets.id(bulletid).remove();
             result.save();
-            req.flash(
-              'success_msg',
-              'Project bullet successfully deleted.'
-            );
             res.end('{"success" : "Bullet Successfully Deleted", "status" : 200}');
           })
           .catch((error) => {

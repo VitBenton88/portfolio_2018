@@ -63,23 +63,40 @@
     .project {
         margin-bottom: 16px;
 
-        .project-bullets {
-            margin-bottom: 15px !important;
+        .edit-project-btn {
+            margin-top: 10px;
+        }
 
-            .fa-close {
-                float: right;
-                font-size: 24px;
-                transition: color 0.15s ease-in-out;
+        .update-project {
+            .add-project-detail {
+                margin-top: 5px;
+            }
 
-                &:hover {
-                    color: red;
-                    cursor: pointer;
+            .project-detail-additional {
+                &:not(:first-child) {
+                    margin-top: 5px;
                 }
+            }
+
+            .project-detail {
+                margin-top: 5px;
+            }
+        }
+
+        .fa-close {
+            float: right;
+            font-size: 24px;
+            margin-left: 5px;
+            transition: color 0.15s ease-in-out;
+
+            &:hover {
+                color: red;
+                cursor: pointer;
             }
         }
 
         form.delete-project {
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         &.add-project {
@@ -116,6 +133,10 @@
                 .fa-plus {
                     font-size: 44px;
                 }
+            }
+
+            .project-detail-additional {
+                margin-top: 5px;
             }
         }
     }
