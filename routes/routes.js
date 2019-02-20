@@ -211,8 +211,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       db.Portfolio
       .findByIdAndUpdate(_id, {'$push': {"portfolio.projects" : {title, text, url, bullets}}})
         .then((result) => {
-          console.log("CALLBACK:");
-          console.log(result);
           req.flash(
             'success_msg',
             'Project successfully added.'
@@ -232,7 +230,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       // delete menu item
       app.post("/deletemenuitem", (req, res) => {
         const { _id, _menu } = req.body;
-        let menuObj = {};
         db.Portfolio
         .findByIdAndUpdate(_id, { $pull: { "menu": { _id: _menu } } })
           .then((result) => {
@@ -247,6 +244,48 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           console.log(error);
           req.flash('error_msg', error.message);
           res.redirect('/admin');
+        });
+      });
+
+      // delete project
+      app.post("/deleteproject", (req, res) => {
+        const { _id, _project } = req.body;
+        db.Portfolio
+        .findByIdAndUpdate(_id, { $pull: { "portfolio.projects": { _id: _project } } })
+          .then((result) => {
+            req.flash(
+              'success_msg',
+              'Project successfully deleted.'
+            );
+            res.redirect('/admin');
+          })
+          .catch((error) => {
+          // If an error occurred, send it to the client
+          console.log(error);
+          req.flash('error_msg', error.message);
+          res.redirect('/admin');
+        });
+      });
+
+      // delete project bullet
+      app.post("/deleteprojectbullet", (req, res) => {
+        const { bulletid, _id, projectid } = req.body;
+        db.Portfolio
+        .findById({ _id })
+          .then((result) => {
+            result.portfolio.projects.id(projectid).bullets.id(bulletid).remove();
+            result.save();
+            req.flash(
+              'success_msg',
+              'Project bullet successfully deleted.'
+            );
+            res.end('{"success" : "Bullet Successfully Deleted", "status" : 200}');
+          })
+          .catch((error) => {
+          // If an error occurred, send it to the client
+          console.log(error);
+          req.flash('error_msg', error.message);
+          res.end(`{"error" : "${error.message}", "status" : 400}`);
         });
       });
 };

@@ -18,7 +18,7 @@
                         <a href="{{this.url}}" target="_blank">{{this.text}}</a>
                         <ul class="list-group project-bullets">
                             {{#each this.bullets}}
-                               <li class="list-group-item">{{this.bullet}} <i class="fa fa-edit" aria-hidden="true"></i><i class="fa fa-close" aria-hidden="true"></i></li>
+                               <li class="list-group-item">{{this.bullet}}</li>
                             {{/each}}
                         </ul>
                         <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#project-{{@key}}" aria-expanded="false" aria-controls="project-{{@key}}">Edit</button>
@@ -34,17 +34,23 @@
                                         <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
                                         <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ...">
                                         <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
+                                        <hr>
+                                        <p>Project Detials:</p>
+                                        <ul class="list-group project-bullets">
+                                            {{#each this.bullets}}
+                                            <li class="list-group-item">
+                                                {{this.bullet}} 
+                                                <i class="fa fa-close delete-project-bullet" aria-hidden="true" data-_id="{{../../id}}" data-projectid="{{../id}}" data-bulletid="{{this.id}}"></i>
+                                            </li>
+                                            {{/each}}
+                                        </ul>
                                     </div>
                                     <input name="_id" type="hidden" value="{{../id}}">
-                                    <input name="position" type="hidden" value="{{@key}}">
                                     <button type="submit" class="btn btn-primary btn-block">Update</button>
                                 </form>
-                                <form action="/deleteproject" method="POST">
+                                <form class="delete-project" action="/deleteproject" method="POST">
                                     <input name="_id" type="hidden" value="{{../id}}">
-                                    <input name="position" type="hidden" value="{{@key}}">
-                                    <input name="title" type="hidden" value="{{this.title}}">
-                                    <input name="text" type="hidden" value="{{this.button.text}}">
-                                    <input name="url" type="hidden" value="{{this.button.url}}">
+                                    <input name="_project" type="hidden" value="{{this.id}}">
                                     <button type="submit" class="btn btn-danger btn-block">Delete</button>
                                 </form>
                             </div>

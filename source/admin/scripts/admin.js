@@ -26,3 +26,11 @@ $('.add-project-detail').click(() => {
     const productDetailInput = '<input name="details" class="form-control" type="text" aria-describedby="details-help" placeholder="Project Detail">';
     $('.project-detail').after(productDetailInput);
 })
+
+//handle project bullet deletions via AJAX
+$('.delete-project-bullet').click(function() {
+    const bulletid = $(this).data('bulletid');
+    const projectid = $(this).data('projectid');
+    const _id = $(this).data('_id');
+    $.post("/deleteprojectbullet", {bulletid, _id, projectid}, () => location.reload());
+})

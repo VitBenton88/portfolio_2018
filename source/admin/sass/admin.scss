@@ -66,29 +66,20 @@
         .project-bullets {
             margin-bottom: 15px !important;
 
-            .fa-edit, .fa-close {
+            .fa-close {
                 float: right;
                 font-size: 24px;
                 transition: color 0.15s ease-in-out;
 
                 &:hover {
+                    color: red;
                     cursor: pointer;
                 }
             }
+        }
 
-            .fa-edit {
-                &:hover {
-                    color: $darkBlue;
-                }
-            }
-
-            .fa-close {
-                margin-right: 10px;
-
-                &:hover {
-                    color: red;
-                }
-            }
+        form.delete-project {
+            margin-top: 10px;
         }
 
         &.add-project {
