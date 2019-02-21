@@ -196,7 +196,11 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     app.post("/addproject", (req, res) => {
       const { _id, details, title, text, url } = req.body;
       let bullets = [];
-      details.forEach((bullet) => {bullets.push({bullet})});
+      if (Array.isArray(details)) {
+        details.forEach((bullet) => {bullets.push({bullet})});
+      } else {
+        bullets.push({bullet: details});
+      }
       db.Portfolio
       .findByIdAndUpdate(_id, {'$push': {"portfolio.projects" : {title, text, url, bullets}}})
         .then((result) => {
@@ -219,7 +223,11 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       const { _id, details, _project, title, text, url } = req.body;
       console.log(req.body);
       let bullets = [];
-      details.forEach((bullet) => {bullets.push({bullet})});
+      if (Array.isArray(details)) {
+        details.forEach((bullet) => {bullets.push({bullet})});
+      } else {
+        bullets.push({bullet: details});
+      }
       db.Portfolio
       .findOneAndUpdate(
         { _id, "portfolio.projects._id": _project }, { "$set": {"portfolio.projects.$.url": url, "portfolio.projects.$.text": text, "portfolio.projects.$.title": title, "portfolio.projects.$.bullets": bullets} })
