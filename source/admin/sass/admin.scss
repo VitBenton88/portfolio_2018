@@ -1,6 +1,39 @@
 /* CORE */
 @import "./source/sass/core/colors";
 
+/* COMMON */
+.add-item-overlay {
+    background: $white;
+    border: 1px solid $grey;
+    border-radius: 4px;
+    height: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    transition: background 0.15s ease-in-out, height 0.15s ease-in-out, opacity 0.15s ease-in-out;
+    top: 0;
+    user-select: none;
+    width: 100%;
+    z-index: 1;
+
+    &.active {
+        display: flex;
+        height: 100%;
+        opacity: 1;
+        z-index: 5;
+    }
+
+    &:hover {
+        background: $grey;
+        cursor: pointer;
+    }
+
+    .fa-plus {
+        font-size: 44px;
+    }
+}
+
 .admin {
     background: $white;
 
@@ -11,43 +44,27 @@
         &.add-item {
             position: relative;
             z-index: 2;
-
-            .add-item-overlay {
-                background: $white;
-                border: 1px solid $grey;
-                border-radius: 4px;
-                height: 0;
-                left: 0;
-                opacity: 0;
-                position: absolute;
-                text-align: center;
-                transition: background 0.15s ease-in-out, height 0.15s ease-in-out, opacity 0.15s ease-in-out;
-                top: 0;
-                user-select: none;
-                width: 100%;
-                z-index: 1;
-
-                &.active {
-                    display: flex;
-                    height: 100%;
-                    opacity: 1;
-                    z-index: 5;
-                }
-
-                &:hover {
-                    background: $grey;
-                    cursor: pointer;
-                }
-
-                .fa-plus {
-                    font-size: 44px;
-                }
-            }
         }
     }
 
     .update-menuitem-form {
         margin-bottom: 8px
+    }
+
+    /* SOCIAL */
+    .social-link {
+        i {
+            float: right;
+            font-size: 40px;
+        }
+
+        .edit-social-btn {
+            margin-top: 10px;
+        }
+
+        form.delete-social {
+            margin-top: 6px;
+        }
     }
 
     /* ABOUT */

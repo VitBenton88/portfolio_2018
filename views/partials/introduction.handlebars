@@ -6,9 +6,9 @@
                 <p>{{subtitle}}</p>
             </div>
             <div class="col-8 col-sm-5 col-md-5 col-lg-4 col-xl-3 d-flex justify-content-between social-icon-wrap">
-                <a href="https://stackoverflow.com/users/8039195/vitek-benton" target="_blank"><i class="fab fa-stack-overflow fa-3x"></i></a>
-                <a href="https://www.linkedin.com/in/vit-benton/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
-                <a href="https://github.com/VitBenton88" target="_blank"><i class="fab fa-github fa-3x"></i></a>
+                {{#each social}}
+                    <a href="{{this.url}}" target="_blank"><i class="fab fa-3x {{this.icon}}"></i></a>
+                {{/each}}
             </div>
             <a href="#about" class="col-7 col-sm-5 col-md-3 col-xl-2 learn-more-wrap">
                 <h2>Learn More</h2>

@@ -22,10 +22,6 @@ const SocialSchema = new Schema({
     default: 'StackOverflow',
     trim: true
   },
-  text: {
-    type: String,
-    default: 'Link Text'
-  },
   url: {
     type: String,
     default: '/'

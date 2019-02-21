@@ -152,6 +152,48 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
+    // add social
+    app.post("/addsocial", (req, res) => {
+      const { icon, _id, name, url } = req.body;
+      db.Portfolio
+      .updateOne({_id}, {'$push': {
+            "social" : {icon, name, url}
+        }})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Social link successfully added.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
+    // update social
+    app.post("/updatesocial", (req, res) => {
+      const { icon, _id, name, _social, url } = req.body;
+      db.Portfolio.findOneAndUpdate(
+        { _id, "social._id": _social }, { "$set": {"social.$.name": name, "social.$.url": url, "social.$.icon": icon} })
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Menu item successfully edited.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
     // update about copy
     app.post("/updateabout", (req, res) => {
       const { _id, about } = req.body;
@@ -257,6 +299,26 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             req.flash(
               'success_msg',
               'Menu item successfully deleted.'
+            );
+            res.redirect('/admin');
+          })
+          .catch((error) => {
+          // If an error occurred, send it to the client
+          console.log(error);
+          req.flash('error_msg', error.message);
+          res.redirect('/admin');
+        });
+      });
+
+      // delete social
+      app.post("/deletesocial", (req, res) => {
+        const { _id, _social } = req.body;
+        db.Portfolio
+        .findByIdAndUpdate(_id, { $pull: { "social": { _id: _social } } })
+          .then((result) => {
+            req.flash(
+              'success_msg',
+              'Social link successfully deleted.'
             );
             res.redirect('/admin');
           })
