@@ -7,42 +7,90 @@
 </div>
 
 <div class="container">
-    <div class="alert alert-primary" role="alert">Your Navigation</div>
+    <div class="alert alert-primary d-flex justify-content-between align-items-center" role="alert">
+      Your Navigation
+      <div class="section-toggle-controls">
+        <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#navigation" aria-hidden="true"></i>
+        <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#navigation" aria-hidden="true"></i>
+      </div>
+    </div>
 
-    {{> admin/navigation}}
+    <div id="navigation" class="collapse">
+      {{> admin/navigation}}
+    </div>
 </div>
 
 <div class="container">
-    <div class="alert alert-success" role="alert">Your Introduction</div>
+    <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+      Your Introduction
+      <div class="section-toggle-controls">
+        <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#introduction" aria-hidden="true"></i>
+        <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#introduction" aria-hidden="true"></i>
+      </div>
+    </div>
 
-    {{> admin/introduction}}
+    <div id="introduction" class="collapse">
+      {{> admin/introduction}}
+    </div>
 </div>
 
 <div class="container">
-    <div class="alert alert-info" role="alert">Your About Copy</div>
+    <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
+      Your About Copy
+      <div class="section-toggle-controls">
+        <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#about" aria-hidden="true"></i>
+        <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#about" aria-hidden="true"></i>
+      </div>
+    </div>
 
-    {{> admin/about}}
+    <div id="about" class="collapse">
+      {{> admin/about}}
+    </div>
 </div>
 
 <div id="technology" class="container">
-    <div class="alert alert-warning" role="alert">Your Technologies (In The Chart)</div>
+    <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
+      Your Technologies (In The Chart)
+      <div class="section-toggle-controls">
+        <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#technology" aria-hidden="true"></i>
+        <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#technology" aria-hidden="true"></i>
+      </div>
+    </div>
 
-    {{> admin/technology}}
+     <div id="technology" class="collapse">
+       {{> admin/technology}}
+     </div>
 </div>
 
 <div class="container">
-    <div class="alert alert-secondary" role="alert">Your Portfolio</div>
+    <div class="alert alert-secondary d-flex justify-content-between align-items-center" role="alert">
+      Your Portfolio
+      <div class="section-toggle-controls">
+        <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#portfolio" aria-hidden="true"></i>
+        <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#portfolio" aria-hidden="true"></i>
+      </div>
+    </div>
 
-    {{> admin/portfolio}}
+    <div id="portfolio" class="collapse">
+      {{> admin/portfolio}}
+    </div>
 </div>
 
 <div class="container">
-    <div class="alert alert-secondary" role="alert">Your Resume</div>
+    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+      Your Resume
+      <div class="section-toggle-controls">
+        <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#resume" aria-hidden="true"></i>
+        <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#resume" aria-hidden="true"></i>
+      </div>
+    </div>
 
-    {{> admin/resume}}
+    <div id="resume" class="collapse">
+      {{> admin/resume}}
+    </div>
 </div>
 
-<div class="container-fluid footer">
+<div class="container-fluid footer d-none">
   <div class="row">
     <div class="col-12"></div>
   </div>

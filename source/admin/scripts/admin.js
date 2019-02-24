@@ -11,6 +11,17 @@ $(function() {
 * CLICK
 **/
 
+//toggle expand/collapse icons
+$('.toggle-control').click(function() {
+    const closestWrap = $(this).closest('.section-toggle-controls');
+
+    if (closestWrap.hasClass('expanded')) {
+        closestWrap.removeClass('expanded');
+    } else {
+        closestWrap.addClass('expanded');
+    }
+})
+
 //toggle add overlays
 $('.add-item-overlay, .add-project-overlay').click(function() {
     if ($(this).hasClass('active')) {

@@ -34,6 +34,33 @@
     }
 }
 
+.section-toggle-controls {
+    .fa-minus {
+        display: none;
+    }
+
+    i {
+        border: 1px solid transparent;
+        border-radius: 2px;
+        padding: 3px;
+        transition: border .3s ease-in-out;
+
+        &:hover {
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    }
+
+    &.expanded {
+        .fa-expand {
+            display: none;
+        }
+        .fa-minus {
+            display: block;
+        }
+    }
+}
+
 .admin {
     background: $white;
 
