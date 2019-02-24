@@ -1,0 +1,58 @@
+{{#each portfolio}}
+    <div class="row">
+        {{#each technology}}
+            <div class="col-4 menu-item">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Technology</h5>
+                        <p class="card-text">Name: {{this.name}}<br/>Score: {{this.score}}</p>
+                        <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#menu-item-{{@key}}" aria-expanded="false" aria-controls="menu-item-{{@key}}">Edit</button>
+                        <div class="collapse" id="menu-item-{{@key}}">
+                            <br />
+                            <div class="card card-body">
+                                <form action="/updatetechnology" method="POST" class="update-menuitem-form">
+                                    <div class="form-group">
+                                    <label for="title">Edit Menu Item</label>
+                                    <small id="name-help" class="form-text text-muted">Name for this technology.</small>
+                                    <input name="name" class="form-control" type="text" aria-describedby="name-help" value="{{this.name}}" placeholder="Enter new name for this tech ...">
+                                    <small id="score-help" class="form-text text-muted">Score for this technology.</small>
+                                    <input name="score" class="form-control" type="text" aria-describedby="score-help" value="{{this.score}}" placeholder="Enter new score for this tech...">
+                                    </div>
+                                    <input name="_id" type="hidden" value="{{../id}}">
+                                    <input name="_technology" type="hidden" value="{{this.id}}">
+                                    <button type="submit" class="btn btn-primary btn-block">Update</button>
+                                </form>
+                                <form action="/deletetechnology" method="POST">
+                                    <input name="_id" type="hidden" value="{{../id}}">
+                                    <input name="_technology" type="hidden" value="{{this.id}}">
+                                    <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+        <div class="col-4 menu-item add-item">
+            <div class="card card-body">
+                <form action="/addtechnology" method="POST">
+                    <div class="form-group">
+                        <label for="title">Add Technology</label>
+                        <small id="name-help" class="form-text text-muted">Name for this technology.</small>
+                        <input name="name" class="form-control" type="text" aria-describedby="name-help" placeholder="Enter new name for this tech ...">
+                        <small id="score-help" class="form-text text-muted">Score for this technology.</small>
+                        <input name="score" class="form-control" type="text" aria-describedby="score-help" placeholder="Enter new score for this tech...">
+                    </div>
+                    <input name="_id" type="hidden" value="{{id}}">
+                    <button type="submit" class="btn btn-success btn-block">Add</button>
+                </form>
+                <div class="add-item-overlay active d-flex align-items-center justify-content-center">
+                    <div>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <h5>Add</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

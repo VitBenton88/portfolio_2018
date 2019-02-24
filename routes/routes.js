@@ -287,6 +287,48 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
+    // add technology
+    app.post("/addtechnology", (req, res) => {
+      const { _id, name, score } = req.body;
+      db.Portfolio
+      .updateOne({_id}, {'$push': {
+            "technology" : {name, score}
+        }})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Technology successfully added.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
+    // update technology
+    app.post("/updatetechnology", (req, res) => {
+      const { _id, name, score, _technology } = req.body;
+      db.Portfolio.findOneAndUpdate(
+        { _id, "technology._id": _technology }, { "$set": {"technology.$.name": name, "technology.$.score": score} })
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'Technology successfully edited.'
+          );
+          res.redirect('/admin');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
     // DELETE
     // =============================================================
       // delete menu item
@@ -318,6 +360,26 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             req.flash(
               'success_msg',
               'Social link successfully deleted.'
+            );
+            res.redirect('/admin');
+          })
+          .catch((error) => {
+          // If an error occurred, send it to the client
+          console.log(error);
+          req.flash('error_msg', error.message);
+          res.redirect('/admin');
+        });
+      });
+
+      // delete technology
+      app.post("/deletetechnology", (req, res) => {
+        const { _id, _technology } = req.body;
+        db.Portfolio
+        .findByIdAndUpdate(_id, { $pull: { "technology": { _id: _technology } } })
+          .then((result) => {
+            req.flash(
+              'success_msg',
+              'Technology successfully deleted.'
             );
             res.redirect('/admin');
           })
