@@ -5,18 +5,18 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // =============================================================
     // homepage route
     app.get("/", (req, res) => {
-        db.Portfolio.find()
-        .then(function(portfolio) {
-          res.render("index", {portfolio});
-        });
+      db.Portfolio.find()
+      .then((portfolio) => {
+        res.render("index", {portfolio});
+      });
     });
 
     // admin route
     app.get("/admin", (req, res) => {
-        db.Portfolio.find()
-        .then(function(portfolio) {
-          res.render("admin", {portfolio, layout: "admin"});
-        });
+      db.Portfolio.find()
+      .then((portfolio) => {
+        res.render("admin", {portfolio, layout: "admin"});
+      });
     });
 
     //handle Googles robots
@@ -34,9 +34,11 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // =============================================================
     //handle contact form
     app.post("/contact", (req, res) => {
-      const { name, email, subject, text } = req.body;
+      const { name, email, message } = req.body;
+      const replyTo = email;
+      const subject = `${name} @ ${replyTo} contacted you through VitBenton.com!`;
 
-      if (!validator.isEmpty(replyTo) && !validator.isEmpty(name) && !validator.isEmpty(text) && validator.isEmail(replyTo)) {
+      if (!validator.isEmpty(replyTo) && !validator.isEmpty(name) && !validator.isEmpty(message) && validator.isEmail(replyTo)) {
 
         const transporter = nodemailer.createTransport({
           service: process.env.EMAIL_SER,
@@ -48,10 +50,10 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
         const mailOptions = {
           from: process.env.EMAIL_USER,
-          replyTo: email,
+          replyTo,
           to: process.env.EMAIL_REC,
-          subject: `${name} @ ${replyTo} contacted you through VitBenton.com!`,
-          text
+          subject,
+          text: message
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
@@ -73,35 +75,14 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update title
     app.post("/updatetitle", (req, res) => {
       const { _id, title } = req.body;
-      db.Portfolio
-      .updateOne({_id},{title})
-        .then((result) => {
-          req.flash(
-            'success_msg',
-            'Title successfully edited.'
-          );
-          res.redirect('/admin');
-        })
-        .catch((error) => {
-        // If an error occurred, send it to the client
-        console.log(error);
-        req.flash('error_msg', error.message);
+      db.Portfolio.updateOne({_id},{title})
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'Title successfully edited.'
+        );
         res.redirect('/admin');
-      });
-    });
-
-    // update subtitle
-    app.post("/updatesubtitle", (req, res) => {
-      const { _id, subtitle } = req.body;
-      db.Portfolio
-      .updateOne({_id},{subtitle})
-        .then((result) => {
-          req.flash(
-            'success_msg',
-            'Subtitle successfully edited.'
-          );
-          res.redirect('/admin');
-        })
+      })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
@@ -132,7 +113,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
-    // update menu items
+    // update menu item
     app.post("/updatemenuitem", (req, res) => {
       const { _id, _menu, text, url } = req.body;
       db.Portfolio.findOneAndUpdate(
@@ -263,7 +244,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update project
     app.post("/updateproject", (req, res) => {
       const { _id, details, _project, title, text, url } = req.body;
-      console.log(req.body);
       let bullets = [];
       if (Array.isArray(details)) {
         details.forEach((bullet) => {bullets.push({bullet})});
@@ -280,6 +260,25 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           );
           res.redirect('/admin');
         })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
+    // update resume
+    app.post("/updateresume", (req, res) => {
+      const { _id, resume } = req.body;
+      db.Portfolio.updateOne({_id},{resume})
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'Resume successfully edited.'
+        );
+        res.redirect('/admin');
+      })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);

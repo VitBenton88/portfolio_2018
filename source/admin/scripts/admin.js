@@ -4,7 +4,7 @@
 
 //initialize Froala editors
 $(function() { 
-    $('#aboutEditor, #portfolioIntroEditor').froalaEditor();
+    $('#aboutEditor, #portfolioIntroEditor, #resumeEditor').froalaEditor();
 });
 
 /**
