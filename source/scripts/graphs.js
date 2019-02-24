@@ -1,30 +1,27 @@
 $(document).ready( () => {
 
-    // chart JS START --------------
-    const htmlData = 70;
-    const cssData = 70;
-    const bootsrapData = 45;
-    const jsData = 50;
-    const reactData = 50;
-    const jqueryData = 50;
-    const respDes = 55;
-    const ajaxData = 50;
-    const firebaseData = 30;
-    const mySQLdata = 35;
-    const nodeData = 40;
-    const expressData = 40;
-    const handlebarsData = 35;
-    const MongoDBData = 30;
-    const phpData = 30;
+    const frontendEle = $('[data-type="Frontend"]');
+    const backendEle = $('[data-type="Backend"]');
 
-    const frontEndData = [htmlData, cssData, bootsrapData, jsData, jqueryData, reactData, respDes, phpData];
-    const backEndData = [ajaxData, nodeData, expressData, handlebarsData, firebaseData, mySQLdata, MongoDBData];
+    const frontEndData = $.map(frontendEle, function(el) {
+        return $(el).data('score')
+    });
+    
+    const backEndData = $.map(backendEle, function(el) {
+        return $(el).data('score')
+    });
+
+    const frontendLabels = $.map(frontendEle, function(el) {
+        return $(el).data('label')
+    });
+   const backendLabels = $.map(backendEle, function(el) {
+        return $(el).data('label')
+    });
 
     let barChartOrientation = 'bar';
-    const frontendLabels = ["HTML5", "CSS3", "Bootstrap", "Javascript", "jQuery", "React.JS", ["Responsive", "Design"], "PHP"];
-    const backendLabels = ["AJAX", "Node.js", "Express.js", "Handlebars.js", "Google Firebase", "mySQL", "MongoDB"];
     const ctxFrontend = $("#canvas-frontend");
     const ctxBackend = $("#canvas-backend");
+
     const chartOptions = {
         tooltips: {
             enabled: false
@@ -47,7 +44,7 @@ $(document).ready( () => {
                 display: true,
                 ticks: {
                     beginAtZero: true,
-                    fontSize: 16
+                    fontSize: 14
                 },
             }],
         }
@@ -105,24 +102,24 @@ $(document).ready( () => {
     myFrontendChart();
 
     $(window).on('resize', function(){
-          let win = $(this);
-          if (win.width() <= 1199) {
-              frontendLabels[6] = 'Responsive Design';
-              barChartOrientation = 'horizontalBar';
-              chartOptions.scales.yAxes[0].display = true;
-              chartOptions.scales.xAxes[0].display = false;
-              //reload charts
-              myBackendChart();
-              myFrontendChart();
-          } else {
-              frontendLabels[6] = ["Responsive", "Design"];
-              barChartOrientation = 'bar';
-              chartOptions.scales.yAxes[0].display = false;
-              chartOptions.scales.xAxes[0].display = true;
-              //reload charts
-              myBackendChart();
-              myFrontendChart();
-          }
+        let win = $(this);
+        if (win.width() <= 1199) {
+            frontendLabels[6] = 'Responsive Design';
+            barChartOrientation = 'horizontalBar';
+            chartOptions.scales.yAxes[0].display = true;
+            chartOptions.scales.xAxes[0].display = false;
+            //reload charts
+            myBackendChart();
+            myFrontendChart();
+        } else {
+            frontendLabels[6] = ["Responsive", "Design"];
+            barChartOrientation = 'bar';
+            chartOptions.scales.yAxes[0].display = false;
+            chartOptions.scales.xAxes[0].display = true;
+            //reload charts
+            myBackendChart();
+            myFrontendChart();
+        }
     });
     //----------------------------------------------------------------END OF .load SCRIPT
 });

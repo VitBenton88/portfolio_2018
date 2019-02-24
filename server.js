@@ -30,9 +30,24 @@ const production = process.env.NODE_ENV == "production";
 const app = express();
 let PORT = process.env.PORT || 3000;
 
+// Handlebars Config
+// =============================================================
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  helpers: {
+    if_equal: (a, b, opts) => { 
+      if (a == b) {
+        return opts.fn(this)
+      } else {
+        return opts.inverse(this)
+      }
+    }
+  }
+});
+
 // Sets up the Express with Handlebars
 // =============================================================
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Sets up Cookies with the Express App

@@ -91,6 +91,25 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
+    // update subtitle
+    app.post("/updatesubtitle", (req, res) => {
+      const { _id, subtitle } = req.body;
+      db.Portfolio.updateOne({_id},{subtitle})
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'Subtitle successfully edited.'
+        );
+        res.redirect('/admin');
+      })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin');
+      });
+    });
+
     // add menu item
     app.post("/addmenuitem", (req, res) => {
       const { _id, text, url } = req.body;
@@ -289,10 +308,10 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // add technology
     app.post("/addtechnology", (req, res) => {
-      const { _id, name, score } = req.body;
+      const { _id, name, score, type } = req.body;
       db.Portfolio
       .updateOne({_id}, {'$push': {
-            "technology" : {name, score}
+            "technology" : {name, score, type}
         }})
         .then((result) => {
           req.flash(
@@ -305,15 +324,15 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin#technology');
       });
     });
 
     // update technology
     app.post("/updatetechnology", (req, res) => {
-      const { _id, name, score, _technology } = req.body;
+      const { _id, name, score, type, _technology } = req.body;
       db.Portfolio.findOneAndUpdate(
-        { _id, "technology._id": _technology }, { "$set": {"technology.$.name": name, "technology.$.score": score} })
+        { _id, "technology._id": _technology }, { "$set": {"technology.$.name": name, "technology.$.score": score, "technology.$.type": type} })
         .then((result) => {
           req.flash(
             'success_msg',
@@ -325,7 +344,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin#technology');
       });
     });
 
