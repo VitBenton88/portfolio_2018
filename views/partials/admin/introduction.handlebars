@@ -42,63 +42,8 @@
             </div>
         </div>
     </div>
-    {{#each social}}
-        <div class="col-4 social-link">
-            <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Social Link</h4>
-                <i class="fa {{this.icon}}" aria-hidden="true"></i>
-                <p>{{this.name}}</p>
-                <a href="{{this.url}}" target="_blank">Live Link</a>
-                <button class="btn btn-outline-dark btn-block edit-social-btn" type="button" data-toggle="collapse" data-target="#social-link-{{@this.key}}" aria-expanded="false" aria-controls="social-link-{{@this.key}}">Edit</button>
-                <div class="collapse" id="social-link-{{@this.key}}">
-                    <br />
-                    <div class="card card-body">
-                        <form action="/updatesocial" method="POST">
-                            <div class="form-group">
-                                <label for="title">Edit Socail Icon</label>
-                                <small id="nameHelp" class="form-text text-muted">Name of social platform.</small>
-                                <input name="name" class="form-control" type="text" aria-describedby="nameHelp" placeholder="Enter name of social platform ..." value="{{this.name}}">
-                                <small id="urlHelp" class="form-text text-muted">Url to profile.</small>
-                                <input name="url" class="form-control" type="text" aria-describedby="urlHelp" placeholder="Enter url of profile ..." value="{{this.url}}">
-                                <small id="iconHelp" class="form-text text-muted">Icon for this social link.</small>
-                                <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/socialOptions}}</select>
-                            </div>
-                            <input name="_id" type="hidden" value="{{../id}}">
-                            <input name="_social" type="hidden" value="{{this.id}}">
-                            <button type="submit" class="btn btn-outline-info btn-block">Update</button>
-                        </form>
-                        <form action="/deletesocial" method="POST" class="delete-social">
-                            <input name="_id" type="hidden" value="{{../id}}">
-                            <input name="_social" type="hidden" value="{{this.id}}">
-                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{/each}}
-    <div class="col-4 add-social">
-        <div class="alert alert-success" role="alert">
-            <form action="/addsocial" method="POST">
-                <div class="form-group">
-                    <label for="title">Add Social Link</label>
-                    <small id="nameHelp" class="form-text text-muted">Name of social platform.</small>
-                    <input name="name" class="form-control" type="text" aria-describedby="nameHelp" placeholder="Enter name of social platform ..." value="{{this.name}}">
-                    <small id="urlHelp" class="form-text text-muted">Url to profile.</small>
-                    <input name="url" class="form-control" type="text" aria-describedby="urlHelp" placeholder="Enter url of profile ..." value="{{this.url}}">
-                    <small id="iconHelp" class="form-text text-muted">Icon for this social link.</small>
-                    <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/socialOptions}}</select>
-                </div>
-                <input name="_id" type="hidden" value="{{id}}">
-                <button type="submit" class="btn btn-success btn-block">Add</button>
-            </form>
-            <div class="add-item-overlay active d-flex align-items-center justify-content-center">
-                <div>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    <h5>Add</h5>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    {{> admin/social}}
+
 </div>
 {{/each}}

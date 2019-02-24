@@ -43,6 +43,10 @@ const TechnologySchema = new Schema({
     type: Number,
     default: 100
   },
+  type: {
+    type: String,
+    default: 'Frontend'
+  }
 });
 
 // Schema for project bullets
