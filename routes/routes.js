@@ -63,11 +63,18 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             console.log(`Email sent: ${info.response}`);
           }
         });
-
-        res.send(true);
+        
+        req.flash(
+          'success_msg',
+          'Message successfully sent.'
+        );
+        res.redirect('/');
 
       } else {
-        res.send(false);
+        req.flash('error_msg',
+        'Message not sent. Please make sure the form is filled out correctly.'
+        );
+        res.redirect('/');
       };
 
     });

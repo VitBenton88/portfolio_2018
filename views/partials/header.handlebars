@@ -36,6 +36,8 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+   {{> notifications}}
+   
     <nav class="container">
         <div class="col-10 offset-1 d-none d-lg-flex justify-content-around align-items-center desktop-nav-wrap">
             {{> navigation}}
@@ -53,14 +55,7 @@
         <div class="mobile-nav-menu mobile-nav-menu-land align-items-center">
             <div class="container">
                 <div class="col-10 mobile-nav-set-wrap">
-                    <div class="mobile-nav-set">
-                        <a href="#about">About</a>
-                        <a href="#portfolio">Portfolio</a>
-                    </div>
-                    <div class="mobile-nav-set">
-                        <a href="#resume">Resume</a>
-                        <a href="#contact">Contact</a>
-                    </div>
+                    {{> notifications}}
                 </div>
             </div>
         </div>

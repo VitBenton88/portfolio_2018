@@ -1,0 +1,19 @@
+{{#each success_msg}}
+    <div class="container-fluid success notifications">
+        <div class="row">
+            <div class="col-12">
+                    <p>{{this}}</p>
+            </div>
+        </div>
+    </div>
+{{/each}}
+
+{{#each error_msg}}
+    <div class="container-fluid error notifications">
+        <div class="row">
+            <div class="col-12">
+                    <p>{{this}}</p>
+            </div>
+        </div>
+    </div>
+{{/each}}
