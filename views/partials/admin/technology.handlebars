@@ -7,7 +7,7 @@
     <div class="row">
         {{#each technology}}
             {{#if_equal this.type "Frontend" }}
-                <div class="col-4 technology">
+                <div class="col-12 col-md-4 technology">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{../this.name}}</h5>
@@ -41,7 +41,7 @@
                 </div>
             {{/if_equal}}
         {{/each}}
-        <div class="col-4 technology add-technology">
+        <div class="col-12 col-lg-4 technology add-technology">
             <div class="card card-body">
                 <form action="/addtechnology" method="POST">
                     <div class="form-group">
@@ -77,7 +77,7 @@
     <div class="row">
         {{#each technology}}
             {{#if_equal this.type "Backend" }}
-                <div class="col-4 technology">
+                <div class="col-12 col-md-4 technology">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{../this.name}}</h5>
@@ -111,7 +111,7 @@
                 </div>
             {{/if_equal}}
         {{/each}}
-        <div class="col-4 technology add-technology">
+        <div class="col-12 col-lg-4 technology add-technology">
             <div class="card card-body">
                 <form action="/addtechnology" method="POST">
                     <div class="form-group">
