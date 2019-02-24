@@ -47,7 +47,7 @@
         }
     }
 
-    .update-menuitem-form {
+    .update-menuitem-form, .update-technology-form {
         margin-bottom: 8px
     }
 
@@ -64,6 +64,16 @@
 
         form.delete-social {
             margin-top: 6px;
+        }
+    }
+
+    /* TECHNOLOGY */
+    .technology {
+        margin-bottom: 16px;
+
+        &.add-technology {
+            position: relative;
+            z-index: 2;
         }
     }
 
