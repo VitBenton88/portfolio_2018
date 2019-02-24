@@ -1,0 +1,75 @@
+.admin {
+    background: $white;
+    padding-bottom: 30px;
+
+    //add item overlay
+    .add-item-overlay {
+        background: $white;
+        border: 1px solid $grey;
+        border-radius: 4px;
+        height: 0;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        text-align: center;
+        transition: background 0.15s ease-in-out, height 0.15s ease-in-out, opacity 0.15s ease-in-out;
+        top: 0;
+        user-select: none;
+        width: 100%;
+        z-index: 1;
+
+        &.active {
+            display: flex;
+            height: 100%;
+            opacity: 1;
+            z-index: 5;
+        }
+
+        &:hover {
+            background: $grey;
+            cursor: pointer;
+        }
+
+        .fa-plus {
+            font-size: 44px;
+        }
+    }
+
+    //controls to toggle view each section
+    .section-toggle-controls {
+        .fa-minus {
+            display: none;
+        }
+
+        i {
+            border: 1px solid transparent;
+            border-radius: 2px;
+            padding: 3px;
+            transition: border .3s ease-in-out;
+
+            &:hover {
+                border: 1px solid black;
+                cursor: pointer;
+            }
+        }
+
+        &.expanded {
+            .fa-expand {
+                display: none;
+            }
+            .fa-minus {
+                display: block;
+            }
+        }
+    }
+
+    //common form styling
+    .update-menuitem-form, .update-technology-form {
+        margin-bottom: 8px
+    }
+
+    //wysiwyg save button
+    .save-wysiwyg {
+        margin-top: 10px;
+    }
+}
