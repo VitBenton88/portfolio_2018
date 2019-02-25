@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <div class="row">
+
+    {{> admin/menus/main}}
+
+    <div class="col-11">
+      <div class="row">
+        {{> admin/notifications}}
+
+        <div class="jumbotron container-fluid">
+          <div class="container">
+            <h1 class="display-4">Content</h1>
+          </div>
+        </div>
+
+        <div class="container">
+            <div class="alert alert-primary d-flex justify-content-between align-items-center" role="alert">
+              Your Navigation
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#navigation" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#navigation" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div id="navigation" class="collapse">
+              {{> admin/navigation}}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+              Your Introduction
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#introduction" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#introduction" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div id="introduction" class="collapse">
+              {{> admin/introduction}}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
+              Your About
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#about" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#about" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div id="about" class="collapse">
+              {{> admin/about}}
+            </div>
+        </div>
+
+        <div id="technology" class="container">
+            <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
+              Your Technologies
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#technology" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#technology" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div id="technology" class="collapse">
+              {{> admin/technology}}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="alert alert-secondary d-flex justify-content-between align-items-center" role="alert">
+              Your Portfolio
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#portfolio" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#portfolio" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div id="portfolio" class="collapse">
+              {{> admin/portfolio}}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+              Your Resume
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" data-toggle="collapse" href="#resume" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" data-toggle="collapse" href="#resume" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div id="resume" class="collapse">
+              {{> admin/resume}}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

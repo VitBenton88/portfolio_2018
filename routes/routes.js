@@ -13,9 +13,14 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // admin route
     app.get("/admin", (req, res) => {
+      res.redirect('/admin/dashboard');
+    });
+
+    // admin content route
+    app.get("/admin/content", (req, res) => {
       db.Portfolio.find()
       .then((portfolio) => {
-        res.render("admin", {portfolio, layout: "admin"});
+        res.render("admin-content", {portfolio, layout: "admin-content"});
       });
     });
 
