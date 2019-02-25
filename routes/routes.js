@@ -20,7 +20,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     app.get("/admin/content", (req, res) => {
       db.Portfolio.find()
       .then((portfolio) => {
-        res.render("admin-content", {portfolio, layout: "admin-content"});
+        res.render("admin-content", {portfolio, layout: "admin"});
       });
     });
 
