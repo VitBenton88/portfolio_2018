@@ -13,7 +13,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // admin route
     app.get("/admin", (req, res) => {
-      res.redirect('/admin/dashboard');
+      res.redirect('/admin/content');
     });
 
     // admin content route
@@ -21,6 +21,14 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       db.Portfolio.find()
       .then((portfolio) => {
         res.render("admin-content", {portfolio, layout: "admin"});
+      });
+    });
+
+    // admin content route
+    app.get("/admin/meta", (req, res) => {
+      db.Portfolio.find()
+      .then((portfolio) => {
+        res.render("admin-meta", {portfolio, layout: "admin"});
       });
     });
 
@@ -84,6 +92,44 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     });
 
+    // update meta head
+    app.post("/updatemetahead", (req, res) => {
+      const { _id, meta_head } = req.body;
+      db.Portfolio.updateOne({_id},{meta_head})
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'Meta head tags successfully updated.'
+        );
+        res.redirect('/admin/meta');
+      })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin/meta');
+      });
+    });
+
+    // update meta body
+    app.post("/updatemetabody", (req, res) => {
+      const { _id, meta_body } = req.body;
+      db.Portfolio.updateOne({_id},{meta_body})
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'Meta body tags successfully updated.'
+        );
+        res.redirect('/admin/meta');
+      })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin/meta');
+      });
+    });
+
     // update title
     app.post("/updatetitle", (req, res) => {
       const { _id, title } = req.body;
@@ -93,13 +139,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           'success_msg',
           'Title successfully edited.'
         );
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -112,13 +158,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           'success_msg',
           'Subtitle successfully edited.'
         );
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -134,13 +180,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Menu item successfully added.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -154,13 +200,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Menu item successfully edited.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -176,13 +222,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Social link successfully added.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -196,13 +242,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Menu item successfully edited.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -216,13 +262,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'About text successfully updated.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -236,13 +282,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Portfolio introduction successfully updated.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -262,13 +308,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Project successfully added.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -289,13 +335,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Project successfully updated.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -308,13 +354,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           'success_msg',
           'Resume successfully edited.'
         );
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin');
+        res.redirect('/admin/content');
       });
     });
 
@@ -330,13 +376,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Technology successfully added.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin#technology');
+        res.redirect('/admin/content');
       });
     });
 
@@ -350,13 +396,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
             'success_msg',
             'Technology successfully edited.'
           );
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         })
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
         req.flash('error_msg', error.message);
-        res.redirect('/admin#technology');
+        res.redirect('/admin/content');
       });
     });
 
@@ -372,13 +418,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
               'success_msg',
               'Menu item successfully deleted.'
             );
-            res.redirect('/admin');
+            res.redirect('/admin/content');
           })
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
           req.flash('error_msg', error.message);
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         });
       });
 
@@ -392,13 +438,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
               'success_msg',
               'Social link successfully deleted.'
             );
-            res.redirect('/admin');
+            res.redirect('/admin/content');
           })
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
           req.flash('error_msg', error.message);
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         });
       });
 
@@ -412,13 +458,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
               'success_msg',
               'Technology successfully deleted.'
             );
-            res.redirect('/admin');
+            res.redirect('/admin/content');
           })
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
           req.flash('error_msg', error.message);
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         });
       });
 
@@ -432,13 +478,13 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
               'success_msg',
               'Project successfully deleted.'
             );
-            res.redirect('/admin');
+            res.redirect('/admin/content');
           })
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
           req.flash('error_msg', error.message);
-          res.redirect('/admin');
+          res.redirect('/admin/content');
         });
       });
 

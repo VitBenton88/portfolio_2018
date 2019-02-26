@@ -102,6 +102,20 @@ const PortfolioSchema = new Schema({
     type: String,
     default: 'Your Resume!'
   },
+  meta_body: {
+    type: String
+  },
+  meta_head: {
+    type: String,
+    default: `<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">`
+  },
+  site_name: {
+    type: String,
+    default: 'Your Website!'
+  }
   
 });
 

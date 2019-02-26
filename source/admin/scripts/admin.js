@@ -12,8 +12,8 @@ $(function() {
 **/
 
 //toggle expand/collapse icons
-$('.toggle-control').click(function() {
-    const closestWrap = $(this).closest('.section-toggle-controls');
+$('.content .section-head').click(function() {
+    const closestWrap = $(this).find('.section-toggle-controls');
 
     if (closestWrap.hasClass('expanded')) {
         closestWrap.removeClass('expanded');

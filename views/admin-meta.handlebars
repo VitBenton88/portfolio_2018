@@ -1,0 +1,27 @@
+<div class="container-fluid meta">
+  <div class="row">
+
+    {{> admin/menus/main meta=true}}
+
+    <div class="col-11">
+      <div class="row">
+        {{> admin/notifications}}
+
+        <div class="jumbotron container-fluid">
+          <div class="container">
+            <h1 class="display-4">Meta</h1>
+          </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+              <div class="col-12">
+                {{> admin/settings/meta}}
+              </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

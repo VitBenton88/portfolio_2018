@@ -1,13 +1,11 @@
 /* CORE */
 @import "./core/colors";
-@import "./core/menu";
-
-/* COMMON */
-@import "./components/common";
 
 /* COMPONENTS */
-@import "./components/about";
-@import "./components/navigation";
-@import "./components/portfolio";
-@import "./components/social";
-@import "./components/technology";
+@import "./components/footer";
+@import "./components/menu";
+@import "./components/notifications";
+
+/* PAGES */
+@import "./pages/content";
+@import "./pages/meta";

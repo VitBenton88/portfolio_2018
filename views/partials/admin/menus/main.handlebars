@@ -1,6 +1,6 @@
 <div class="col-1 cms-menu">
-    <a class="d-block dashboard" href="/admin/dashboard" target="_self">Dashboard</a>
-    <a class="d-block contact" href="/admin/content" target="_self">Content</a>
-    <a class="d-block meta" href="/admin/meta" target="_self">Meta</a>
-    <a class="d-block users" href="/admin/users" target="_self">Users</a>
+    <a class="d-block {{#if this.dashboard}}active{{/if}}" href="/admin/dashboard" target="_self">Dashboard</a>
+    <a class="d-block {{#if this.content}}active{{/if}}" href="/admin/content" target="_self">Content</a>
+    <a class="d-block {{#if this.meta}}active{{/if}}" href="/admin/meta" target="_self">Meta</a>
+    <a class="d-block {{#if this.users}}active{{/if}}" href="/admin/users" target="_self">Users</a>
 </div>

@@ -2,39 +2,24 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <script>dataLayer = [];</script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MCVRW3Q');</script>
-    <!-- End Google Tag Manager -->
+    {{#each portfolio}}
+       {{{meta_head}}}
+    {{/each}}
 
-    <meta charset="utf-8">
-    <title>Vit Benton</title>
-    <!--MISC META TAGS -->
-    <meta name="description" content="Vit Benton - Full-stack web developer. Personal website and portfolio.">
-    <!--APPLE MOBILE META TAGS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <!--GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Karla|Quicksand|" rel="stylesheet">
     <!--FONT AWESOME -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <!--LOCAL CSS -->
     <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <!--VIEWPORT -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--FAVICON -->
     <link rel="icon" type="image/ico" href="assets/images/favicon.png">
 </head>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCVRW3Q"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    {{#each portfolio}}
+       {{{meta_body}}}
+    {{/each}}
 
    {{> notifications}}
    
