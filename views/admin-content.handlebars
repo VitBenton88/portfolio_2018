@@ -1,17 +1,13 @@
 <div class="container-fluid content">
   <div class="row">
 
-    {{> admin/menus/main content=true}}
+    {{> admin/menus/main menu-content=true}}
 
     <div class="col-11">
       <div class="row">
-        {{> admin/content/notifications}}
+        {{> admin/notifications}}
 
-        <div class="jumbotron container-fluid">
-          <div class="container">
-            <h1 class="display-4">Content</h1>
-          </div>
-        </div>
+        {{> admin/heading heading='Content'}}
 
         <div class="container">
             <div class="section-head alert alert-primary d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#navigation">
@@ -23,7 +19,7 @@
             </div>
 
             <div id="navigation" class="collapse">
-              {{> admin/content/navigation}}
+              {{> admin/navigation}}
             </div>
         </div>
 

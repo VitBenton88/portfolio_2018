@@ -24,11 +24,35 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
-    // admin content route
+    // admin dashboard route
+    app.get("/admin/dashboard", (req, res) => {
+      db.Portfolio.find()
+      .then((portfolio) => {
+        res.render("admin-dashboard", {portfolio, layout: "admin"});
+      });
+    });
+
+    // admin meta route
     app.get("/admin/meta", (req, res) => {
       db.Portfolio.find()
       .then((portfolio) => {
         res.render("admin-meta", {portfolio, layout: "admin"});
+      });
+    });
+
+    // admin settings route
+    app.get("/admin/settings", (req, res) => {
+      db.Portfolio.find()
+      .then((portfolio) => {
+        res.render("admin-settings", {portfolio, layout: "admin"});
+      });
+    });
+
+    // admin users route
+    app.get("/admin/users", (req, res) => {
+      db.Portfolio.find()
+      .then((portfolio) => {
+        res.render("admin-users", {portfolio, layout: "admin"});
       });
     });
 
