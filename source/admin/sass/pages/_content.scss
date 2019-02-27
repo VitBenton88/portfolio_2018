@@ -176,26 +176,6 @@
         }
     }
 
-    .section-head {
-        cursor: pointer;
-    }
-
-    //controls to toggle view each section
-    .section-toggle-controls {
-        .fa-minus {
-            display: none;
-        }
-
-        &.expanded {
-            .fa-expand {
-                display: none;
-            }
-            .fa-minus {
-                display: block;
-            }
-        }
-    }
-
     //common form styling
     .update-menuitem-form, .update-technology-form {
         margin-bottom: 8px

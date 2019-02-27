@@ -74,6 +74,26 @@ const ProjectSchema = new Schema({
   }
 });
 
+// Schema for site settings
+const SettingsSchema = new Schema({
+  meta_body: {
+    type: String
+  },
+  meta_head: {
+    type: String,
+    default: `<metaname="apple-mobile-web-app-capable"content="yes">
+    <metaname="apple-mobile-web-app-status-bar-style"content="black-translucent">`
+  },
+  site_name: {
+    type: String,
+    default: 'Your Website!'
+  },
+  site_description: {
+    type: String,
+    default: "Your Website's Description!"
+  }
+});
+
 // Portfolio Schema
 const PortfolioSchema = new Schema({
   menu: [MenuSchema],
@@ -102,20 +122,7 @@ const PortfolioSchema = new Schema({
     type: String,
     default: 'Your Resume!'
   },
-  meta_body: {
-    type: String
-  },
-  meta_head: {
-    type: String,
-    default: `<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">`
-  },
-  site_name: {
-    type: String,
-    default: 'Your Website!'
-  }
+  site_settings: SettingsSchema
   
 });
 

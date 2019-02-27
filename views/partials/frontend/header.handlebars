@@ -1,40 +1,45 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+{{#each portfolio}}
+    <!DOCTYPE html>
+    <html lang="en" dir="ltr">
 
-<head>
-    {{#each portfolio}}
-       {{{meta_head}}}
-    {{/each}}
+    <head>
+        <metacharset="utf-8">
+        <title>{{site_settings.site_name}}</title>
+        <metaname="description"content="{{site_settings.site_description}}"></metaname>
+        <!--VIEWPORT-->
+        <metaname="viewport"content="width=device-width,initial-scale=1.0">
+        
+        {{{site_settings.meta_head}}}
 
-    <!--GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Karla|Quicksand|" rel="stylesheet">
-    <!--FONT AWESOME -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
-    <!--LOCAL CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
-    <!--FAVICON -->
-    <link rel="icon" type="image/ico" href="assets/images/favicon.png">
-</head>
+        <!--GOOGLE FONT -->
+        <link href="https://fonts.googleapis.com/css?family=Karla|Quicksand|" rel="stylesheet">
+        <!--FONT AWESOME -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+        <!--LOCAL CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/style.css">
+        <!--FAVICON -->
+        <link rel="icon" type="image/ico" href="assets/images/favicon.png">
+    </head>
 
-<body>
-    {{#each portfolio}}
-       {{{meta_body}}}
-    {{/each}}
+    <body>
+        {{{site_settings.meta_body}}}
 
-   {{> frontend/notifications}}
-   
-    <nav class="container">
-        <div class="col-10 offset-1 d-none d-lg-flex justify-content-around align-items-center desktop-nav-wrap">
-            {{> frontend/navigation}}
-        </div>
-        <div class="col-12 d-block d-lg-none">
-            <div id="nav-icon">
-              <span></span>
-              <span></span>
-              <span></span>
+    {{> frontend/notifications}}
+    
+        <nav class="container">
+            <div class="col-10 offset-1 d-none d-lg-flex justify-content-around align-items-center desktop-nav-wrap">
+                {{> frontend/navigation}}
             </div>
-        </div>
-        <div class="mobile-nav-menu mobile-nav-menu-port d-flex d-lg-none flex-column justify-content-center align-items-center">
-            {{> frontend/navigation}}
-        </div>
-    </nav>
+            <div class="col-12 d-block d-lg-none">
+                <div id="nav-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                </div>
+            </div>
+            <div class="mobile-nav-menu mobile-nav-menu-port d-flex d-lg-none flex-column justify-content-center align-items-center">
+                {{> frontend/navigation}}
+            </div>
+        </nav>
+
+{{/each}}

@@ -2,6 +2,7 @@
 @import "./core/colors";
 
 /* COMPONENTS */
+@import "./components/accordian";
 @import "./components/footer";
 @import "./components/menu";
 @import "./components/notifications";
@@ -9,5 +10,4 @@
 /* PAGES */
 @import "./pages/dashboard";
 @import "./pages/content";
-@import "./pages/meta";
 @import "./pages/settings";

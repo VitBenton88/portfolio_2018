@@ -12,7 +12,7 @@ $(function() {
 **/
 
 //toggle expand/collapse icons
-$('.content .section-head').click(function() {
+$('.section-head').click(function() {
     const closestWrap = $(this).find('.section-toggle-controls');
 
     if (closestWrap.hasClass('expanded')) {
@@ -20,8 +20,6 @@ $('.content .section-head').click(function() {
     } else {
         closestWrap.addClass('expanded');
     }
-
-    return false;
 })
 
 //toggle add overlays

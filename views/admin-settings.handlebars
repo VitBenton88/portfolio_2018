@@ -3,17 +3,37 @@
 
     {{> admin/menus/main menu-settings=true}}
 
-    <div class="col-11">
+    <div class="col-10 col-xl-11">
       <div class="row">
         {{> admin/notifications}}
 
         {{> admin/heading heading='Settings'}}
 
         <div class="container">
-            <div class="row">
-              <div class="col-12">
-                {{> admin/settings/settings}}
+            <div class="section-head alert alert-primary d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#information">
+              Site Information
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
               </div>
+            </div>
+
+            <div id="information" class="collapse">
+              {{> admin/settings/info}}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="section-head alert alert-secondary d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#meta">
+              Meta
+              <div class="section-toggle-controls">
+                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
+                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div id="meta" class="collapse">
+              {{> admin/settings/meta}}
             </div>
         </div>
 
