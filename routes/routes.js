@@ -118,7 +118,8 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // update meta head
     app.post("/updatemetahead", (req, res) => {
-      const { _id, meta_head } = req.body;
+      let { _id, meta_head } = req.body;
+      meta_head = meta_head.replace(/ /g,'');
       db.Portfolio.updateOne({_id},{meta_head})
       .then((result) => {
         req.flash(
@@ -151,6 +152,25 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
         console.log(error);
         req.flash('error_msg', error.message);
         res.redirect('/admin/meta');
+      });
+    });
+
+    // update web site name (settings)
+    app.post("/updatesitename", (req, res) => {
+      const { _id, site_name } = req.body;
+      db.Portfolio.updateOne({_id},{site_name})
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'Site name successfully updated.'
+        );
+        res.redirect('/admin/settings');
+      })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin/settings');
       });
     });
 

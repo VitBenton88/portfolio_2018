@@ -20,6 +20,8 @@ $('.content .section-head').click(function() {
     } else {
         closestWrap.addClass('expanded');
     }
+
+    return false;
 })
 
 //toggle add overlays
@@ -29,6 +31,8 @@ $('.add-item-overlay, .add-project-overlay').click(function() {
     } else {
         $(this).addClass('active');
     }
+
+    return false;
 })
 
 //add new product detail input
@@ -39,6 +43,8 @@ $('.add-project-detail').click(function() {
     } else {
         $('.add-project .project-detail').after(productDetailInput);
     }
+
+    return false;
 })
 
 //handle project bullet deletions via AJAX

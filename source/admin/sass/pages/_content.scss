@@ -4,6 +4,7 @@
         background: $white;
         border: 1px solid $grey;
         border-radius: 4px;
+        cursor: pointer;
         height: 0;
         left: 0;
         opacity: 0;
@@ -24,7 +25,6 @@
 
         &:hover {
             background: $grey;
-            cursor: pointer;
         }
 
         .fa-plus {
@@ -81,6 +81,7 @@
             }
     
             .fa-close {
+                cursor: pointer;
                 float: right;
                 font-size: 24px;
                 margin-left: 5px;
@@ -88,7 +89,6 @@
     
                 &:hover {
                     color: red;
-                    cursor: pointer;
                 }
             }
     
@@ -104,6 +104,7 @@
                     background: $white;
                     border: 1px solid $grey;
                     border-radius: 4px;
+                    cursor: pointer;
                     height: 0;
                     left: 0;
                     opacity: 0;
@@ -124,7 +125,6 @@
     
                     &:hover {
                         background: $grey;
-                        cursor: pointer;
                     }
     
                     .fa-plus {
@@ -177,9 +177,7 @@
     }
 
     .section-head {
-        &:hover {
-            cursor: pointer;
-        }
+        cursor: pointer;
     }
 
     //controls to toggle view each section
