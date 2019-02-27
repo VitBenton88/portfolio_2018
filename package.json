@@ -7,6 +7,7 @@
     "node": "10.15.0"
   },
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
     "connect-flash": "^0.1.1",
@@ -19,6 +20,7 @@
     "nodemailer": "^4.6.4",
     "nodemon": "^1.18.10",
     "npm": "^6.8.0",
+    "passport": "^0.4.0",
     "update": "^0.7.4",
     "validator": "^10.1.0"
   },
