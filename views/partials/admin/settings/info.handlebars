@@ -8,8 +8,6 @@
             <textarea name="site_description" id="site_description" class="form-control" aria-describedby="siteDescHelp" placeholder="Enter tags ..." rows="6">{{site_settings.site_description}}</textarea>
         </div>
         <input name="_id" type="hidden" value="{{id}}">
-        <input name="meta_body" type="hidden" value="{{site_settings.meta_body}}">
-        <input name="meta_head" type="hidden" value="{{site_settings.meta_head}}">
         <button type="submit" class="btn btn-outline-info">Update</button>
     </form>
 {{/each}}

@@ -108,18 +108,39 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     });
 
-    // update meta
-    app.post("/updatemeta", (req, res) => {
-      let { _id, meta_head, meta_body, site_description, site_name } = req.body;
+    // update meta head
+    app.post("/updatemetahead", (req, res) => {
+      let { _id, meta_head } = req.body;
 
-      meta_body = meta_body.replace(/ /g,'');
       meta_head = meta_head.replace(/ /g,'');
       
-      db.Portfolio.updateOne({_id},{site_settings: {meta_head, meta_body, site_description, site_name}})
+      db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_head': meta_head}})
       .then((result) => {
         req.flash(
           'success_msg',
-          'Meta successfully updated.'
+          'Meta head successfully updated.'
+        );
+        res.redirect('/admin/settings');
+      })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin/settings');
+      });
+    });
+
+    // update meta body
+    app.post("/updatemetabody", (req, res) => {
+      let { _id, meta_body } = req.body;
+
+      meta_body = meta_body.replace(/ /g,'');
+      
+      db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_body': meta_body}})
+      .then((result) => {
+        req.flash(
+          'success_msg',
+          'Meta body successfully updated.'
         );
         res.redirect('/admin/settings');
       })
@@ -133,12 +154,9 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // update web site info (name & description)
     app.post("/updatesiteinformation", (req, res) => {
-      let { _id, meta_head, meta_body, site_description, site_name } = req.body;
+      let { _id, site_description, site_name } = req.body;
 
-      meta_body = meta_body.replace(/ /g,'');
-      meta_head = meta_head.replace(/ /g,'');
-
-      db.Portfolio.updateOne({_id},{site_settings: {meta_head, meta_body, site_description, site_name}})
+      db.Portfolio.updateOne({_id},{$set: {'site_settings.site_description': site_description, 'site_settings.site_name': site_name}})
       .then((result) => {
         req.flash(
           'success_msg',
