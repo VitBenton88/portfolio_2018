@@ -111,8 +111,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update meta head
     app.post("/updatemetahead", (req, res) => {
       let { _id, meta_head } = req.body;
-
-      meta_head = meta_head.replace(/ /g,'');
       
       db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_head': meta_head}})
       .then((result) => {
@@ -133,8 +131,6 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
     // update meta body
     app.post("/updatemetabody", (req, res) => {
       let { _id, meta_body } = req.body;
-
-      meta_body = meta_body.replace(/ /g,'');
       
       db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_body': meta_body}})
       .then((result) => {
