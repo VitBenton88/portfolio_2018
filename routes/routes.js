@@ -444,6 +444,28 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
+    // add user
+    app.post("/adduser", (req, res) => {
+      const { _id, username, email, password } = req.body;
+      db.Portfolio
+      .updateOne({_id}, {'$push': {
+            "users" : {username, email, password, admin}
+        }})
+        .then((result) => {
+          req.flash(
+            'success_msg',
+            'User successfully added.'
+          );
+          res.redirect('/admin/users');
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin/users');
+      });
+    });
+
     // DELETE
     // =============================================================
       // delete menu item

@@ -1,28 +1,32 @@
-<div class="container-fluid dashboard">
-  <div class="row">
+<div class="container-fluid dashboard page">
+  <div class="row no-gutters">
 
-    {{> admin/menus/main menu-dashboard=true}}
+    {{> admin/components/menus/main menu-dashboard=true}}
 
     <div class="col-10 col-xl-11">
-      <div class="row">
-        {{> admin/notifications}}
+      <div class="row no-gutters">
+        {{> admin/components/notifications}}
 
-        {{> admin/heading heading='Dashboard'}}
+        {{> admin/components/heading heading='Dashboard'}}
 
-        <div class="container">
-            <div class="row">
-              <div class="col-12">
-                {{> admin/pages/dashboard/weather}}
+        <div class="container page-body">
+
+          <div class="row">
+              <div class="row">
+                <div class="col-12">
+                  {{> admin/pages/dashboard/weather}}
+                </div>
               </div>
-            </div>
-        </div>
+          </div>
 
-        <div class="container">
-            <div class="row">
-              <div class="col-12">
-                {{> admin/pages/dashboard/analytics}}
+          <div class="row">
+              <div class="row">
+                <div class="col-12">
+                  {{> admin/pages/dashboard/analytics}}
+                </div>
               </div>
-            </div>
+          </div>
+
         </div>
 
       </div>

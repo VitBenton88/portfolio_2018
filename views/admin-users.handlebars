@@ -1,18 +1,18 @@
-<div class="container-fluid users">
-  <div class="row">
+<div class="container-fluid users page">
+  <div class="row no-gutters">
 
-    {{> admin/menus/main menu-users=true}}
+    {{> admin/components/menus/main menu-users=true}}
 
     <div class="col-10 col-xl-11">
-      <div class="row">
-        {{> admin/notifications}}
+      <div class="row no-gutters">
+        {{> admin/components/notifications}}
 
-        {{> admin/heading heading='Users'}}
+        {{> admin/components/heading heading='Users'}}
 
-        <div class="container">
+        <div class="container page-body">
             <div class="row">
               <div class="col-12">
-                {{> admin/users/users}}
+                {{> admin/pages/users/users}}
               </div>
             </div>
         </div>

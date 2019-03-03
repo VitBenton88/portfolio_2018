@@ -1,96 +1,28 @@
-<div class="container-fluid content">
-  <div class="row">
+<div class="container-fluid content page">
+  <div class="row no-gutters">
 
-    {{> admin/menus/main menu-content=true}}
+    {{> admin/components/menus/main menu-content=true}}
 
     <div class="col-10 col-xl-11">
-      <div class="row">
-        {{> admin/notifications}}
+      <div class="row no-gutters">
+        {{> admin/components/notifications}}
 
-        {{> admin/heading heading='Content'}}
+        {{> admin/components/heading heading='Content'}}
 
-        <div class="container">
-            <div class="section-head alert alert-primary d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#navigation">
-              Your Navigation
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
+        <div class="container page-body">
 
-            <div id="navigation" class="collapse">
-              {{> admin/pages/content/navigation}}
-            </div>
-        </div>
+          {{> admin/components/accordian name='navigation' title='navigation' style="primary" content="admin/pages/content/navigation"}}
 
-        <div class="container">
-            <div class="section-head alert alert-success d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#introduction">
-              Your Introduction
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
+          {{> admin/components/accordian name='introduction' title='introduction' style="success" content="admin/pages/content/introduction"}}
 
-            <div id="introduction" class="collapse">
-              {{> admin/pages/content/introduction}}
-            </div>
-        </div>
+          {{> admin/components/accordian name='about' title='about' style="info" content="admin/pages/content/about"}}
 
-        <div class="container">
-            <div class="section-head alert alert-info d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#about">
-              Your About
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
+          {{> admin/components/accordian name='technology' title='technology' style="warning" content="admin/pages/content/technology"}}
 
-            <div id="about" class="collapse">
-              {{> admin/pages/content/about}}
-            </div>
-        </div>
+          {{> admin/components/accordian name='portfolio' title='portfolio' style="secondary" content="admin/pages/content/portfolio"}}
 
-        <div class="container">
-            <div class="section-head alert alert-warning d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#technology">
-              Your Technologies
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
+          {{> admin/components/accordian name='resume' title='resume' style="danger" content="admin/pages/content/resume"}}
 
-            <div id="technology" class="collapse">
-              {{> admin/pages/content/technology}}
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="section-head alert alert-secondary d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#portfolio">
-              Your Portfolio
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
-
-            <div id="portfolio" class="collapse">
-              {{> admin/pages/content/portfolio}}
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="section-head alert alert-danger d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#resume">
-              Your Resume
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
-
-            <div id="resume" class="collapse">
-              {{> admin/pages/content/resume}}
-            </div>
         </div>
       </div>
     </div>

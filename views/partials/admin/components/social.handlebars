@@ -19,7 +19,7 @@
                         <small id="urlHelp" class="form-text text-muted">Url to profile.</small>
                         <input name="url" class="form-control" type="text" aria-describedby="urlHelp" placeholder="Enter url of profile ..." value="{{this.url}}">
                         <small id="iconHelp" class="form-text text-muted">Icon for this social link.</small>
-                        <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/dropdowns/social}}</select>
+                        <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/components/dropdowns/social}}</select>
                     </div>
                     <input name="_id" type="hidden" value="{{../id}}">
                     <input name="_social" type="hidden" value="{{this.id}}">
@@ -45,7 +45,7 @@
             <small id="urlHelp" class="form-text text-muted">Url to profile.</small>
             <input name="url" class="form-control" type="text" aria-describedby="urlHelp" placeholder="Enter url of profile ..." value="{{this.url}}">
             <small id="iconHelp" class="form-text text-muted">Icon for this social link.</small>
-            <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/dropdowns/social}}</select>
+            <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/components/dropdowns/social}}</select>
         </div>
         <input name="_id" type="hidden" value="{{id}}">
         <button type="submit" class="btn btn-success btn-block">Add</button>

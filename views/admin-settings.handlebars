@@ -1,40 +1,20 @@
-<div class="container-fluid settings">
-  <div class="row">
+<div class="container-fluid settings page">
+  <div class="row no-gutters">
 
-    {{> admin/menus/main menu-settings=true}}
+    {{> admin/components/menus/main menu-settings=true}}
 
     <div class="col-10 col-xl-11">
-      <div class="row">
-        {{> admin/notifications}}
+      <div class="row no-gutters">
+        {{> admin/components/notifications}}
 
-        {{> admin/heading heading='Settings'}}
+        {{> admin/components/heading heading='Settings'}}
 
-        <div class="container">
-            <div class="section-head alert alert-primary d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#information">
-              Site Information
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
+        <div class="container page-body">
 
-            <div id="information" class="collapse">
-              {{> admin/pages/settings/info}}
-            </div>
-        </div>
+          {{> admin/components/accordian name='information' title='site information' style="primary" content="admin/pages/settings/info"}}
 
-        <div class="container">
-            <div class="section-head alert alert-secondary d-flex justify-content-between align-items-center" role="alert" data-toggle="collapse" href="#meta">
-              Meta
-              <div class="section-toggle-controls">
-                <i class="fa fa-expand toggle-control" aria-hidden="true"></i>
-                <i class="fa fa-minus toggle-control" aria-hidden="true"></i>
-              </div>
-            </div>
+          {{> admin/components/accordian name='meta' title='meta' style="secondary" content="admin/pages/settings/meta"}}
 
-            <div id="meta" class="collapse">
-              {{> admin/pages/settings/meta}}
-            </div>
         </div>
 
       </div>

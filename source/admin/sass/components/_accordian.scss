@@ -1,6 +1,10 @@
 //controls to toggle view each section
 .section-head {
     cursor: pointer;
+
+    span {
+        text-transform: capitalize;
+    }
 }
 
 .section-toggle-controls {
