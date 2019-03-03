@@ -446,7 +446,8 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // add user
     app.post("/adduser", (req, res) => {
-      const { _id, username, email, password } = req.body;
+      console.log(req.body);
+      const { _id, username, email, password, admin } = req.body;
       db.Portfolio
       .updateOne({_id}, {'$push': {
             "users" : {username, email, password, admin}

@@ -1,18 +1,26 @@
-<form action="/adduser" method="POST" id="adduser">
-  <div class="form-row">
-    <div class="col">
-      <small id="usernameHelp" class="form-text text-muted">New user's username.</small>
-      <input name="username" type="text" aria-describedby="usernameHelp" class="form-control" placeholder="Username">
+{{#each portfolio}}
+  <form action="/adduser" method="POST" id="adduser">
+    <div class="form-row">
+      <div class="col">
+        <small id="usernameHelp" class="form-text text-muted">New user's username.</small>
+        <input name="username" type="text" aria-describedby="usernameHelp" class="form-control" placeholder="Username">
+      </div>
+      <div class="col">
+        <small id="emailHelp" class="form-text text-muted">New user's email.</small>
+        <input name="email" type="email" aria-describedby="emailHelp" class="form-control" placeholder="Email">
+      </div>
+      <div class="col">
+        <small id="passwordHelp" class="form-text text-muted">New user's password.</small>
+        <input name="password" type="password" aria-describedby="passwordHelp" class="form-control" placeholder="Password">
+      </div>
+      <div class="col d-flex align-items-center">
+        <div class="custom-control custom-switch">
+          <input name="admin" type="checkbox" class="custom-control-input" id="adminSwitch">
+          <label class="custom-control-label" for="adminSwitch">Administrator</label>
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <small id="emailHelp" class="form-text text-muted">New user's email.</small>
-      <input name="email" type="email" aria-describedby="emailHelp" class="form-control" placeholder="Email">
-    </div>
-    <div class="col">
-      <small id="passwordHelp" class="form-text text-muted">New user's password.</small>
-      <input name="password" type="password" aria-describedby="passwordHelp" class="form-control" placeholder="Password">
-    </div>
-  </div>
-  <input name="_id" type="hidden" value="{{id}}">
-  <button type="submit" class="btn btn-outline-info">Add</button>
-</form>
+    <input name="_id" type="hidden" value="{{id}}">
+    <button type="submit" class="btn btn-outline-info">Add</button>
+  </form>
+{{/each}}
