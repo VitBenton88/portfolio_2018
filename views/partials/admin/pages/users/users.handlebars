@@ -1,4 +1,29 @@
-{{#each portfolio}}
+<div class="row">
+  <h5>Current Users</h4>
+  <table class="table table-striped" id="users">
+    <tr>
+      <th>Username</th>
+      <th>Email</th> 
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+    {{#each users}}
+      <tr>
+        <td>{{this.username}}</td>
+        <td>{{this.email}}</td>
+        <td>{{#if this.admin}}Admin{{else}}User{{/if}}</td>
+        <td>
+          <a href="users/edit/{{this.id}}" class="btn btn-outline-info">Edit</a>
+        </td>
+      </tr>
+    {{/each}}
+  </table>
+</div>
+
+<hr>
+
+<div class="row">
+  <h5>Add User</h4>
   <form action="/adduser" method="POST" id="adduser">
     <div class="form-row">
       <div class="col">
@@ -13,6 +38,10 @@
         <small id="passwordHelp" class="form-text text-muted">New user's password.</small>
         <input name="password" type="password" aria-describedby="passwordHelp" class="form-control" placeholder="Password">
       </div>
+      <div class="col">
+        <small id="passwordCheckHelp" class="form-text text-muted">Re-type password.</small>
+        <input name="passwordCheck" type="password" aria-describedby="passwordCheckHelp" class="form-control" placeholder="Retype Password ...">
+      </div>
       <div class="col d-flex align-items-center">
         <div class="custom-control custom-switch">
           <input name="admin" type="checkbox" class="custom-control-input" id="adminSwitch">
@@ -20,7 +49,6 @@
         </div>
       </div>
     </div>
-    <input name="_id" type="hidden" value="{{id}}">
     <button type="submit" class="btn btn-outline-info">Add</button>
   </form>
-{{/each}}
+</div>

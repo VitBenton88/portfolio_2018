@@ -42,10 +42,28 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // admin users route
     app.get("/admin/users", (req, res) => {
-      db.Portfolio.find()
-      .then((portfolio) => {
-        res.render("admin-users", {portfolio, layout: "admin"});
+      db.Users.find()
+      .then((users) => {
+        res.render("admin-users", {users, layout: "admin"});
       });
+    });
+
+    // admin edit user route
+    app.get("/admin/users/edit/:id", (req, res) => {
+      const _id = req.params.id;
+
+      db.Users
+      .findById({_id})
+        .then((user) => {
+          res.render("admin-user-edit", {user, layout: "admin"});
+        })
+        .catch((error) => {
+        // If an error occurred, send it to the client
+        console.log(error);
+        req.flash('error_msg', error.message);
+        res.redirect('/admin/users');
+      });
+
     });
 
     //handle Googles robots
@@ -446,12 +464,20 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
 
     // add user
     app.post("/adduser", (req, res) => {
-      console.log(req.body);
-      const { _id, username, email, password, admin } = req.body;
-      db.Portfolio
-      .updateOne({_id}, {'$push': {
-            "users" : {username, email, password, admin}
-        }})
+      let { username, email, password, passwordCheck, admin } = req.body;
+      if (admin == "on") {admin = true};
+
+      //check if password verification passes
+      if (password !== passwordCheck) {
+        req.flash(
+          'error_msg',
+          'Password verification failed.'
+        );
+        return res.redirect('/admin/users');
+      }
+
+      db.Users
+      .create({username, email, password, passwordCheck, admin})
         .then((result) => {
           req.flash(
             'success_msg',
@@ -466,6 +492,37 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
         res.redirect('/admin/users');
       });
     });
+
+      // edit user
+      app.post("/edituser", (req, res) => {
+        let { _id, username, email, password, passwordCheck, admin } = req.body;
+        if (admin == "on") {admin = true};
+  
+        //check if password verification passes
+        if (password !== passwordCheck) {
+          req.flash(
+            'error_msg',
+            'Password verification failed.'
+          );
+          return res.redirect('/admin/users');
+        }
+  
+        db.Users.findOneAndUpdate(
+          { _id }, { "$set": {username, email, password, passwordCheck, admin}})
+          .then((result) => {
+            req.flash(
+              'success_msg',
+              'User successfully edited.'
+            );
+            res.redirect('/admin/users');
+          })
+          .catch((error) => {
+          // If an error occurred, send it to the client
+          console.log(error);
+          req.flash('error_msg', error.message);
+          res.redirect('/admin/users');
+        });
+      });
 
     // DELETE
     // =============================================================
@@ -566,4 +623,46 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
           res.end(`{"error" : "${error.message}", "status" : 400}`);
         });
       });
+
+      // delete user
+      app.post("/deleteuser", (req, res) => {
+        const { _id, isAdmin } = req.body;
+        let adminUserCount = 0;
+
+        db.Users.find()
+        .then((users) => {
+          for (let i = 0; i < users.length; i++) {
+            if (users[i].admin) {
+              adminUserCount++;
+            } else if (users[i]._id === _id) {
+              userIsAdmin = true;
+            }
+          }
+          if (adminUserCount < 1 || isAdmin == 'true') {
+            req.flash(
+              'error_msg',
+              'Cannot delete last admin user account.'
+            );
+            return res.redirect('/admin/users');
+          }
+
+          db.Users
+          .deleteOne({_id})
+            .then((result) => {
+              req.flash(
+                'success_msg',
+                'User successfully deleted.'
+              );
+              res.redirect('/admin/users');
+            })
+            .catch((error) => {
+            // If an error occurred, send it to the client
+            console.log(error);
+            req.flash('error_msg', error.message);
+            res.redirect('/admin/users');
+          });
+
+      });
+    });
+
 };

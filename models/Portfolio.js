@@ -94,30 +94,6 @@ const SettingsSchema = new Schema({
   }
 });
 
-// Schema for users
-const UsersSchema = new Schema({
-  username: {
-    type: String,
-    unique: true,
-  },
-  email: {
-    type: String,
-    unique: true,
-  },
-  password: {
-    type: String,
-    trim: true
-  },
-  admin: {
-    type: Boolean,
-    default: false
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  }
-});
-
 // Portfolio Schema
 const PortfolioSchema = new Schema({
   menu: [MenuSchema],
@@ -147,7 +123,7 @@ const PortfolioSchema = new Schema({
     default: 'Your Resume!'
   },
   site_settings: SettingsSchema,
-  users: [UsersSchema]
+  users: [{ type: Schema.ObjectId, ref: 'Users' }]
   
 });
 
