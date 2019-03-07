@@ -17,6 +17,11 @@ const validator = require('validator');
 // =============================================================
 const db = require("./models");
 
+// Require all models
+// =============================================================
+const Helpers = require("./helpers");
+console.log(Helpers);
+
 //load environment variables
 // =============================================================
 dotenv.config();
@@ -105,7 +110,7 @@ mongoose.connect(MONGODB_URI, {
 
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app, db, dotenv, nodemailer, validator);
+require("./routes/routes.js")(app, db, dotenv, Helpers, nodemailer, validator);
 
 // Starts the server to begin listening
 // =============================================================

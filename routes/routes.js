@@ -1,6 +1,6 @@
 // Routes
 // =============================================================
-module.exports = function(app, db, dotenv, nodemailer, validator) {
+module.exports = function(app, db, dotenv, Helpers, nodemailer, validator) {
     // GET
     // =============================================================
     // homepage route
@@ -48,7 +48,7 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       });
     });
 
-    // admin edit user route
+    // admin edit user page
     app.get("/admin/users/edit/:id", (req, res) => {
       const _id = req.params.id;
 
@@ -627,42 +627,31 @@ module.exports = function(app, db, dotenv, nodemailer, validator) {
       // delete user
       app.post("/deleteuser", (req, res) => {
         const { _id, isAdmin } = req.body;
-        let adminUserCount = 0;
 
-        db.Users.find()
-        .then((users) => {
-          for (let i = 0; i < users.length; i++) {
-            if (users[i].admin) {
-              adminUserCount++;
-            } else if (users[i]._id === _id) {
-              userIsAdmin = true;
-            }
-          }
-          if (adminUserCount < 1 || isAdmin == 'true') {
-            req.flash(
-              'error_msg',
-              'Cannot delete last admin user account.'
-            );
-            return res.redirect('/admin/users');
-          }
-
-          db.Users
-          .deleteOne({_id})
-            .then((result) => {
+        Helpers.Users.onlyOneAdmin( _id).then(userIsAdmin => {
+            if (userIsAdmin) {
               req.flash(
-                'success_msg',
-                'User successfully deleted.'
+                'error_msg',
+                'Cannot delete last admin user account.'
               );
-              res.redirect('/admin/users');
-            })
-            .catch((error) => {
-            // If an error occurred, send it to the client
-            console.log(error);
-            req.flash('error_msg', error.message);
-            res.redirect('/admin/users');
-          });
+              return res.redirect('/admin/users');
+            }
 
-      });
-    });
-
+            db.Users
+            .deleteOne({_id})
+              .then((result) => {
+                req.flash(
+                  'success_msg',
+                  'User successfully deleted.'
+                );
+                res.redirect('/admin/users');
+              })
+              .catch((error) => {
+                // If an error occurred, send it to the client
+                console.log(error);
+                req.flash('error_msg', error.message);
+                res.redirect('/admin/users');
+            });
+          })
+        });
 };
