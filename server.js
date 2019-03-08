@@ -19,8 +19,7 @@ const db = require("./models");
 
 // Require all models
 // =============================================================
-const Helpers = require("./helpers");
-console.log(Helpers);
+const Controller = require("./controller");
 
 //load environment variables
 // =============================================================
@@ -110,7 +109,7 @@ mongoose.connect(MONGODB_URI, {
 
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app, db, dotenv, Helpers, nodemailer, validator);
+require("./routes/routes.js")(app, db, dotenv, Controller, nodemailer, validator);
 
 // Starts the server to begin listening
 // =============================================================

@@ -1,6 +1,6 @@
 // Routes
 // =============================================================
-module.exports = function(app, db, dotenv, Helpers, nodemailer, validator) {
+module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
     // GET
     // =============================================================
     // homepage route
@@ -628,7 +628,7 @@ module.exports = function(app, db, dotenv, Helpers, nodemailer, validator) {
       app.post("/deleteuser", (req, res) => {
         const { _id, isAdmin } = req.body;
 
-        Helpers.Users.onlyOneAdmin( _id).then(userIsAdmin => {
+        Controllers.Users.onlyOneAdmin( _id).then(userIsAdmin => {
             if (userIsAdmin) {
               req.flash(
                 'error_msg',
