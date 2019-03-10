@@ -504,7 +504,7 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
             'error_msg',
             'Password verification failed.'
           );
-          return res.redirect('/admin/users');
+          return res.redirect(`/admin/users/edit/${_id}`);
         }
   
         db.Users.findOneAndUpdate(
@@ -520,7 +520,7 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
           // If an error occurred, send it to the client
           console.log(error);
           req.flash('error_msg', error.message);
-          res.redirect('/admin/users');
+          res.redirect(`/admin/users/edit/${_id}`);
         });
       });
 
@@ -634,7 +634,7 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
                 'error_msg',
                 'Cannot delete last admin user account.'
               );
-              return res.redirect('/admin/users');
+              return res.redirect(`/admin/users/edit/${_id}`);
             }
 
             db.Users
@@ -650,7 +650,7 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
                 // If an error occurred, send it to the client
                 console.log(error);
                 req.flash('error_msg', error.message);
-                res.redirect('/admin/users');
+                res.redirect(`/admin/users/edit/${_id}`);
             });
           })
         });
