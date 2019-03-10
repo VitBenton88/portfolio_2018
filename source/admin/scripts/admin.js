@@ -53,3 +53,14 @@ $('.delete-project-bullet').click(function() {
     const thisDetailItem = $(this).closest('.project-bullet');
     $.post("/deleteprojectbullet", {bulletid, _id, projectid}, () => thisDetailItem.remove());
 })
+
+//toggle mobile menu
+$('.mobile-menu-toggle').click(function() {
+    if ($('body').hasClass('mobile-menu-active')) {
+        $('body').removeClass('mobile-menu-active');
+    } else {
+        $('body').addClass('mobile-menu-active');
+    }
+
+    return false;
+})

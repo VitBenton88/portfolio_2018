@@ -1,6 +1,13 @@
 .cms-menu {
     background: $pink;
 
+    @include max-width($screen-md-max) {
+        left: -100vw;
+        position: absolute;
+        transition: left 0.3s ease;
+        z-index: 5;
+    }
+
     a {
         padding: 20px;
         transition: all 0.3s ease;
@@ -17,6 +24,32 @@
             &:hover {
                 background: $teal;
             }
+        }
+    }
+}
+
+.cms-mobile-menu-controls {
+    margin: 10px 0 0 15px;
+    position: absolute;
+    z-index: 10;
+
+    .mobile-menu-close {
+        display: none;
+    }
+}
+
+body.mobile-menu-active {
+    .cms-menu {
+        left: 0;
+    }
+
+    .cms-mobile-menu-controls {
+        .mobile-menu-close {
+            display: block;
+        }
+
+        .mobile-menu-open {
+            display: none;
         }
     }
 }

@@ -1,5 +1,6 @@
-<div class="col-2 col-xl-1">
-  <ul class="nav flex-column cms-menu">
+<div class="col-4 col-lg-2 cms-menu px-0">
+  <ul class="nav flex-column">
+    <li class="nav-item space d-block d-lg-none py-4"></li>
     <li class="nav-item">
       <a class="d-block nav-link{{#if menu-dashboard}} active{{/if}}" href="/admin/dashboard" target="_self">Dashboard</a>
     </li>
@@ -13,4 +14,9 @@
       <a class="d-block nav-link{{#if menu-settings}} active{{/if}}" href="/admin/settings" target="_self">Settings</a>
     </li>
   </ul>
+</div>
+
+<div class="col-2 d-block d-lg-none cms-mobile-menu-controls">
+  <i class="fa fa-bars fa-2x mobile-menu-open mobile-menu-toggle" aria-hidden="true"></i>
+  <i class="fa fa-times fa-2x mobile-menu-close mobile-menu-toggle" aria-hidden="true"></i>
 </div>
