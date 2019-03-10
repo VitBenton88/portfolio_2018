@@ -628,7 +628,7 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
       app.post("/deleteuser", (req, res) => {
         const { _id, isAdmin } = req.body;
 
-        Controllers.Users.onlyOneAdmin( _id).then(userIsAdmin => {
+        Controller.Users.onlyOneAdmin( _id).then(userIsAdmin => {
             if (userIsAdmin) {
               req.flash(
                 'error_msg',
