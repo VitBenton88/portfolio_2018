@@ -467,6 +467,15 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
       let { username, email, password, passwordCheck, admin } = req.body;
       if (admin == "on") {admin = true};
 
+      if ( !username || !email || !password || !passwordCheck ) {
+        req.flash(
+          'error_msg',
+          'Please fill out all fields when adding a new user.'
+        );
+
+        return res.redirect('/admin/users'); 
+      }
+
       //check if password verification passes
       if (password !== passwordCheck) {
         req.flash(
