@@ -2,6 +2,7 @@
 // =============================================================
 const express = require("express");
 const bodyParser = require("body-parser");
+const bcrypt = require('bcrypt');
 const compression = require('compression');
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv');
@@ -9,6 +10,7 @@ const exphbs  = require('express-handlebars');
 const flash = require('connect-flash');
 const mongoose = require("mongoose");
 const nodemailer = require('nodemailer');
+const passport = require('passport');
 const path = require("path");
 const session = require('express-session');
 const validator = require('validator');
@@ -16,6 +18,9 @@ const validator = require('validator');
 // Require all models
 // =============================================================
 const db = require("./models");
+
+// Passport Config
+require('./config/passport')(passport);
 
 // Require all models
 // =============================================================
@@ -65,7 +70,12 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   cookie: { maxAge: 60000 }
-}))
+}));
+
+// Sets up Passport Middleware
+// =============================================================
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connect Flash and setup global variables to be passed into every view
 // =============================================================
@@ -85,7 +95,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
 //apply production settings
-// =============================================================
+// ==================   ===========================================
 if (production) {
     // compress responses
     app.use(compression());
@@ -109,7 +119,7 @@ mongoose.connect(MONGODB_URI, {
 
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app, db, dotenv, Controller, nodemailer, validator);
+require("./routes/routes.js")(app, bcrypt, db, dotenv, Controller, nodemailer, passport, validator);
 
 // Starts the server to begin listening
 // =============================================================

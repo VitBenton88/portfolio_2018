@@ -1,6 +1,6 @@
 // Routes
 // =============================================================
-module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
+module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passport, validator) {
     // GET
     // =============================================================
     // homepage route
@@ -11,9 +11,14 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
       });
     });
 
+    // login page
+    app.get("/login", (req, res) => {
+      res.render("login", {layout: "login"});
+    });
+
     // admin route
     app.get("/admin", (req, res) => {
-      res.redirect('/admin/content');
+      res.redirect('/admin/dashboard');
     });
 
     // admin content route
@@ -485,53 +490,86 @@ module.exports = function(app, db, dotenv, Controller, nodemailer, validator) {
         return res.redirect('/admin/users');
       }
 
-      db.Users
-      .create({username, email, password, passwordCheck, admin})
-        .then((result) => {
-          req.flash(
-            'success_msg',
-            'User successfully added.'
-          );
-          res.redirect('/admin/users');
+      //Hash Password
+      bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(password, salt, (error, hash) => {
+          if (error) throw error;
+
+          //reassign password to newley hashed password
+          password = hash;
+          
+          //create user in database
+          db.Users
+          .create({username, email, password, admin})
+            .then((result) => {
+              req.flash(
+                'success_msg',
+                'User successfully added.'
+              );
+              res.redirect('/admin/users');
+            })
+            .catch((error) => {
+            // If an error occurred, send it to the client
+            console.log(error);
+            req.flash('error_msg', error.message);
+            res.redirect('/admin/users');
+          });
         })
-        .catch((error) => {
-        // If an error occurred, send it to the client
-        console.log(error);
-        req.flash('error_msg', error.message);
-        res.redirect('/admin/users');
-      });
+      })
+
     });
 
-      // edit user
-      app.post("/edituser", (req, res) => {
-        let { _id, username, email, password, passwordCheck, admin } = req.body;
-        if (admin == "on") {admin = true};
-  
-        //check if password verification passes
-        if (password !== passwordCheck) {
-          req.flash(
-            'error_msg',
-            'Password verification failed.'
-          );
-          return res.redirect(`/admin/users/edit/${_id}`);
-        }
-  
-        db.Users.findOneAndUpdate(
-          { _id }, { "$set": {username, email, password, passwordCheck, admin}})
-          .then((result) => {
-            req.flash(
-              'success_msg',
-              'User successfully edited.'
-            );
-            res.redirect('/admin/users');
-          })
-          .catch((error) => {
-          // If an error occurred, send it to the client
-          console.log(error);
-          req.flash('error_msg', error.message);
-          res.redirect(`/admin/users/edit/${_id}`);
-        });
-      });
+    // edit user
+    app.post("/edituser", (req, res) => {
+      let { _id, username, email, password, passwordCheck, admin } = req.body;
+      if (admin == "on") {admin = true};
+
+      //check if password verification passes
+      if (password !== passwordCheck) {
+        req.flash(
+          'error_msg',
+          'Password verification failed.'
+        );
+        return res.redirect(`/admin/users/edit/${_id}`);
+      }
+
+      //Hash Password
+      bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(password, salt, (error, hash) => {
+          if (error) throw error;
+
+          //reassign password to newley hashed password
+          password = hash;
+          
+          //update user in database
+          db.Users.findOneAndUpdate(
+            { _id }, { "$set": {username, email, password, passwordCheck, admin}})
+            .then((result) => {
+              req.flash(
+                'success_msg',
+                'User successfully edited.'
+              );
+              res.redirect('/admin/users');
+            })
+            .catch((error) => {
+            // If an error occurred, send it to the client
+            console.log(error);
+            req.flash('error_msg', error.message);
+            res.redirect(`/admin/users/edit/${_id}`);
+          });
+        })
+      })
+
+    });
+
+    // login user
+    app.post("/login", (req, res, next) => {
+      passport.authenticate('local', {
+        successRedirect:  '/admin/dashboard',
+        failureRedirect: '/login',
+        failureFlash: true
+      })(req, res, next);
+    });
 
     // DELETE
     // =============================================================

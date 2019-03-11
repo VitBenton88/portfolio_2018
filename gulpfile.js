@@ -31,20 +31,20 @@ const paths = {
            'last 1 OperaMobile version'
        ],
 
-       source: 'source/sass/**/*.scss'
+       source: 'source/frontend/sass/**/*.scss'
    },
 
    scripts: {
        source: {
-           custom: 'source/scripts/**/*.js',
+           custom: 'source/frontend/scripts/**/*.js',
 
            libraries: [
-               'source/libraries/jquery-3.3.1.min.js',
-               'source/libraries/jquery.color-2.1.2.min.js',
-               'source/libraries/Chart.min.js',
-               'source/libraries/particles.min.js',
-               'source/libraries/slick.min.js',
-               'source/libraries/cssua.min.js'
+               'source/frontend/libraries/jquery-3.3.1.min.js',
+               'source/frontend/libraries/jquery.color-2.1.2.min.js',
+               'source/frontend/libraries/Chart.min.js',
+               'source/frontend/libraries/particles.min.js',
+               'source/frontend/libraries/slick.min.js',
+               'source/frontend/libraries/cssua.min.js'
            ]
        }
    },
