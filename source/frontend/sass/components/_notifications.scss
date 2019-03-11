@@ -1,11 +1,17 @@
-.notifications {
-    text-align: center;
+.alert {
+    width: 100%;
+    position: relative;
+    padding: .75rem 1.25rem 0;
+    font-family: $Karla;
+    color: $darkGreen;
+    font-size: 17px;
+    line-height: 25px;
     
-    &.success {
+    &.alert-success {
 
     }
 
-    &.error {
+    &.alert-warning {
 
     }
 }
