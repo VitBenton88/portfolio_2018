@@ -65,7 +65,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/users');
       });
 
@@ -117,13 +117,13 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         });
         
         req.flash(
-          'success_msg',
+          'success',
           'Message successfully sent.'
         );
         res.redirect('/');
 
       } else {
-        req.flash('error_msg',
+        req.flash('error',
         'Message not sent. Please make sure the form is filled out correctly.'
         );
         res.redirect('/');
@@ -138,7 +138,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_head': meta_head}})
       .then((result) => {
         req.flash(
-          'success_msg',
+          'success',
           'Meta head successfully updated.'
         );
         res.redirect('/admin/settings');
@@ -146,7 +146,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/settings');
       });
     });
@@ -158,7 +158,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_body': meta_body}})
       .then((result) => {
         req.flash(
-          'success_msg',
+          'success',
           'Meta body successfully updated.'
         );
         res.redirect('/admin/settings');
@@ -166,7 +166,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/settings');
       });
     });
@@ -178,7 +178,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Portfolio.updateOne({_id},{$set: {'site_settings.site_description': site_description, 'site_settings.site_name': site_name}})
       .then((result) => {
         req.flash(
-          'success_msg',
+          'success',
           'Site information successfully updated.'
         );
         res.redirect('/admin/settings');
@@ -186,7 +186,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/settings');
       });
     });
@@ -197,7 +197,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Portfolio.updateOne({_id},{title})
       .then((result) => {
         req.flash(
-          'success_msg',
+          'success',
           'Title successfully edited.'
         );
         res.redirect('/admin/content');
@@ -205,7 +205,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -216,7 +216,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Portfolio.updateOne({_id},{subtitle})
       .then((result) => {
         req.flash(
-          'success_msg',
+          'success',
           'Subtitle successfully edited.'
         );
         res.redirect('/admin/content');
@@ -224,7 +224,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -238,7 +238,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         }})
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Menu item successfully added.'
           );
           res.redirect('/admin/content');
@@ -246,7 +246,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -258,7 +258,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         { _id, "menu._id": _menu }, { "$set": {"menu.$.url": url, "menu.$.text": text} })
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Menu item successfully edited.'
           );
           res.redirect('/admin/content');
@@ -266,7 +266,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -280,7 +280,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         }})
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Social link successfully added.'
           );
           res.redirect('/admin/content');
@@ -288,7 +288,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -300,7 +300,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         { _id, "social._id": _social }, { "$set": {"social.$.name": name, "social.$.url": url, "social.$.icon": icon} })
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Menu item successfully edited.'
           );
           res.redirect('/admin/content');
@@ -308,7 +308,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -320,7 +320,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       .updateOne({_id}, {about})
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'About text successfully updated.'
           );
           res.redirect('/admin/content');
@@ -328,7 +328,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -340,7 +340,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       .updateOne({_id}, {portfolio: {introduction}})
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Portfolio introduction successfully updated.'
           );
           res.redirect('/admin/content');
@@ -348,7 +348,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -366,7 +366,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       .findByIdAndUpdate(_id, {'$push': {"portfolio.projects" : {title, text, url, bullets}}})
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Project successfully added.'
           );
           res.redirect('/admin/content');
@@ -374,7 +374,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -393,7 +393,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         { _id, "portfolio.projects._id": _project }, { "$set": {"portfolio.projects.$.url": url, "portfolio.projects.$.text": text, "portfolio.projects.$.title": title, "portfolio.projects.$.bullets": bullets} })
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Project successfully updated.'
           );
           res.redirect('/admin/content');
@@ -401,7 +401,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -412,7 +412,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Portfolio.updateOne({_id},{resume})
       .then((result) => {
         req.flash(
-          'success_msg',
+          'success',
           'Resume successfully edited.'
         );
         res.redirect('/admin/content');
@@ -420,7 +420,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -434,7 +434,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         }})
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Technology successfully added.'
           );
           res.redirect('/admin/content');
@@ -442,7 +442,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -454,7 +454,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         { _id, "technology._id": _technology }, { "$set": {"technology.$.name": name, "technology.$.score": score, "technology.$.type": type} })
         .then((result) => {
           req.flash(
-            'success_msg',
+            'success',
             'Technology successfully edited.'
           );
           res.redirect('/admin/content');
@@ -462,7 +462,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .catch((error) => {
         // If an error occurred, send it to the client
         console.log(error);
-        req.flash('error_msg', error.message);
+        req.flash('error', error.message);
         res.redirect('/admin/content');
       });
     });
@@ -474,7 +474,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
       if ( !username || !email || !password || !passwordCheck ) {
         req.flash(
-          'error_msg',
+          'error',
           'Please fill out all fields when adding a new user.'
         );
 
@@ -484,7 +484,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       //check if password verification passes
       if (password !== passwordCheck) {
         req.flash(
-          'error_msg',
+          'error',
           'Password verification failed.'
         );
         return res.redirect('/admin/users');
@@ -503,7 +503,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           .create({username, email, password, admin})
             .then((result) => {
               req.flash(
-                'success_msg',
+                'success',
                 'User successfully added.'
               );
               res.redirect('/admin/users');
@@ -511,7 +511,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
             .catch((error) => {
             // If an error occurred, send it to the client
             console.log(error);
-            req.flash('error_msg', error.message);
+            req.flash('error', error.message);
             res.redirect('/admin/users');
           });
         })
@@ -527,7 +527,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       //check if password verification passes
       if (password !== passwordCheck) {
         req.flash(
-          'error_msg',
+          'error',
           'Password verification failed.'
         );
         return res.redirect(`/admin/users/edit/${_id}`);
@@ -546,7 +546,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
             { _id }, { "$set": {username, email, password, passwordCheck, admin}})
             .then((result) => {
               req.flash(
-                'success_msg',
+                'success',
                 'User successfully edited.'
               );
               res.redirect('/admin/users');
@@ -554,7 +554,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
             .catch((error) => {
             // If an error occurred, send it to the client
             console.log(error);
-            req.flash('error_msg', error.message);
+            req.flash('error', error.message);
             res.redirect(`/admin/users/edit/${_id}`);
           });
         })
@@ -580,7 +580,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .findByIdAndUpdate(_id, { $pull: { "menu": { _id: _menu } } })
           .then((result) => {
             req.flash(
-              'success_msg',
+              'success',
               'Menu item successfully deleted.'
             );
             res.redirect('/admin/content');
@@ -588,7 +588,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
-          req.flash('error_msg', error.message);
+          req.flash('error', error.message);
           res.redirect('/admin/content');
         });
       });
@@ -600,7 +600,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .findByIdAndUpdate(_id, { $pull: { "social": { _id: _social } } })
           .then((result) => {
             req.flash(
-              'success_msg',
+              'success',
               'Social link successfully deleted.'
             );
             res.redirect('/admin/content');
@@ -608,7 +608,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
-          req.flash('error_msg', error.message);
+          req.flash('error', error.message);
           res.redirect('/admin/content');
         });
       });
@@ -620,7 +620,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .findByIdAndUpdate(_id, { $pull: { "technology": { _id: _technology } } })
           .then((result) => {
             req.flash(
-              'success_msg',
+              'success',
               'Technology successfully deleted.'
             );
             res.redirect('/admin/content');
@@ -628,7 +628,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
-          req.flash('error_msg', error.message);
+          req.flash('error', error.message);
           res.redirect('/admin/content');
         });
       });
@@ -640,7 +640,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         .findByIdAndUpdate(_id, { $pull: { "portfolio.projects": { _id: _project } } })
           .then((result) => {
             req.flash(
-              'success_msg',
+              'success',
               'Project successfully deleted.'
             );
             res.redirect('/admin/content');
@@ -648,7 +648,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
-          req.flash('error_msg', error.message);
+          req.flash('error', error.message);
           res.redirect('/admin/content');
         });
       });
@@ -666,7 +666,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           .catch((error) => {
           // If an error occurred, send it to the client
           console.log(error);
-          req.flash('error_msg', error.message);
+          req.flash('error', error.message);
           res.end(`{"error" : "${error.message}", "status" : 400}`);
         });
       });
@@ -678,7 +678,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         Controller.Users.onlyOneAdmin( _id).then(userIsAdmin => {
             if (userIsAdmin) {
               req.flash(
-                'error_msg',
+                'error',
                 'Cannot delete last admin user account.'
               );
               return res.redirect(`/admin/users/edit/${_id}`);
@@ -688,7 +688,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
             .deleteOne({_id})
               .then((result) => {
                 req.flash(
-                  'success_msg',
+                  'success',
                   'User successfully deleted.'
                 );
                 res.redirect('/admin/users');
@@ -696,7 +696,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
               .catch((error) => {
                 // If an error occurred, send it to the client
                 console.log(error);
-                req.flash('error_msg', error.message);
+                req.flash('error', error.message);
                 res.redirect(`/admin/users/edit/${_id}`);
             });
           })
