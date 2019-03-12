@@ -135,7 +135,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.post("/updatemetahead", (req, res) => {
       let { _id, meta_head } = req.body;
       
-      db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_head': meta_head}})
+      db.Portfolio.updateOne({_id}, {'site_settings.meta_head': meta_head})
       .then((result) => {
         req.flash(
           'success',
@@ -155,7 +155,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.post("/updatemetabody", (req, res) => {
       let { _id, meta_body } = req.body;
       
-      db.Portfolio.updateOne({_id},{$set: {'site_settings.meta_body': meta_body}})
+      db.Portfolio.updateOne({_id}, {'site_settings.meta_body': meta_body})
       .then((result) => {
         req.flash(
           'success',
@@ -175,7 +175,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.post("/updatesiteinformation", (req, res) => {
       let { _id, site_description, site_name } = req.body;
 
-      db.Portfolio.updateOne({_id},{$set: {'site_settings.site_description': site_description, 'site_settings.site_name': site_name}})
+      db.Portfolio.updateOne({_id}, {'site_settings.site_description': site_description, 'site_settings.site_name': site_name})
       .then((result) => {
         req.flash(
           'success',
@@ -255,7 +255,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.post("/updatemenuitem", (req, res) => {
       const { _id, _menu, text, url } = req.body;
       db.Portfolio.findOneAndUpdate(
-        { _id, "menu._id": _menu }, { "$set": {"menu.$.url": url, "menu.$.text": text} })
+        { _id, "menu._id": _menu }, {"menu.$.url": url, "menu.$.text": text})
         .then((result) => {
           req.flash(
             'success',
@@ -297,7 +297,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.post("/updatesocial", (req, res) => {
       const { icon, _id, name, _social, url } = req.body;
       db.Portfolio.findOneAndUpdate(
-        { _id, "social._id": _social }, { "$set": {"social.$.name": name, "social.$.url": url, "social.$.icon": icon} })
+        { _id, "social._id": _social }, {"social.$.name": name, "social.$.url": url, "social.$.icon": icon})
         .then((result) => {
           req.flash(
             'success',
@@ -390,7 +390,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       }
       db.Portfolio
       .findOneAndUpdate(
-        { _id, "portfolio.projects._id": _project }, { "$set": {"portfolio.projects.$.url": url, "portfolio.projects.$.text": text, "portfolio.projects.$.title": title, "portfolio.projects.$.bullets": bullets} })
+        { _id, "portfolio.projects._id": _project }, {"portfolio.projects.$.url": url, "portfolio.projects.$.text": text, "portfolio.projects.$.title": title, "portfolio.projects.$.bullets": bullets} )
         .then((result) => {
           req.flash(
             'success',
@@ -451,7 +451,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.post("/updatetechnology", (req, res) => {
       const { _id, name, score, type, _technology } = req.body;
       db.Portfolio.findOneAndUpdate(
-        { _id, "technology._id": _technology }, { "$set": {"technology.$.name": name, "technology.$.score": score, "technology.$.type": type} })
+        { _id, "technology._id": _technology }, {"technology.$.name": name, "technology.$.score": score, "technology.$.type": type} )
         .then((result) => {
           req.flash(
             'success',
@@ -495,7 +495,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         bcrypt.hash(password, salt, (error, hash) => {
           if (error) throw error;
 
-          //reassign password to newley hashed password
+          //reassign password var to newley hashed password
           password = hash;
           
           //create user in database
@@ -538,12 +538,12 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         bcrypt.hash(password, salt, (error, hash) => {
           if (error) throw error;
 
-          //reassign password to newley hashed password
+          //reassign password var to newley hashed password
           password = hash;
           
           //update user in database
           db.Users.findOneAndUpdate(
-            { _id }, { "$set": {username, email, password, passwordCheck, admin}})
+            { _id }, {username, email, password, passwordCheck, admin})
             .then((result) => {
               req.flash(
                 'success',
