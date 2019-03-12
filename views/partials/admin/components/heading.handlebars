@@ -2,7 +2,7 @@
     <div class="container">
 
         <div class="user-options d-none d-md-block">
-            {{> admin/components/accordian name='user' title='User: TestUsername' style="" content="admin/components/menus/user"}}
+            {{> admin/components/accordian name='user' title=(add "User: " username) style="" content="admin/components/menus/user"}}
         </div>
 
         <h1 class="display-4">{{heading}}</h1>

@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv');
 const exphbs  = require('express-handlebars');
 const flash = require('connect-flash');
+const helpers = require('handlebars-helpers')();
 const mongoose = require("mongoose");
 const nodemailer = require('nodemailer');
 const passport = require('passport');
@@ -44,15 +45,6 @@ let PORT = process.env.PORT || 3000;
 // =============================================================
 const hbs = exphbs.create({
   defaultLayout: 'main',
-  helpers: {
-    if_equal: (a, b, opts) => { 
-      if (a == b) {
-        return opts.fn(this)
-      } else {
-        return opts.inverse(this)
-      }
-    }
-  }
 });
 
 // Sets up the Express with Handlebars
@@ -123,7 +115,7 @@ mongoose.connect(MONGODB_URI, {
 
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app, bcrypt, db, dotenv, Controller, ensureAuthenticated, nodemailer, passport, validator);
+require("./routes/routes.js")(app, bcrypt, db, dotenv, Controller, nodemailer, passport, validator);
 
 // Starts the server to begin listening
 // =============================================================

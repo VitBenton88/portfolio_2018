@@ -6,12 +6,12 @@
     </div>
     <div class="row">
         {{#each technology}}
-            {{#if_equal this.type "Frontend" }}
+            {{#eq this.type "Frontend"}}
                 <div class="col-12 col-md-4 technology">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{../this.name}}</h5>
-                            <p class="card-text">Score: {{../this.score}}</p>
+                            <h5 class="card-title">{{this.name}}</h5>
+                            <p class="card-text">Score: {{this.score}}</p>
                             <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#technology-{{@key}}" aria-expanded="false" aria-controls="technology-item-{{@key}}">Edit</button>
                             <div class="collapse" id="technology-{{@key}}">
                                 <br />
@@ -20,17 +20,17 @@
                                         <div class="form-group">
                                         <label for="title">Edit Technology</label>
                                         <small id="name-help" class="form-text text-muted">Name for this technology.</small>
-                                        <input name="name" class="form-control" type="text" aria-describedby="name-help" value="{{../this.name}}" placeholder="Enter new name for this tech ...">
+                                        <input name="name" class="form-control" type="text" aria-describedby="name-help" value="{{this.name}}" placeholder="Enter new name for this tech ...">
                                         <small id="score-help" class="form-text text-muted">Score for this technology.</small>
-                                        <input name="score" class="form-control" type="text" aria-describedby="score-help" value="{{../this.score}}" placeholder="Enter new score for this tech...">
+                                        <input name="score" class="form-control" type="text" aria-describedby="score-help" value="{{this.score}}" placeholder="Enter new score for this tech...">
                                         </div>
-                                        <input name="_id" type="hidden" value="{{../../id}}">
-                                        <input name="_technology" type="hidden" value="{{../this.id}}">
+                                        <input name="_id" type="hidden" value="{{../id}}">
+                                        <input name="_technology" type="hidden" value="{{this.id}}">
                                         <input name="type" type="hidden" value="Frontend">
                                         <button type="submit" class="btn btn-primary btn-block">Update</button>
                                     </form>
                                     <form action="/deletetechnology" method="POST">
-                                        <input name="_id" type="hidden" value="{{../../id}}">
+                                        <input name="_id" type="hidden" value="{{../id}}">
                                         <input name="_technology" type="hidden" value="{{../this.id}}">
                                         <button type="submit" class="btn btn-danger btn-block">Delete</button>
                                     </form>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-            {{/if_equal}}
+            {{/eq}}
         {{/each}}
         <div class="col-12 col-lg-4 technology add-technology">
             <div class="card card-body">
@@ -76,11 +76,11 @@
     </div>
     <div class="row">
         {{#each technology}}
-            {{#if_equal this.type "Backend" }}
+            {{#eq this.type "Backend" }}
                 <div class="col-12 col-md-4 technology">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{../this.name}}</h5>
+                            <h5 class="card-title">{{this.name}}</h5>
                             <p class="card-text">Score: {{../this.score}}</p>
                             <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#technology-{{@key}}" aria-expanded="false" aria-controls="technology-item-{{@key}}">Edit</button>
                             <div class="collapse" id="technology-{{@key}}">
@@ -90,18 +90,18 @@
                                         <div class="form-group">
                                         <label for="title">Edit Technology</label>
                                         <small id="name-help" class="form-text text-muted">Name for this technology.</small>
-                                        <input name="name" class="form-control" type="text" aria-describedby="name-help" value="{{../this.name}}" placeholder="Enter new name for this tech ...">
+                                        <input name="name" class="form-control" type="text" aria-describedby="name-help" value="{{this.name}}" placeholder="Enter new name for this tech ...">
                                         <small id="score-help" class="form-text text-muted">Score for this technology.</small>
-                                        <input name="score" class="form-control" type="text" aria-describedby="score-help" value="{{../this.score}}" placeholder="Enter new score for this tech...">
+                                        <input name="score" class="form-control" type="text" aria-describedby="score-help" value="{{this.score}}" placeholder="Enter new score for this tech...">
                                         </div>
-                                        <input name="_id" type="hidden" value="{{../../id}}">
+                                        <input name="_id" type="hidden" value="{{../id}}">
                                         <input name="_technology" type="hidden" value="{{../this.id}}">
                                         <input name="type" type="hidden" value="Backend">
                                         <button type="submit" class="btn btn-primary btn-block">Update</button>
                                     </form>
                                     <form action="/deletetechnology" method="POST">
-                                        <input name="_id" type="hidden" value="{{../../id}}">
-                                        <input name="_technology" type="hidden" value="{{../this.id}}">
+                                        <input name="_id" type="hidden" value="{{../id}}">
+                                        <input name="_technology" type="hidden" value="{{this.id}}">
                                         <button type="submit" class="btn btn-danger btn-block">Delete</button>
                                     </form>
                                 </div>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-            {{/if_equal}}
+            {{/eq}}
         {{/each}}
         <div class="col-12 col-lg-4 technology add-technology">
             <div class="card card-body">

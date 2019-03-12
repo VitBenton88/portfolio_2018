@@ -1,6 +1,6 @@
 // Routes
 // =============================================================
-module.exports = function(app, bcrypt, db, dotenv, Controller, ensureAuthenticated, nodemailer, passport, validator) {
+module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passport, validator) {
     // GET
     // =============================================================
     // homepage route
@@ -25,7 +25,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, ensureAuthenticat
     app.get("/admin/content", (req, res) => {
       db.Portfolio.find()
       .then((portfolio) => {
-        res.render("admin-content", {portfolio, layout: "admin"});
+        res.render("admin-content", {portfolio, username: req.user.username,  _id: req.user._id, layout: "admin"});
       });
     });
 
