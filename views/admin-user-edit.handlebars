@@ -11,11 +11,15 @@
         {{> shared/notifications}}
 
         <div class="container page-body">
-            <div class="row">
-              <div class="col-12">
-                {{> admin/pages/users/edit}}
-              </div>
-            </div>
+
+          {{> admin/components/accordian name='basic' title='basic information' style="success" content="admin/pages/users/edit/basic"}}
+
+          {{> admin/components/accordian name='password' title='password' style="info" content="admin/pages/users/edit/password"}}
+
+          <hr>
+
+          {{> admin/pages/users/edit/delete }}
+          
         </div>
 
       </div>

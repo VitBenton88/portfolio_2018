@@ -1,15 +1,11 @@
 <div class="row">
     <div class="col-12 col-lg-8 col-xl-6">
-        <form action="/edituser" method="POST" id="edituser">
+        <form action="/edituserbasic" method="POST" id="edituser">
             <div class="form-group">
                 <small id="usernameHelp" class="form-text text-muted">User's username.</small>
                 <input name="username" type="text" aria-describedby="usernameHelp" class="form-control" placeholder="Username" value={{user.username}}>
                 <small id="emailHelp" class="form-text text-muted">User's email.</small>
                 <input name="email" type="email" aria-describedby="emailHelp" class="form-control" placeholder="Email" value={{user.email}}>
-                <small id="passwordHelp" class="form-text text-muted">New password.</small>
-                <input name="password" type="password" aria-describedby="passwordHelp" class="form-control" placeholder="Password">
-                <small id="passwordCheckHelp" class="form-text text-muted">Re-type new password.</small>
-                <input name="passwordCheck" type="password" aria-describedby="passwordCheckHelp" class="form-control" placeholder="Retype Password ...">
             </div>
             <div class="col d-flex align-items-center">
                 <div class="custom-control custom-switch">
@@ -21,14 +17,4 @@
             <button type="submit" class="btn btn-outline-info">Update</button>
         </form>
     </div>
-</div>
-
-<hr>
-
-<div class="row">
-    <form action="/deleteuser" method="POST" class="d-inline-block">
-        <input name="isAdmin" type="hidden" value="{{user.admin}}">
-        <input name="_id" type="hidden" value="{{user.id}}">
-        <button type="submit" class="btn btn-outline-danger">Delete User</button>
-    </form>
 </div>

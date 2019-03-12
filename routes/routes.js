@@ -524,6 +524,15 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       let { _id, username, email, password, passwordCheck, admin } = req.body;
       if (admin == "on") {admin = true};
 
+      if ( !username || !email || !password || !passwordCheck ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when adding a new user.'
+        );
+
+        return res.redirect('/admin/users'); 
+      }
+
       //check if password verification passes
       if (password !== passwordCheck) {
         req.flash(
