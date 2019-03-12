@@ -519,18 +519,60 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     });
 
-    // edit user
-    app.post("/edituser", (req, res) => {
-      let { _id, username, email, password, passwordCheck, admin } = req.body;
+    // edit user (basic information)
+    app.post("/edituserbasic", (req, res) => {
+      let { _id, username, email, admin } = req.body;
       if (admin == "on") {admin = true};
 
-      if ( !username || !email || !password || !passwordCheck ) {
+      if ( !username || !email ) {
         req.flash(
           'error',
-          'Please fill out all fields when adding a new user.'
+          'Please fill out all fields when editing user.'
         );
 
-        return res.redirect('/admin/users'); 
+        return res.redirect(`/admin/users/edit/${_id}`); 
+      }
+
+      Controller.Users.onlyOneAdmin( _id).then(userIsAdmin => {
+        if (userIsAdmin && !admin) {
+          req.flash(
+            'error',
+            'Cannot remove last admin user account.'
+          );
+          return res.redirect(`/admin/users/edit/${_id}`);
+        }
+
+        //update user in database
+        db.Users.findOneAndUpdate(
+          { _id }, {username, email, admin})
+          .then((result) => {
+            req.flash(
+              'success',
+              'User successfully edited.'
+            );
+            res.redirect(`/admin/users/edit/${_id}`);
+          })
+          .catch((error) => {
+          // If an error occurred, send it to the client
+          console.log(error);
+          req.flash('error', error.message);
+          res.redirect(`/admin/users/edit/${_id}`);
+        });
+      })
+
+    });
+
+    // edit user (password)
+    app.post("/edituserpassword", (req, res) => {
+      let { _id, password, passwordCheck} = req.body;
+
+      if ( !password || !passwordCheck ) {
+        req.flash(
+          'error',
+          'Please fill out both password fields.'
+        );
+
+        return res.redirect(`/admin/users/edit/${_id}`); 
       }
 
       //check if password verification passes
@@ -552,13 +594,13 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           
           //update user in database
           db.Users.findOneAndUpdate(
-            { _id }, {username, email, password, passwordCheck, admin})
+            { _id }, {password, passwordCheck})
             .then((result) => {
               req.flash(
                 'success',
                 'User successfully edited.'
               );
-              res.redirect('/admin/users');
+              res.redirect(`/admin/users/edit/${_id}`);
             })
             .catch((error) => {
             // If an error occurred, send it to the client
