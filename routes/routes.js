@@ -60,7 +60,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Users
       .findById({_id})
         .then((user) => {
-          res.render("admin-user-edit", {user, layout: "admin"});
+          res.render("admin-edit-user", {user, layout: "admin"});
         })
         .catch((error) => {
         // If an error occurred, send it to the client

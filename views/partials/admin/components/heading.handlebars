@@ -1,5 +1,11 @@
-<div class="jumbotron container-fluid">
+<div class="heading jumbotron container-fluid">
     <div class="container">
-    <h1 class="display-4">{{heading}}</h1>
+
+        <div class="user-options d-none d-md-block">
+            {{> admin/components/accordian name='user' title='User: TestUsername' style="" content="admin/components/menus/user"}}
+        </div>
+
+        <h1 class="display-4">{{heading}}</h1>
+
     </div>
 </div>
