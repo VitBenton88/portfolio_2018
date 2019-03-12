@@ -14,6 +14,7 @@ const passport = require('passport');
 const path = require("path");
 const session = require('express-session');
 const validator = require('validator');
+const { ensureAuthenticated } = require('./config/auth');
 
 // Require all models
 // =============================================================
@@ -93,6 +94,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
+// Authenticate on all admin routes
+// =============================================================
+  app.all('/admin/*', ensureAuthenticated);
+
 //apply production settings
 // ==================   ===========================================
 if (production) {
@@ -118,7 +123,7 @@ mongoose.connect(MONGODB_URI, {
 
 // Import Routes
 // =============================================================
-require("./routes/routes.js")(app, bcrypt, db, dotenv, Controller, nodemailer, passport, validator);
+require("./routes/routes.js")(app, bcrypt, db, dotenv, Controller, ensureAuthenticated, nodemailer, passport, validator);
 
 // Starts the server to begin listening
 // =============================================================

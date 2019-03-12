@@ -1,6 +1,6 @@
 // Routes
 // =============================================================
-module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passport, validator) {
+module.exports = function(app, bcrypt, db, dotenv, Controller, ensureAuthenticated, nodemailer, passport, validator) {
     // GET
     // =============================================================
     // homepage route
@@ -620,6 +620,17 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         failureRedirect: '/login',
         failureFlash: true
       })(req, res, next);
+    });
+
+    // logout user
+    app.post("/logout", (req, res) => {
+      req.logout();
+      req.flash(
+        'success',
+        'Successfully logged out.'
+      );
+
+      res.redirect('/login');
     });
 
     // DELETE
