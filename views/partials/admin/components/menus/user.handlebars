@@ -1,6 +1,6 @@
 <form action="/logout" method="POST" id="logout">
-    <input name="_id" type="hidden" value="{{user.id}}">
+    <input name="_id" type="hidden" value="{{sessionUser._id}}">
     <button type="submit" class="btn btn-link">Logout</button>
 </form>
 
-<a href="/admin/users/edit/{{_id}}" target="_self" class="edit">Edit</a>
+<a href="/admin/users/edit/{{sessionUser._id}}" target="_self" class="edit">Edit</a>

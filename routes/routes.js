@@ -16,6 +16,8 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       res.render("login", {layout: "login"});
     });
 
+    // ADMIN ROUTES
+    // =============================================================
     // admin route
     app.get("/admin", (req, res) => {
       res.redirect('/admin/dashboard');
@@ -25,7 +27,8 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.get("/admin/content", (req, res) => {
       db.Portfolio.find()
       .then((portfolio) => {
-        res.render("admin-content", {portfolio, username: req.user.username,  _id: req.user._id, layout: "admin"});
+        const sessionUser = {username: req.user.username, _id: req.user._id};
+        res.render("admin-content", {portfolio, sessionUser, layout: "admin"});
       });
     });
 
@@ -33,7 +36,8 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.get("/admin/dashboard", (req, res) => {
       db.Portfolio.find()
       .then((portfolio) => {
-        res.render("admin-dashboard", {portfolio, layout: "admin"});
+        const sessionUser = {username: req.user.username, _id: req.user._id};
+        res.render("admin-dashboard", {portfolio, sessionUser, layout: "admin"});
       });
     });
 
@@ -41,7 +45,8 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.get("/admin/settings", (req, res) => {
       db.Portfolio.find()
       .then((portfolio) => {
-        res.render("admin-settings", {portfolio, layout: "admin"});
+        const sessionUser = {username: req.user.username, _id: req.user._id};
+        res.render("admin-settings", {portfolio, sessionUser, layout: "admin"});
       });
     });
 
@@ -49,7 +54,8 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.get("/admin/users", (req, res) => {
       db.Users.find()
       .then((users) => {
-        res.render("admin-users", {users, layout: "admin"});
+        const sessionUser = {username: req.user.username, _id: req.user._id};
+        res.render("admin-users", {users, sessionUser, layout: "admin"});
       });
     });
 
@@ -60,7 +66,8 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       db.Users
       .findById({_id})
         .then((user) => {
-          res.render("admin-edit-user", {user, layout: "admin"});
+          const sessionUser = {username: req.user.username, _id: req.user._id};
+          res.render("admin-edit-user", {user, sessionUser, layout: "admin"});
         })
         .catch((error) => {
         // If an error occurred, send it to the client
