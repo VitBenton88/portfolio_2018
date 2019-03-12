@@ -1,58 +1,9 @@
 {{#each portfolio}}
     <div class="row">
-        {{#each menu}}
-            <div class="col-12 col-sm-6 col-md-4 menu-item">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Menu Item</h5>
-                        <p class="card-text">Text: {{this.text}}<br/>URL: {{this.url}}</p>
-                        <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#menu-item-{{@key}}" aria-expanded="false" aria-controls="menu-item-{{@key}}">Edit</button>
-                        <div class="collapse" id="menu-item-{{@key}}">
-                            <br />
-                            <div class="card card-body">
-                                <form action="/updatemenuitem" method="POST" class="update-menuitem-form">
-                                    <div class="form-group">
-                                        <label for="title">Edit Menu Item</label>
-                                        <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter new text ..." value="{{this.text}}">
-                                        <small id="text-help" class="form-text text-muted">Text that appears in this menu item.</small>
-                                        <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new url ..." value="{{this.url}}">
-                                        <small id="url-help" class="form-text text-muted">Url this menu item points to.</small>
-                                    </div>
-                                    <input name="_id" type="hidden" value="{{../id}}">
-                                    <input name="_menu" type="hidden" value="{{this.id}}">
-                                    <button type="submit" class="btn btn-primary btn-block">Update</button>
-                                </form>
-                                <form action="/deletemenuitem" method="POST">
-                                    <input name="_id" type="hidden" value="{{../id}}">
-                                    <input name="_menu" type="hidden" value="{{this.id}}">
-                                    <button type="submit" class="btn btn-danger btn-block">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-        <div class="col-12 col-md-6 col-lg-4 menu-item add-item">
-            <div class="card card-body">
-                <form action="/addmenuitem" method="POST">
-                    <div class="form-group">
-                        <label for="title">Add Menu Item</label>
-                        <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter new menu item text ...">
-                        <small id="text-help" class="form-text text-muted">Text that appears in this menu item.</small>
-                        <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new menu item url ...">
-                        <small id="url-help" class="form-text text-muted">Url this menu item points to.</small>
-                    </div>
-                    <input name="_id" type="hidden" value="{{id}}">
-                    <button type="submit" class="btn btn-success btn-block">Add</button>
-                </form>
-                <div class="add-item-overlay active d-flex align-items-center justify-content-center">
-                    <div>
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <h5>Add</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        {{> admin/pages/content/components/menu-items}}
+
+        {{> admin/pages/content/components/menu-add}}
+
     </div>
 {{/each}}

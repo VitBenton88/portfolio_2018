@@ -1,0 +1,23 @@
+<div class="col-12 col-lg-4 add-social">
+    <div class="alert alert-success" role="alert">
+        <form action="/addsocial" method="POST">
+            <div class="form-group">
+                <label for="title">Add Social Link</label>
+                <small id="nameHelp" class="form-text text-muted">Name of social platform.</small>
+                <input name="name" class="form-control" type="text" aria-describedby="nameHelp" placeholder="Enter name of social platform ..." value="{{this.name}}">
+                <small id="urlHelp" class="form-text text-muted">Url to profile.</small>
+                <input name="url" class="form-control" type="text" aria-describedby="urlHelp" placeholder="Enter url of profile ..." value="{{this.url}}">
+                <small id="iconHelp" class="form-text text-muted">Icon for this social link.</small>
+                <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/components/dropdowns/social}}</select>
+            </div>
+            <input name="_id" type="hidden" value="{{id}}">
+            <button type="submit" class="btn btn-success btn-block">Add</button>
+        </form>
+        <div class="add-item-overlay active d-flex align-items-center justify-content-center">
+            <div>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <h5>Add</h5>
+            </div>
+        </div>
+    </div>
+</div>

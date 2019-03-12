@@ -6,19 +6,19 @@
     <div class="col-12 col-lg-10">
       <div class="row no-gutters">
 
-        {{> admin/components/heading heading=(add "Edit User: " sessionUser.username)}}
+        {{> admin/components/heading heading=(add "Edit User: " user.username)}}
 
         {{> shared/notifications}}
 
         <div class="container page-body">
 
-          {{> admin/components/accordian name='basic' title='Basic Information' style="warning" content="admin/pages/users/edit/basic"}}
+          {{> admin/components/accordian name='basic' title='Basic Information' style="warning" content="admin/pages/edit/user/basic"}}
 
-          {{> admin/components/accordian name='password' title='Password' style="info" content="admin/pages/users/edit/password"}}
+          {{> admin/components/accordian name='password' title='Password' style="info" content="admin/pages/edit/user/password"}}
 
           <hr>
 
-          {{> admin/pages/users/edit/delete }}
+          {{> admin/pages/edit/user/delete }}
           
         </div>
 

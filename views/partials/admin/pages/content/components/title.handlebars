@@ -1,0 +1,21 @@
+<div class="col-12 col-md-6">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Title</h4>
+        <p>{{title}}</p>
+        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse" data-target="#title" aria-expanded="false" aria-controls="title">Edit</button>
+        <div class="collapse" id="title">
+            <br />
+            <div class="card card-body">
+                <form action="/updatetitle" method="POST">
+                    <div class="form-group">
+                        <label for="title">Edit Page Title</label>
+                        <input name="title" id="title" class="form-control" type="text" aria-describedby="titleHelp" placeholder="Enter new title ..." value="{{title}}">
+                        <small id="titleHelp" class="form-text text-muted">Shows at the top of the page.</small>
+                    </div>
+                    <input name="_id" type="hidden" value="{{id}}">
+                    <button type="submit" class="btn btn-outline-info">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

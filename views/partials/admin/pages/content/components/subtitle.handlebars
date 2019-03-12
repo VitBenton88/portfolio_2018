@@ -1,0 +1,21 @@
+<div class="col-12 col-md-6">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Subtitle</h4>
+        <p>{{subtitle}}</p>
+        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse" data-target="#subtitle" aria-expanded="false" aria-controls="subtitle">Edit</button>
+        <div class="collapse" id="subtitle">
+            <br />
+            <div class="card card-body">
+                <form action="/updatesubtitle" method="POST">
+                    <div class="form-group">
+                        <label for="title">Edit Page Subtitle</label>
+                        <input name="subtitle" id="subtitle" class="form-control" type="text" aria-describedby="subtitleHelp" placeholder="Enter new subtitle ..." value="{{subtitle}}">
+                        <small id="subtitleHelp" class="form-text text-muted">Shows below title at the top of the page.</small>
+                    </div>
+                    <input name="_id" type="hidden" value="{{id}}">
+                    <button type="submit" class="btn btn-outline-info">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
