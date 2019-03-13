@@ -1,0 +1,31 @@
+<div class="container-fluid content page">
+  <div class="row">
+
+    {{> admin/components/menus/main menu-content=true}}
+
+    <div class="col-12 col-lg-10">
+      <div class="row no-gutters">
+
+        {{> admin/components/heading heading='Content'}}
+
+        {{> shared/notifications}}
+
+        <div class="container page-body">
+
+          {{> admin/components/accordian name='navigation' title='Navigation' style="primary" content="admin/pages/content/navigation"}}
+
+          {{> admin/components/accordian name='introduction' title='Introduction' style="success" content="admin/pages/content/introduction"}}
+
+          {{> admin/components/accordian name='about' title='About' style="info" content="admin/pages/content/about"}}
+
+          {{> admin/components/accordian name='technology' title='Technology' style="warning" content="admin/pages/content/technology"}}
+
+          {{> admin/components/accordian name='portfolio' title='Portfolio' style="secondary" content="admin/pages/content/portfolio"}}
+
+          {{> admin/components/accordian name='resume' title='Resume' style="danger" content="admin/pages/content/resume"}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

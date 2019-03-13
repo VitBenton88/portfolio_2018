@@ -1,0 +1,32 @@
+<div class="col-5 col-sm-4 col-lg-2 cms-menu px-0">
+  <ul class="nav flex-column">
+    <li class="nav-item space d-block d-lg-none py-4"></li>
+    <li class="nav-item">
+      <a class="d-block nav-link{{#if menu-dashboard}} active{{/if}}" href="/admin/dashboard" target="_self">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="d-block nav-link{{#if menu-content}} active{{/if}}" href="/admin/content" target="_self">Content</a>
+    </li>
+    <li class="nav-item">
+      <a class="d-block nav-link{{#if menu-users}} active{{/if}}" href="/admin/users" target="_self">Users</a>
+    </li>
+    <li class="nav-item">
+      <a class="d-block nav-link{{#if menu-settings}} active{{/if}}" href="/admin/settings" target="_self">Settings</a>
+    </li>
+  </ul>
+
+    <div class="user-info">
+      <p>{{sessionUser.username}}</span>
+      <form action="/logout" method="POST" id="logout" class="d-inline">
+          <input name="_id" type="hidden" value="{{sessionUser._id}}">
+          <button type="submit" class="btn btn-link">Logout</button>
+      </form>
+
+      <a href="/admin/users/edit/{{sessionUser._id}}" target="_self" class="edit">Edit</a>
+    </div>
+</div>
+
+<div class="col-2 d-block d-lg-none cms-mobile-menu-controls">
+  <i class="fa fa-bars fa-2x mobile-menu-open mobile-menu-toggle" aria-hidden="true"></i>
+  <i class="fa fa-times fa-2x mobile-menu-close mobile-menu-toggle" aria-hidden="true"></i>
+</div>

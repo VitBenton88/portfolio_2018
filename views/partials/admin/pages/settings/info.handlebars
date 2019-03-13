@@ -1,0 +1,13 @@
+{{#each portfolio}}
+    <form action="/updatesiteinformation" method="POST" id="updatesiteinformation">
+        <div class="form-group">
+            <label for="title">Edit Site Name</label>
+            <small id="siteNameHelp" class="form-text text-muted">The name of your website. Renders in <xmp><title></xmp> meta tag.</title></small>
+            <input name="site_name" id="site_name" class="form-control" type="text" aria-describedby="siteNameHelp" placeholder="Enter new site name ..." value="{{site_settings.site_name}}">
+            <small id="siteDescHelp" class="form-text text-muted">The description of your website. Renders in <xmp><metaname="description"></xmp> meta tag.</title></small>
+            <textarea name="site_description" id="site_description" class="form-control" aria-describedby="siteDescHelp" placeholder="Enter tags ..." rows="6">{{site_settings.site_description}}</textarea>
+        </div>
+        <input name="_id" type="hidden" value="{{id}}">
+        <button type="submit" class="btn btn-outline-info">Update</button>
+    </form>
+{{/each}}

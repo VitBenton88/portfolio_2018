@@ -1,0 +1,21 @@
+<div class="col-12 col-md-6 col-lg-4 menu-item add-item">
+    <div class="card card-body">
+        <form action="/addmenuitem" method="POST">
+            <div class="form-group">
+                <label for="title">Add Menu Item</label>
+                <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter new menu item text ...">
+                <small id="text-help" class="form-text text-muted">Text that appears in this menu item.</small>
+                <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new menu item url ...">
+                <small id="url-help" class="form-text text-muted">Url this menu item points to.</small>
+            </div>
+            <input name="_id" type="hidden" value="{{id}}">
+            <button type="submit" class="btn btn-success btn-block">Add</button>
+        </form>
+        <div class="add-item-overlay active d-flex align-items-center justify-content-center">
+            <div>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <h5>Add</h5>
+            </div>
+        </div>
+    </div>
+</div>

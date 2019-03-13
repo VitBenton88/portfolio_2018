@@ -1,0 +1,32 @@
+<div class="container-fluid dashboard page">
+  <div class="row">
+
+    {{> admin/components/menus/main menu-dashboard=true}}
+
+    <div class="col-12 col-lg-10">
+      <div class="row no-gutters">
+
+        {{> admin/components/heading heading='Dashboard'}}
+
+        {{> shared/notifications}}
+
+        <div class="container page-body">
+
+          <div class="row">
+              <div class="row">
+                  {{> admin/pages/dashboard/weather}}
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="row">
+                  {{> admin/pages/dashboard/analytics}}
+              </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

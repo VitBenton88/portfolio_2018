@@ -1,0 +1,28 @@
+<div class="container-fluid users page">
+  <div class="row">
+
+    {{> admin/components/menus/main menu-users=true}}
+
+    <div class="col-12 col-lg-10">
+      <div class="row no-gutters">
+
+        {{> admin/components/heading heading='Users'}}
+
+        {{> shared/notifications}}
+
+        <div class="container page-body">
+            <div class="row">
+              <div class="col-12">
+
+                {{> admin/pages/users/list}}
+
+                {{> admin/pages/users/add}}
+
+              </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{{#each portfolio}}
+    <section id="portfolio">
+        <div class="container">
+            <div class="col-12 col-md-10 offset-md-1">
+                <h2>Portfolio</h2>
+                <article>{{{portfolio.introduction}}}</article>
+                {{#if portfolio.projects}}
+                    <article class="slider-article">
+                        <p class="mobile-slider-instructions d-block d-sm-block d-md-none">Swipe to see more projects</p>
+                        <i class="fas fa-chevron-circle-left fa-2x d-none d-sm-none d-md-block"></i>
+                        <i class="fas fa-chevron-circle-right fa-2x d-none d-sm-none d-md-block"></i>
+                        <div class="portfolio-slider">
+                            {{#each portfolio.projects}}
+                                <div>
+                                    <h3>{{this.title}}</h3>
+                                    <ul>
+                                        {{#each this.bullets}}
+                                        <li>{{this.bullet}}</li>
+                                        {{/each}}
+                                    </ul>
+                                    <a href="{{this.url}}" target="_blank" class="standardBtn widerBtn project-link">{{this.text}}</a>
+                                </div>
+                            {{/each}}
+                        </div>
+                    </article>
+                {{/if}}
+            </div>
+        </div>
+    </section>
+{{/each}}

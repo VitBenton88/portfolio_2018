@@ -1,0 +1,7 @@
+<div class="row">
+    <form action="/deleteuser" method="POST" class="d-inline-block">
+        <input name="isAdmin" type="hidden" value="{{user.admin}}">
+        <input name="_id" type="hidden" value="{{user.id}}">
+        <button type="submit" class="btn btn-outline-danger">Delete User</button>
+    </form>
+</div>
