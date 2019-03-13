@@ -120,7 +120,7 @@ const PortfolioSchema = new Schema({
   },
   resume: {
     type: String,
-    default: 'Your Resume!'
+    default: '<p>Your Resume!</p>'
   },
   site_settings: SettingsSchema,
   users: [{ type: Schema.ObjectId, ref: 'Users' }]

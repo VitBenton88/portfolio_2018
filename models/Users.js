@@ -30,7 +30,8 @@ const Users = mongoose.model("Users", UsersSchema);
 
 // Instantiate new schema
 // const instance = new Users();
-// instance.username = 'Your Usernaame!';
+// instance.username = 'Your Username!';
+// instance.password = 'password';
 // instance.save(function (err) {
 //   //
 // });
