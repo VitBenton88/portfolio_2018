@@ -7,6 +7,7 @@
         0 5px 15px 0 rgba(0,0,0,0.08);
         left: -100vw;
         position: fixed;
+        min-height: 440px;
         transition: left 0.3s ease;
         z-index: 5;
     }
@@ -26,6 +27,32 @@
 
             &:hover {
                 background: $teal;
+            }
+        }
+
+        &.edit {
+            padding: 0;
+            width: auto;
+
+            &:hover {
+                background: none;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .user-info {
+        border-top: 1px solid $grey;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        position: absolute;
+        text-align: center;
+
+        #logout {
+            button {
+                padding-bottom: 10px;
             }
         }
     }

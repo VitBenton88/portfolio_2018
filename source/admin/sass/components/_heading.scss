@@ -1,33 +1,5 @@
 .heading {
-    position: relative;
-
     @include max-width($screen-sm-max) {
         text-align: center;
-    }
-
-    .user-options {
-        border: 1px solid transparent;
-        position: absolute;
-        right: 0;
-        width: 250px;
-        top: 0;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background: $white;
-            border: 1px solid $black;
-        }
-
-        .section-head {
-            margin-bottom: 0;
-        }
-    
-        #user {
-            padding-bottom: 5px;
-
-            .edit {
-                margin-left: 13px;
-            }
-        }
     }
 }
