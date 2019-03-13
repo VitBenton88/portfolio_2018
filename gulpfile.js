@@ -31,20 +31,20 @@ const paths = {
            'last 1 OperaMobile version'
        ],
 
-       source: 'source/sass/**/*.scss'
+       source: 'source/frontend/sass/**/*.scss'
    },
 
    scripts: {
        source: {
-           custom: 'source/scripts/**/*.js',
+           custom: 'source/frontend/scripts/**/*.js',
 
            libraries: [
-               'source/libraries/jquery-3.3.1.min.js',
-               'source/libraries/jquery.color-2.1.2.min.js',
-               'source/libraries/Chart.min.js',
-               'source/libraries/particles.min.js',
-               'source/libraries/slick.min.js',
-               'source/libraries/cssua.min.js'
+               'source/frontend/libraries/jquery-3.3.1.min.js',
+               'source/frontend/libraries/jquery.color-2.1.2.min.js',
+               'source/frontend/libraries/Chart.min.js',
+               'source/frontend/libraries/particles.min.js',
+               'source/frontend/libraries/slick.min.js',
+               'source/frontend/libraries/cssua.min.js'
            ]
        }
    },
@@ -53,7 +53,20 @@ const paths = {
        source: '*.html'
    },
 
-   destination: 'public/assets'
+   handlebars: {
+    source: 'views/**/*.handlebars'
+  },
+
+   admin: {
+        scripts: {
+            source: 'source/admin/scripts/**/*.js'
+        },
+        styles: {
+            source: 'source/admin/sass/**/*.scss'
+        }
+    },
+    
+    destination: 'public/assets',
 };
 
 /**
@@ -72,6 +85,10 @@ exports.sync = sync;
 * FUNCTIONS
 **/
 
+/**
+ * DEVELOPEMENT
+**/
+
 function develop_scripts() {
    return (
        //concat javascript libraries
@@ -87,6 +104,15 @@ function develop_scripts() {
        .src(paths.scripts.source.custom)
        .pipe(sourcemaps.init())
        .pipe(concat('scripts.js'))
+       .pipe(sourcemaps.write('/'))
+       .pipe(gulp.dest(paths.destination))
+       .pipe(browserSync.stream()),
+
+       //concat custom admin javascript
+       gulp
+       .src(paths.admin.scripts.source)
+       .pipe(sourcemaps.init())
+       .pipe(concat('admin.js'))
        .pipe(sourcemaps.write('/'))
        .pipe(gulp.dest(paths.destination))
        .pipe(browserSync.stream())
@@ -112,6 +138,25 @@ function develop_styles() {
 
        .pipe(sourcemaps.write('/'))
        .pipe(gulp.dest(paths.destination))
+       .pipe(browserSync.stream()),
+
+       //compile and minify admin sass
+       gulp
+       .src(paths.admin.styles.source)
+       .pipe(sourcemaps.init())
+       .pipe(sass())
+       .on('error', sass.logError)
+
+       .pipe(postcss([
+           autoprefixer({
+               browsers: paths.styles.browsers
+           }),
+
+           cssnano()
+       ]))
+
+       .pipe(sourcemaps.write('/'))
+       .pipe(gulp.dest(paths.destination))
        .pipe(browserSync.stream())
    );
 }
@@ -122,6 +167,10 @@ function develop() {
        develop_styles()
    );
 }
+
+/**
+ * PRODUCTION
+**/
 
 function production_scripts() {
    return (
@@ -139,6 +188,16 @@ function production_scripts() {
           presets: ['@babel/env']
         }))
         .pipe(uglify())
+       .pipe(gulp.dest(paths.destination)),
+
+       //concat & minify custom admin javascript
+       gulp
+       .src(paths.admin.scripts.source)
+       .pipe(concat('admin.js'))
+       .pipe(babel({
+          presets: ['@babel/env']
+        }))
+        .pipe(uglify())
        .pipe(gulp.dest(paths.destination))
    );
 }
@@ -148,6 +207,22 @@ function production_styles() {
        //compile and minify sass
        gulp
        .src(paths.styles.source)
+       .pipe(sass())
+       .on('error', sass.logError)
+
+       .pipe(postcss([
+           autoprefixer({
+               browsers: paths.styles.browsers
+           }),
+
+           cssnano()
+       ]))
+
+       .pipe(gulp.dest(paths.destination)),
+
+       //compile and minify admin sass
+       gulp
+       .src(paths.admin.styles.source)
        .pipe(sass())
        .on('error', sass.logError)
 
@@ -177,10 +252,10 @@ function reload() {
 function sync() {
    browserSync.init({
         proxy: "http://localhost:3000",
-        files: paths.styles.source
+        files: [paths.styles.source, paths.admin.styles.source]
    });
 
-   gulp.watch(paths.scripts.source.custom, develop_scripts);
-   gulp.watch(paths.styles.source, develop_styles);
-   gulp.watch(paths.html.source, reload);
+   gulp.watch([paths.scripts.source.custom, paths.admin.scripts.source], develop_scripts);
+   gulp.watch([paths.styles.source, paths.admin.styles.source], develop_styles);
+   gulp.watch([paths.html.source, paths.handlebars.source], reload);
 }

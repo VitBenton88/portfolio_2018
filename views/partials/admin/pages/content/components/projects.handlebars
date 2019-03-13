@@ -1,0 +1,51 @@
+{{#each portfolio.projects}}
+    <div class="col-12 col-lg-6 project">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <a href="{{this.url}}" target="_blank">{{this.text}}</a>
+                <ul class="list-group project-bullets">
+                    {{#each this.bullets}}
+                        <li class="list-group-item">{{this.bullet}}</li>
+                    {{/each}}
+                </ul>
+                <button class="btn btn-info btn-block edit-project-btn" type="button" data-toggle="collapse" data-target="#project-{{@key}}" aria-expanded="false" aria-controls="project-{{@key}}">Edit</button>
+                <div class="collapse" id="project-{{@key}}">
+                    <br />
+                    <div class="card card-body">
+                        <form action="/updateproject" method="POST" class="update-project">
+                            <div class="form-group">
+                                <label for="title">Edit Project</label>
+                                <input name="title" class="form-control" type="text" aria-describedby="title-help" placeholder="Enter title ..." value="{{this.title}}">
+                                <small id="title-help" class="form-text text-muted">Title of this project.</small>
+                                <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter button text ..." value="{{this.text}}">
+                                <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
+                                <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ..."  value="{{this.url}}">
+                                <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
+                                <hr>
+                                <div class="project-details">
+                                    <p>Project Detials:</p>
+                                    {{#each this.bullets}}
+                                    <div class="d-flex justify-content-between align-items-center project-bullet">
+                                        <input name="details" class="form-control project-detail" type="text" aria-describedby="details-help" placeholder="Project Detail" value="{{this.bullet}}">
+                                        <i class="fa fa-close delete-project-bullet" aria-hidden="true" data-_id="{{../../id}}" data-projectid="{{../id}}" data-bulletid="{{this.id}}"></i>
+                                    </div>
+                                    {{/each}}
+                                    <button type="button" class="btn btn-light add-project-detail edit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                            <input name="_id" type="hidden" value="{{../id}}">
+                            <input name="_project" type="hidden" value="{{this.id}}">
+                            <button type="submit" class="btn btn-primary btn-block">Update</button>
+                        </form>
+                        <form class="delete-project" action="/deleteproject" method="POST">
+                            <input name="_id" type="hidden" value="{{../id}}">
+                            <input name="_project" type="hidden" value="{{this.id}}">
+                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

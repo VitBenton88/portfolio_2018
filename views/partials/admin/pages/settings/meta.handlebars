@@ -1,0 +1,21 @@
+{{#each portfolio}}
+    <form class="updatemeta" action="/updatemetahead" method="POST">
+        <div class="form-group">
+            <label for="title">HTML Meta Head Tags</label>
+            <small id="metaHeadHelp" class="form-text text-muted">Meta tags inserted into the html head</small>
+            <textarea name="meta_head" id="meta_head" class="form-control" aria-describedby="metaHeadHelp" placeholder="Enter tags ..." rows="12">{{site_settings.meta_head}}</textarea>
+        </div>
+        <input name="_id" type="hidden" value="{{id}}">
+        <button type="submit" class="btn btn-outline-info">Update</button>
+    </form>
+
+    <form class="updatemeta" action="/updatemetabody" method="POST">
+        <div class="form-group">
+            <label for="title">HTML Meta Body Tags</label>
+            <small id="metaBodyHelp" class="form-text text-muted">Meta tags inserted after the opening html <xmp><body></xmp> tag</b></small>
+            <textarea name="meta_body" id="meta_body" class="form-control" aria-describedby="metaBodyHelp" placeholder="Enter tags ..." rows="12">{{site_settings.meta_body}}</textarea>
+        </div>
+        <input name="_id" type="hidden" value="{{id}}">
+        <button type="submit" class="btn btn-outline-info">Update</button>
+    </form>
+{{/each}}

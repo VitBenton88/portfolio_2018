@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-12 col-lg-8 col-xl-6">
+        <form action="/edituserbasic" method="POST" id="edituser">
+            <div class="form-group">
+                <small id="usernameHelp" class="form-text text-muted">User's username.</small>
+                <input name="username" type="text" aria-describedby="usernameHelp" class="form-control" placeholder="Username" value={{user.username}}>
+                <small id="emailHelp" class="form-text text-muted">User's email.</small>
+                <input name="email" type="email" aria-describedby="emailHelp" class="form-control" placeholder="Email" value={{user.email}}>
+            </div>
+            <div class="col d-flex align-items-center">
+                <div class="custom-control custom-switch">
+                <input name="admin" type="checkbox" class="custom-control-input" id="adminSwitch" {{#if user.admin}}checked{{/if}}>
+                <label class="custom-control-label" for="adminSwitch">Administrator</label>
+                </div>
+            </div>
+            <input name="_id" type="hidden" value="{{user.id}}">
+            <button type="submit" class="btn btn-outline-info">Update</button>
+        </form>
+    </div>
+</div>

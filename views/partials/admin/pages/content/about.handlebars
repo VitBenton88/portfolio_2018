@@ -1,0 +1,8 @@
+{{#each portfolio}}
+    <form action="/updateabout" method="POST">
+        <textarea name="about" id="aboutEditor">{{about}}</textarea>
+        <input name="_id" type="hidden" value="{{id}}">
+        <button type="submit" class="btn btn-outline-success save-wysiwyg">Save</button>
+    </form>
+    <br />
+{{/each}}
