@@ -239,6 +239,16 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     // add menu item
     app.post("/addmenuitem", (req, res) => {
       const { _id, text, url } = req.body;
+
+      if ( !text || !url ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when adding a new menu item.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       db.Portfolio
       .updateOne({_id}, {'$push': {
             "menu" : {text, url}
@@ -261,6 +271,16 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     // update menu item
     app.post("/updatemenuitem", (req, res) => {
       const { _id, _menu, text, url } = req.body;
+
+      if ( !text || !url ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when updating a new menu item.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       db.Portfolio.findOneAndUpdate(
         { _id, "menu._id": _menu }, {"menu.$.url": url, "menu.$.text": text})
         .then((result) => {
@@ -280,7 +300,17 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     // add social
     app.post("/addsocial", (req, res) => {
-      const { icon, _id, name, url } = req.body;
+      const { _id, icon, name, url } = req.body;
+
+      if ( !name || !url || !icon ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when adding a social item.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       db.Portfolio
       .updateOne({_id}, {'$push': {
             "social" : {icon, name, url}
@@ -302,7 +332,17 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     // update social
     app.post("/updatesocial", (req, res) => {
-      const { icon, _id, name, _social, url } = req.body;
+      const { _id, icon, name, _social, url } = req.body;
+
+      if ( !name || !url || !icon ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when updating a social item.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       db.Portfolio.findOneAndUpdate(
         { _id, "social._id": _social }, {"social.$.name": name, "social.$.url": url, "social.$.icon": icon})
         .then((result) => {
@@ -363,6 +403,16 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     // add project
     app.post("/addproject", (req, res) => {
       const { _id, details, title, text, url } = req.body;
+
+      if ( !title || !text || !url ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when adding a project.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       let bullets = [];
       if (Array.isArray(details)) {
         details.forEach((bullet) => {bullets.push({bullet})});
@@ -389,6 +439,16 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     // update project
     app.post("/updateproject", (req, res) => {
       const { _id, details, _project, title, text, url } = req.body;
+
+      if ( !title || !text || !url ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when updating a project.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       let bullets = [];
       if (Array.isArray(details)) {
         details.forEach((bullet) => {bullets.push({bullet})});
@@ -435,6 +495,16 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     // add technology
     app.post("/addtechnology", (req, res) => {
       const { _id, name, score, type } = req.body;
+
+      if ( !name || !score ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when adding a technology.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       db.Portfolio
       .updateOne({_id}, {'$push': {
             "technology" : {name, score, type}
@@ -457,6 +527,16 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     // update technology
     app.post("/updatetechnology", (req, res) => {
       const { _id, name, score, type, _technology } = req.body;
+
+      if ( !name || !score ) {
+        req.flash(
+          'error',
+          'Please fill out all fields when updating a technology.'
+        );
+
+        return res.redirect('/admin/content'); 
+      }
+
       db.Portfolio.findOneAndUpdate(
         { _id, "technology._id": _technology }, {"technology.$.name": name, "technology.$.score": score, "technology.$.type": type} )
         .then((result) => {
