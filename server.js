@@ -26,7 +26,7 @@ require('./config/passport')(passport);
 
 // Require all models
 // =============================================================
-const Controller = require("./controller");
+const Controller = require("./Controller");
 
 //load environment variables
 // =============================================================
