@@ -344,7 +344,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     app.post("/updateportolfiointro", (req, res) => {
       const { _id, introduction } = req.body;
       db.Portfolio
-      .updateOne({_id}, {portfolio: {introduction}})
+      .findOneAndUpdate({_id}, {'portfolio.introduction': introduction})
         .then((result) => {
           req.flash(
             'success',
