@@ -435,7 +435,6 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     // add technology
     app.post("/addtechnology", (req, res) => {
       const { _id, name, score, type } = req.body;
-      console.log(req.body);
       db.Portfolio
       .updateOne({_id}, {'$push': {
             "technology" : {name, score, type}
