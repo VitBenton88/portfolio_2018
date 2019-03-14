@@ -3,9 +3,9 @@
         <form action="/addmenuitem" method="POST">
             <div class="form-group">
                 <label for="title">Add Menu Item</label>
-                <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter new menu item text ...">
+                <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter new menu item text ..." required>
                 <small id="text-help" class="form-text text-muted">Text that appears in this menu item.</small>
-                <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new menu item url ...">
+                <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new menu item url ..." required>
                 <small id="url-help" class="form-text text-muted">Url this menu item points to.</small>
             </div>
             <input name="_id" type="hidden" value="{{id}}">
