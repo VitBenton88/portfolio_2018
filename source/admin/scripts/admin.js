@@ -2,9 +2,9 @@
 * INIT
 **/
 
-//initialize Froala editors
+//initialize Summernote editors
 $(function() { 
-    $('#aboutEditor, #portfolioIntroEditor, #resumeEditor').froalaEditor();
+    $('.summernote-editor').summernote();
 });
 
 /**
