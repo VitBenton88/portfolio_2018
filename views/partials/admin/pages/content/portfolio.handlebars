@@ -1,7 +1,7 @@
 {{#each portfolio}}
     <h5>Introduction</h5>
     <form action="/updateportolfiointro" method="POST">
-        <textarea name="introduction" id="portfolioIntroEditor">{{portfolio.introduction}}</textarea>
+        <textarea name="introduction" class="summernote-editor" id="portfolioIntroEditor">{{portfolio.introduction}}</textarea>
         <input name="_id" type="hidden" value="{{id}}">
         <button type="submit" class="btn btn-outline-success save-wysiwyg">Save</button>
     </form>
