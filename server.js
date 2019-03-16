@@ -7,6 +7,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser')
 const dotenv = require('dotenv');
 const exphbs  = require('express-handlebars');
+const favicon = require('serve-favicon')
 const flash = require('connect-flash');
 const helpers = require('handlebars-helpers')();
 const mongoose = require("mongoose");
@@ -86,6 +87,10 @@ app.use(bodyParser.urlencoded({limit:'50mb', extended: true, parameterLimit:5000
 app.use(bodyParser.text());
 app.use(bodyParser.json({limit: '50mb', type: "application/vnd.api+json"}));
 
+// Make sure favicon is served properly
+// =============================================================
+app.use(favicon(path.join(__dirname, 'public', 'assets/images/favicon.png')));
+
 // Authenticate on all admin routes
 // =============================================================
   app.all('/admin/*', ensureAuthenticated);
@@ -101,7 +106,7 @@ if (production) {
     //load environment variables
     dotenv.config();
     // permit access to public file
-    app.use(express.static(path.join(__dirname, '/public')))
+    app.use(express.static(path.join(__dirname, '/public')));
 };
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
