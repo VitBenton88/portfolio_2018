@@ -102,6 +102,8 @@ if (production) {
     app.use(compression());
     // permit access to public file
     app.use(express.static(path.join(__dirname, '/public'), {maxage: '1y'}));
+    // cache templates
+    app.enable('view cache');
 } else {
     //load environment variables
     dotenv.config();
