@@ -81,7 +81,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     //handle Googles robots
     app.get('/robots.txt', function (req, res) {
         res.type('text/plain');
-        res.send("User-agent: *\nDisallow: /");
+        res.send("User-agent: *\Allow: /");
     });
 
     //handle sitemap request
