@@ -85,8 +85,8 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
     });
 
     //handle sitemap request
-    app.get('/sitemap.txt', function (req, res) {
-        res.send("./public/sitemap.txt");
+    app.get('/sitemap.xml', function (req, res) {
+        res.send("./public/sitemap.xml");
     });
 
     // POST
