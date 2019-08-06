@@ -63,7 +63,7 @@ app.use(session({
   secret: 'keyboardCats',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 }
+  cookie: { maxAge: 3600000 }
 }));
 
 // Sets up Passport Middleware
