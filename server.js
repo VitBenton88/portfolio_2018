@@ -104,6 +104,14 @@ if (production) {
     app.use(express.static(path.join(__dirname, '/public'), {maxage: '1y'}));
     // cache templates
     app.enable('view cache');
+    //force https (heroku)
+    app.use((req, res, next) => {
+      if (req.header('x-forwarded-proto') !== 'https' && process.env._.indexOf("heroku")) {
+        res.redirect(`https://${req.header('host')}${req.url}`)
+      } else {
+        next();
+      }
+    });
 } else {
     //load environment variables
     dotenv.config();
