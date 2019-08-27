@@ -122,7 +122,8 @@ if (production) {
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 // =============================================================
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/portfolio";
+// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/portfolio";
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_bdfgpq7c:f51bmjdm21873pvogaepbkmdvp@ds223685.mlab.com:23685/heroku_bdfgpq7c';
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true

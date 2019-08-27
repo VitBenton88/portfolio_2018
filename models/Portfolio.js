@@ -68,6 +68,10 @@ const ProjectSchema = new Schema({
     type: String,
     default: 'Link Text'
   },
+  type: {
+    type: String,
+    default: 'app'
+  },
   url: {
     type: String,
     default: '/'

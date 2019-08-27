@@ -402,9 +402,9 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     // add project
     app.post("/addproject", (req, res) => {
-      const { _id, details, title, text, url } = req.body;
+      const { _id, details, title, text, type, url } = req.body;
 
-      if ( !title || !text || !url ) {
+      if ( !title || !text || !url || !type ) {
         req.flash(
           'error',
           'Please fill out all fields when adding a project.'
@@ -420,7 +420,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         bullets.push({bullet: details});
       }
       db.Portfolio
-      .findByIdAndUpdate(_id, {'$push': {"portfolio.projects" : {title, text, url, bullets}}})
+      .findByIdAndUpdate(_id, {'$push': {"portfolio.projects" : {title, text, type, url, bullets}}})
         .then((result) => {
           req.flash(
             'success',
@@ -438,9 +438,9 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     // update project
     app.post("/updateproject", (req, res) => {
-      const { _id, details, _project, title, text, url } = req.body;
+      const { _id, details, _project, title, text, type, url } = req.body;
 
-      if ( !title || !text || !url ) {
+      if ( !title || !text || !url || !type  ) {
         req.flash(
           'error',
           'Please fill out all fields when updating a project.'
@@ -457,7 +457,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       }
       db.Portfolio
       .findOneAndUpdate(
-        { _id, "portfolio.projects._id": _project }, {"portfolio.projects.$.url": url, "portfolio.projects.$.text": text, "portfolio.projects.$.title": title, "portfolio.projects.$.bullets": bullets} )
+        { _id, "portfolio.projects._id": _project }, {"portfolio.projects.$.url": url, "portfolio.projects.$.text": text, "portfolio.projects.$.title": title, "portfolio.projects.$.type": type, "portfolio.projects.$.bullets": bullets} )
         .then((result) => {
           req.flash(
             'success',
