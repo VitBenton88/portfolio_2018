@@ -3,17 +3,28 @@
         <form action="/addproject" method="POST">
             <div class="form-group">
                 <label for="title">Add Project</label>
-                    <small id="title-help" class="form-text text-muted">Title of this project.</small>
-                    <input name="title" class="form-control" type="text" aria-describedby="title-help" placeholder="Enter title ..." required>
-                    <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
-                    <input name="text" class="form-control" type="text" aria-describedby="text-help" placeholder="Enter button text ..." required>
-                    <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
-                    <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter button url ..." required>
-                    <hr>
-                    <small id="details-help" class="form-text text-muted">Detail that will appear as bullet.</small>
-                    <input name="details" class="form-control project-detail" type="text" aria-describedby="details-help" placeholder="Project Detail">
-                    <br />
-                    <button type="button" class="btn btn-light add-project-detail"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <small id="title-help" class="form-text text-muted">Title of this project.</small>
+                <input name="title" class="form-control" type="text" aria-describedby="title-help"
+                    placeholder="Enter title ..." required>
+                <small id="text-help" class="form-text text-muted">Text that appears in button.</small>
+                <input name="text" class="form-control" type="text" aria-describedby="text-help"
+                    placeholder="Enter button text ..." required>
+                <small id="url-help" class="form-text text-muted">URL that goes to the live project.</small>
+                <input name="url" class="form-control" type="text" aria-describedby="url-help"
+                    placeholder="Enter button url ..." required>
+                <hr>
+                <small id="type-help" class="form-text text-muted">Project type, e.g. from agency?</small>
+                <select aria-describedby="type-help" name="type" class="form-control" required>
+                    <option value="App">App</option>
+                    <option value="Battle Medialab">Battle Medialab</option>
+                </select>
+                <hr>
+                <small id="details-help" class="form-text text-muted">Detail that will appear as bullet.</small>
+                <input name="details" class="form-control project-detail" type="text" aria-describedby="details-help"
+                    placeholder="Project Detail">
+                <br />
+                <button type="button" class="btn btn-light add-project-detail"><i class="fa fa-plus"
+                        aria-hidden="true"></i></button>
             </div>
             <input name="_id" type="hidden" value="{{id}}">
             <button type="submit" class="btn btn-success btn-block">Add</button>
