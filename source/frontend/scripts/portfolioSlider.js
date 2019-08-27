@@ -16,10 +16,10 @@ const sliderSettings = {
     ]
 }
 
-const leftArrowApps = $('.portfolio-slider.app-projects .fa-chevron-circle-left');
-const rightArrowApps = $('.portfolio-slider.app-projects .fa-chevron-circle-right');
-const leftArrowBml = $('.portfolio-slider.bml-projects .fa-chevron-circle-left');
-const rightArrowBml = $('.portfolio-slider.bml-projects .fa-chevron-circle-right');
+const leftArrowApps = $('.slider-article.app-projects-slider .fa-chevron-circle-left');
+const rightArrowApps = $('.slider-article.app-projects-slider .fa-chevron-circle-right');
+const leftArrowBml = $('.slider-article.bml-projects-slider .fa-chevron-circle-left');
+const rightArrowBml = $('.slider-article.bml-projects-slider .fa-chevron-circle-right');
 const portfolioSliderApps = $('.portfolio-slider.app-projects');
 const portfolioSliderBml = $('.portfolio-slider.bml-projects');
 
