@@ -1,6 +1,11 @@
 #portfolio {
 
+     .slider-title {
+         margin-top: 30px;
+     }
+
     .slider-article {
+        margin-top: 15px;
         padding: 25px;
 
         @include max-width($screen-sm-max) {
