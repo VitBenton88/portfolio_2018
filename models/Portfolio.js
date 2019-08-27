@@ -70,7 +70,7 @@ const ProjectSchema = new Schema({
   },
   type: {
     type: String,
-    default: 'app'
+    default: 'App'
   },
   url: {
     type: String,
