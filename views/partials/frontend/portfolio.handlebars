@@ -1,30 +1,56 @@
 {{#each portfolio}}
-    <section id="portfolio">
-        <div class="container">
-            <div class="col-12 col-md-10 offset-md-1">
-                <h2>Portfolio</h2>
-                <article>{{{portfolio.introduction}}}</article>
-                {{#if portfolio.projects}}
-                    <article class="slider-article">
-                        <p class="mobile-slider-instructions d-block d-sm-block d-md-none">Swipe to see more projects</p>
-                        <i class="fas fa-chevron-circle-left fa-2x d-none d-sm-none d-md-block"></i>
-                        <i class="fas fa-chevron-circle-right fa-2x d-none d-sm-none d-md-block"></i>
-                        <div class="portfolio-slider">
-                            {{#each portfolio.projects}}
-                                <div>
-                                    <h3>{{this.title}}</h3>
-                                    <ul>
-                                        {{#each this.bullets}}
-                                        <li>{{this.bullet}}</li>
-                                        {{/each}}
-                                    </ul>
-                                    <a href="{{this.url}}" target="_blank" class="standardBtn widerBtn project-link">{{this.text}}</a>
-                                </div>
+<section id="portfolio">
+    <div class="container">
+        <div class="col-12 col-md-10 offset-md-1">
+            <h2>Portfolio</h2>
+            <article>{{{portfolio.introduction}}}</article>
+            <h3 class="slider-title">Battle Medialab Client Work</h3>
+            <article class="slider-article bml-projects-slider">
+                <p class="mobile-slider-instructions d-block d-sm-block d-md-none">Swipe to see more projects</p>
+                <i class="fas fa-chevron-circle-left fa-2x d-none d-sm-none d-md-block"></i>
+                <i class="fas fa-chevron-circle-right fa-2x d-none d-sm-none d-md-block"></i>
+                <div class="portfolio-slider bml-projects">
+                    {{#each portfolio.projects}}
+                    {{#eq this.type "Battle Medialab"}}
+                    <div>
+                        <h3>{{this.title}}</h3>
+                        <ul>
+                            {{#each this.bullets}}
+                            <li>{{this.bullet}}</li>
                             {{/each}}
-                        </div>
-                    </article>
-                {{/if}}
-            </div>
+                        </ul>
+                        <a href="{{this.url}}" target="_blank"
+                            class="standardBtn widerBtn project-link">{{this.text}}</a>
+                    </div>
+                    {{/eq}}
+                    {{/each}}
+                </div>
+            </article>
+            {{#if portfolio.projects}}
+            <h3 class="slider-title">Web Applicaction Projects</h3>
+            <article class="slider-article app-projects-slider">
+                <p class="mobile-slider-instructions d-block d-sm-block d-md-none">Swipe to see more projects</p>
+                <i class="fas fa-chevron-circle-left fa-2x d-none d-sm-none d-md-block"></i>
+                <i class="fas fa-chevron-circle-right fa-2x d-none d-sm-none d-md-block"></i>
+                <div class="portfolio-slider app-projects">
+                    {{#each portfolio.projects}}
+                    {{#eq this.type "App"}}
+                    <div>
+                        <h3>{{this.title}}</h3>
+                        <ul>
+                            {{#each this.bullets}}
+                            <li>{{this.bullet}}</li>
+                            {{/each}}
+                        </ul>
+                        <a href="{{this.url}}" target="_blank"
+                            class="standardBtn widerBtn project-link">{{this.text}}</a>
+                    </div>
+                    {{/eq}}
+                    {{/each}}
+                </div>
+            </article>
+            {{/if}}
         </div>
-    </section>
+    </div>
+</section>
 {{/each}}
