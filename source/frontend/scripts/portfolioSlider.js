@@ -16,21 +16,32 @@ const sliderSettings = {
     ]
 }
 
-const leftArrow = $('.fa-chevron-circle-left');
-const rightArrow = $('.fa-chevron-circle-right');
-const portfolioSlider = $('.portfolio-slider');
+const leftArrowApps = $('.portfolio-slider.app-projects .fa-chevron-circle-left');
+const rightArrowApps = $('.portfolio-slider.app-projects .fa-chevron-circle-right');
+const leftArrowBml = $('.portfolio-slider.bml-projects .fa-chevron-circle-left');
+const rightArrowBml = $('.portfolio-slider.bml-projects .fa-chevron-circle-right');
+const portfolioSliderApps = $('.portfolio-slider.app-projects');
+const portfolioSliderBml = $('.portfolio-slider.bml-projects');
 
 $(document).ready(() => {
     //init slider
-    portfolioSlider.slick(sliderSettings);
+    portfolioSliderApps.slick(sliderSettings);
+    portfolioSliderBml.slick(sliderSettings);
 
     //leveraging slick methods
     //custom next slide event
-    rightArrow.click(() => {
-        portfolioSlider.slick('slickNext');
+    rightArrowApps.click(() => {
+      portfolioSliderApps.slick('slickNext');
     });
     //custom prev slide event
-    leftArrow.click(() => {
-        portfolioSlider.slick('slickPrev');
+    leftArrowApps.click(() => {
+      portfolioSliderApps.slick('slickPrev');
+    });
+    rightArrowBml.click(() => {
+      portfolioSliderBml.slick('slickNext');
+    });
+    //custom prev slide event
+    leftArrowBml.click(() => {
+      portfolioSliderBml.slick('slickPrev');
     });
 });
