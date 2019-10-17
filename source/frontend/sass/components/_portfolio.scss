@@ -25,11 +25,8 @@
         }
 
         .fa-chevron-circle-right {
-            right: 20%;
-
-            @include max-width($screen-md-max) {
-                right: 15%;
-            }
+            right: 15%;
+            
             @include max-width($screen-xs-max) {
                 right: 9%;
             }
