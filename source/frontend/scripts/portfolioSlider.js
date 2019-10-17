@@ -8,7 +8,7 @@ const sliderSettings = {
     swipeToSlide: true,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 991,
         settings: {
           fade: false,
         }
