@@ -15,22 +15,6 @@ const uglify = require('gulp-uglify');
 
 const paths = {
    styles: {
-       browsers: [
-           'last 1 Edge version',
-           'last 1 iOS version',
-           'last 1 Safari version',
-           'last 1 Samsung version',
-
-           'last 1 Chrome version',
-           'last 1 ChromeAndroid version',
-
-           'last 1 Firefox version',
-           'last 1 FirefoxAndroid version',
-
-           'last 1 Opera version',
-           'last 1 OperaMobile version'
-       ],
-
        source: 'source/frontend/sass/**/*.scss'
    },
 
@@ -129,9 +113,7 @@ function develop_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))
@@ -148,9 +130,7 @@ function develop_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))
@@ -211,9 +191,7 @@ function production_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))
@@ -227,9 +205,7 @@ function production_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))
