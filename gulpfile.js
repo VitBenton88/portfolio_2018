@@ -23,7 +23,7 @@ const paths = {
            custom: 'source/frontend/scripts/**/*.js',
 
            libraries: [
-               'source/frontend/libraries/jquery-3.3.1.min.js',
+               'source/frontend/libraries/jquery.min.js',
                'source/frontend/libraries/jquery.color-2.1.2.min.js',
                'source/frontend/libraries/Chart.min.js',
                'source/frontend/libraries/particles.min.js',
