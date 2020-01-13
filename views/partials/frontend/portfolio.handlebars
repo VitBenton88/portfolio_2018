@@ -1,7 +1,7 @@
-{{#each portfolio}}
 <section id="portfolio">
     <div class="container">
         <div class="col-12 col-md-10 offset-md-1">
+            {{#if portfolio.projects}}
             <h2>Portfolio</h2>
             <article>{{{portfolio.introduction}}}</article>
             <h3 class="slider-title">Battle Medialab Client Work</h3>
@@ -11,22 +11,24 @@
                 <i class="fas fa-chevron-circle-right fa-2x d-none d-lg-block"></i>
                 <div class="portfolio-slider bml-projects">
                     {{#each portfolio.projects}}
-                    {{#eq this.type "Battle Medialab"}}
+                    {{#with this}}
+                    {{#eq type "Battle Medialab"}}
                     <div>
-                        <h3>{{this.title}}</h3>
+                        <h3>{{title}}</h3>
                         <ul>
-                            {{#each this.bullets}}
+                            {{#each bullets}}
                             <li>{{this.bullet}}</li>
                             {{/each}}
                         </ul>
-                        <a href="{{this.url}}" target="_blank"
-                            class="standardBtn widerBtn project-link">{{this.text}}</a>
+                        <a href="{{url}}" target="_blank"
+                            class="standardBtn widerBtn project-link">{{text}}</a>
                     </div>
                     {{/eq}}
+                    {{/with}}
                     {{/each}}
                 </div>
             </article>
-            {{#if portfolio.projects}}
+
             <h3 class="slider-title">Web Application Projects</h3>
             <article class="slider-article app-projects-slider">
                 <p class="mobile-slider-instructions d-block d-md-none">Swipe to see more projects</p>
@@ -34,18 +36,20 @@
                 <i class="fas fa-chevron-circle-right fa-2x d-none d-lg-block"></i>
                 <div class="portfolio-slider app-projects">
                     {{#each portfolio.projects}}
-                    {{#eq this.type "App"}}
+                    {{#with this}}
+                    {{#eq type "App"}}
                     <div>
-                        <h3>{{this.title}}</h3>
+                        <h3>{{title}}</h3>
                         <ul>
-                            {{#each this.bullets}}
+                            {{#each bullets}}
                             <li>{{this.bullet}}</li>
                             {{/each}}
                         </ul>
-                        <a href="{{this.url}}" target="_blank"
-                            class="standardBtn widerBtn project-link">{{this.text}}</a>
+                        <a href="{{url}}" target="_blank"
+                            class="standardBtn widerBtn project-link">{{text}}</a>
                     </div>
                     {{/eq}}
+                    {{/with}}
                     {{/each}}
                 </div>
             </article>
@@ -53,4 +57,3 @@
         </div>
     </div>
 </section>
-{{/each}}
