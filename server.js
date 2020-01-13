@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 const exphbs  = require('express-handlebars');
 const favicon = require('serve-favicon')
 const flash = require('connect-flash');
-const helpers = require('handlebars-helpers')();
+const helpers = require('handlebars-helpers');
 const mongoose = require("mongoose");
 const nodemailer = require('nodemailer');
 const passport = require('passport');
@@ -46,6 +46,7 @@ let PORT = process.env.PORT || 3000;
 // =============================================================
 const hbs = exphbs.create({
   defaultLayout: 'main',
+  helpers: helpers()
 });
 
 // Sets up the Express with Handlebars
