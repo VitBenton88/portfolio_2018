@@ -71,7 +71,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/users');
       });
@@ -99,25 +99,27 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
       if (!validator.isEmpty(replyTo) && !validator.isEmpty(name) && !validator.isEmpty(message) && validator.isEmail(replyTo)) {
 
+        const {EMAIL_SER, EMAIL_PASS, EMAIL_REC, EMAIL_USER} = process.env
+
         const transporter = nodemailer.createTransport({
-          service: process.env.EMAIL_SER,
+          service: EMAIL_SER,
           auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: EMAIL_USER,
+            pass: EMAIL_PASS
           }
         });
 
         const mailOptions = {
-          from: process.env.EMAIL_USER,
+          from: EMAIL_USER,
           replyTo,
-          to: process.env.EMAIL_REC,
+          to: EMAIL_REC,
           subject,
           text: message
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
-            console.log(error);
+            console.error(error);
           } else {
             console.log(`Email sent: ${info.response}`);
           }
@@ -125,7 +127,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         
         req.flash(
           'success',
-          'Message successfully sent.'
+          'Thanks for contacting me! I will be in touch with you shortly.'
         );
         res.redirect('/');
 
@@ -152,7 +154,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/settings');
       });
@@ -172,7 +174,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/settings');
       });
@@ -192,7 +194,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/settings');
       });
@@ -211,7 +213,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -230,7 +232,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -262,7 +264,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -292,7 +294,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -324,7 +326,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -354,7 +356,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -374,7 +376,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -394,7 +396,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -430,7 +432,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -467,7 +469,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -486,7 +488,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -518,7 +520,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -548,7 +550,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
         })
         .catch((error) => {
         // If an error occurred, send it to the client
-        console.log(error);
+        console.error(error);
         req.flash('error', error.message);
         res.redirect('/admin/content');
       });
@@ -597,7 +599,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
             })
             .catch((error) => {
             // If an error occurred, send it to the client
-            console.log(error);
+            console.error(error);
             req.flash('error', error.message);
             res.redirect('/admin/users');
           });
@@ -641,7 +643,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           })
           .catch((error) => {
           // If an error occurred, send it to the client
-          console.log(error);
+          console.error(error);
           req.flash('error', error.message);
           res.redirect(`/admin/users/edit/${_id}`);
         });
@@ -691,7 +693,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
             })
             .catch((error) => {
             // If an error occurred, send it to the client
-            console.log(error);
+            console.error(error);
             req.flash('error', error.message);
             res.redirect(`/admin/users/edit/${_id}`);
           });
@@ -736,7 +738,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           })
           .catch((error) => {
           // If an error occurred, send it to the client
-          console.log(error);
+          console.error(error);
           req.flash('error', error.message);
           res.redirect('/admin/content');
         });
@@ -756,7 +758,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           })
           .catch((error) => {
           // If an error occurred, send it to the client
-          console.log(error);
+          console.error(error);
           req.flash('error', error.message);
           res.redirect('/admin/content');
         });
@@ -776,7 +778,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           })
           .catch((error) => {
           // If an error occurred, send it to the client
-          console.log(error);
+          console.error(error);
           req.flash('error', error.message);
           res.redirect('/admin/content');
         });
@@ -796,7 +798,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           })
           .catch((error) => {
           // If an error occurred, send it to the client
-          console.log(error);
+          console.error(error);
           req.flash('error', error.message);
           res.redirect('/admin/content');
         });
@@ -814,7 +816,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
           })
           .catch((error) => {
           // If an error occurred, send it to the client
-          console.log(error);
+          console.error(error);
           req.flash('error', error.message);
           res.end(`{"error" : "${error.message}", "status" : 400}`);
         });
@@ -844,7 +846,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
               })
               .catch((error) => {
                 // If an error occurred, send it to the client
-                console.log(error);
+                console.error(error);
                 req.flash('error', error.message);
                 res.redirect(`/admin/users/edit/${_id}`);
             });

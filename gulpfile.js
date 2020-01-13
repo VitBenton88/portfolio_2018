@@ -15,22 +15,6 @@ const uglify = require('gulp-uglify');
 
 const paths = {
    styles: {
-       browsers: [
-           'last 1 Edge version',
-           'last 1 iOS version',
-           'last 1 Safari version',
-           'last 1 Samsung version',
-
-           'last 1 Chrome version',
-           'last 1 ChromeAndroid version',
-
-           'last 1 Firefox version',
-           'last 1 FirefoxAndroid version',
-
-           'last 1 Opera version',
-           'last 1 OperaMobile version'
-       ],
-
        source: 'source/frontend/sass/**/*.scss'
    },
 
@@ -39,7 +23,7 @@ const paths = {
            custom: 'source/frontend/scripts/**/*.js',
 
            libraries: [
-               'source/frontend/libraries/jquery-3.3.1.min.js',
+               'source/frontend/libraries/jquery.min.js',
                'source/frontend/libraries/jquery.color-2.1.2.min.js',
                'source/frontend/libraries/Chart.min.js',
                'source/frontend/libraries/particles.min.js',
@@ -129,9 +113,7 @@ function develop_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))
@@ -148,9 +130,7 @@ function develop_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))
@@ -211,9 +191,7 @@ function production_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))
@@ -227,9 +205,7 @@ function production_styles() {
        .on('error', sass.logError)
 
        .pipe(postcss([
-           autoprefixer({
-               browsers: paths.styles.browsers
-           }),
+           autoprefixer(),
 
            cssnano()
        ]))

@@ -1,4 +1,6 @@
-.alert {
+.notifications .alert {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     position: relative;
     padding: .75rem 1.25rem;
