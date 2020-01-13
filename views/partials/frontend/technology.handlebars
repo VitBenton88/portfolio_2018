@@ -1,13 +1,13 @@
-{{#each portfolio}}
-    <section id="graphs">
-        <div class="container">
-            <canvas id="canvas-frontend" class="col-12"></canvas>
-            <canvas id="canvas-backend" class="col-12"></canvas>
-        </div>
-    </section>
-    <div class="d-none technology-collection">
-        {{#each technology}}
-            <div class="tech" aria-hidden="true" data-label="{{this.name}}" data-score="{{this.score}}" data-type="{{this.type}}"></div>
-        {{/each}}
+<section id="graphs">
+    <div class="container">
+        <canvas id="canvas-frontend" class="col-12"></canvas>
+        <canvas id="canvas-backend" class="col-12"></canvas>
     </div>
-{{/each}}
+</section>
+<div class="d-none technology-collection">
+    {{#each technology}}
+        {{#with this}}
+        <div class="tech" aria-hidden="true" data-label="{{name}}" data-score="{{score}}" data-type="{{type}}"></div>
+        {{/with}}
+    {{/each}}
+</div>
