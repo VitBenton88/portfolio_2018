@@ -16,12 +16,12 @@
                                 <input name="url" class="form-control" type="text" aria-describedby="url-help" placeholder="Enter new url ..." value="{{this.url}}">
                                 <small id="url-help" class="form-text text-muted">Url this menu item points to.</small>
                             </div>
-                            <input name="_id" type="hidden" value="{{../id}}">
+                            <input name="_id" type="hidden" value="{{../_id}}">
                             <input name="_menu" type="hidden" value="{{this.id}}">
                             <button type="submit" class="btn btn-primary btn-block">Update</button>
                         </form>
                         <form action="/deletemenuitem" method="POST">
-                            <input name="_id" type="hidden" value="{{../id}}">
+                            <input name="_id" type="hidden" value="{{../_id}}">
                             <input name="_menu" type="hidden" value="{{this.id}}">
                             <button type="submit" class="btn btn-danger btn-block">Delete</button>
                         </form>

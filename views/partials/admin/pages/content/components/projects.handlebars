@@ -42,7 +42,7 @@
                                         aria-describedby="details-help" placeholder="Project Detail"
                                         value="{{this.bullet}}">
                                     <i class="fa fa-close delete-project-bullet" aria-hidden="true"
-                                        data-_id="{{../../id}}" data-projectid="{{../id}}"
+                                        data-_id="{{../../id}}" data-projectid="{{../_id}}"
                                         data-bulletid="{{this.id}}"></i>
                                 </div>
                                 {{/each}}
@@ -50,12 +50,12 @@
                                         class="fa fa-plus" aria-hidden="true"></i></button>
                             </div>
                         </div>
-                        <input name="_id" type="hidden" value="{{../id}}">
+                        <input name="_id" type="hidden" value="{{../_id}}">
                         <input name="_project" type="hidden" value="{{this.id}}">
                         <button type="submit" class="btn btn-primary btn-block">Update</button>
                     </form>
                     <form class="delete-project" action="/deleteproject" method="POST">
-                        <input name="_id" type="hidden" value="{{../id}}">
+                        <input name="_id" type="hidden" value="{{../_id}}">
                         <input name="_project" type="hidden" value="{{this.id}}">
                         <button type="submit" class="btn btn-danger btn-block">Delete</button>
                     </form>

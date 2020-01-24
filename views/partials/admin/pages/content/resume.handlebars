@@ -2,7 +2,7 @@
     <h5>Resume</h5>
     <form action="/updateresume" method="POST">
         <textarea name="resume" class="summernote-editor" id="resumeEditor">{{resume}}</textarea>
-        <input name="_id" type="hidden" value="{{id}}">
+        <input name="_id" type="hidden" value="{{this._id}}">
         <button type="submit" class="btn btn-outline-success save-wysiwyg">Save</button>
     </form>
 {{/each}}

@@ -17,13 +17,13 @@
                                 <small id="score-help" class="form-text text-muted">Score for this technology.</small>
                                 <input name="score" class="form-control" type="text" aria-describedby="score-help" value="{{this.score}}" placeholder="Enter new score for this tech...">
                                 </div>
-                                <input name="_id" type="hidden" value="{{../id}}">
+                                <input name="_id" type="hidden" value="{{../_id}}">
                                 <input name="_technology" type="hidden" value="{{this.id}}">
                                 <input name="type" type="hidden" value="Frontend">
                                 <button type="submit" class="btn btn-primary btn-block">Update</button>
                             </form>
                             <form action="/deletetechnology" method="POST">
-                                <input name="_id" type="hidden" value="{{../id}}">
+                                <input name="_id" type="hidden" value="{{../_id}}">
                                 <input name="_technology" type="hidden" value="{{this.id}}">
                                 <button type="submit" class="btn btn-danger btn-block">Delete</button>
                             </form>
