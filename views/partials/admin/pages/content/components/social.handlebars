@@ -21,12 +21,12 @@
                             <small id="iconHelp" class="form-text text-muted">Icon for this social link.</small>
                             <select class="custom-select" name="icon" aria-describedby="iconHelp">{{> admin/components/dropdowns/social}}</select>
                         </div>
-                        <input name="_id" type="hidden" value="{{../id}}">
+                        <input name="_id" type="hidden" value="{{../_id}}">
                         <input name="_social" type="hidden" value="{{this.id}}">
                         <button type="submit" class="btn btn-outline-info btn-block">Update</button>
                     </form>
                     <form action="/deletesocial" method="POST" class="delete-social">
-                        <input name="_id" type="hidden" value="{{../id}}">
+                        <input name="_id" type="hidden" value="{{../_id}}">
                         <input name="_social" type="hidden" value="{{this.id}}">
                         <button type="submit" class="btn btn-danger btn-block">Delete</button>
                     </form>

@@ -25,7 +25,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     // admin content route
     app.get("/admin/content", (req, res) => {
-      db.Portfolio.find()
+      db.Portfolio.find().lean()
       .then((portfolio) => {
         const sessionUser = {username: req.user.username, _id: req.user._id};
         res.render("admin-content", {portfolio, sessionUser, layout: "admin"});
@@ -43,7 +43,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     // admin settings route
     app.get("/admin/settings", (req, res) => {
-      db.Portfolio.find()
+      db.Portfolio.find().lean()
       .then((portfolio) => {
         const sessionUser = {username: req.user.username, _id: req.user._id};
         res.render("admin-settings", {portfolio, sessionUser, layout: "admin"});
@@ -52,7 +52,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
 
     // admin users route
     app.get("/admin/users", (req, res) => {
-      db.Users.find()
+      db.Users.find().lean()
       .then((users) => {
         const sessionUser = {username: req.user.username, _id: req.user._id};
         res.render("admin-users", {users, sessionUser, layout: "admin"});
@@ -64,7 +64,7 @@ module.exports = function(app, bcrypt, db, dotenv, Controller, nodemailer, passp
       const _id = req.params.id;
 
       db.Users
-      .findById({_id})
+      .findById({_id}).lean()
         .then((user) => {
           const sessionUser = {username: req.user.username, _id: req.user._id};
           res.render("admin-edit-user", {user, sessionUser, layout: "admin"});

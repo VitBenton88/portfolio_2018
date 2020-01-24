@@ -7,7 +7,7 @@
             <small id="siteDescHelp" class="form-text text-muted">The description of your website. Renders in <xmp><metaname="description"></xmp> meta tag.</title></small>
             <textarea name="site_description" id="site_description" class="form-control" aria-describedby="siteDescHelp" placeholder="Enter tags ..." rows="6">{{site_settings.site_description}}</textarea>
         </div>
-        <input name="_id" type="hidden" value="{{id}}">
+        <input name="_id" type="hidden" value="{{_id}}">
         <button type="submit" class="btn btn-outline-info">Update</button>
     </form>
 {{/each}}
